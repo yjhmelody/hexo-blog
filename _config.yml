@@ -8,14 +8,14 @@ subtitle: about my life
 description: 想记录很多东西
 author: yjhmelody
 language: zh-CN
-timezone: UTC
+timezone: 
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: yjhmelody.github.io
-root: /
+root: /blog/
 permalink: :year/:month/:day/:title/
-permalink_defaults: yjhmelody.github.io
+permalink_defaults:
 
 # Directory
 source_dir: source
