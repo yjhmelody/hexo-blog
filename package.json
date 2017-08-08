@@ -1,6 +1,6 @@
 {
-  "name": "hexo-site",
-  "version": "0.0.0",
+  "name": "yjhmelody-hexo-blog",
+  "version": "0.2.0",
   "private": true,
   "hexo": {
     "version": "3.3.8"
@@ -18,5 +18,21 @@
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.0"
   },
-  "false": {}
+  "false": {},
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yjhmelody/hexo-blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yjhmelody/hexo-blog/issues"
+  },
+  "homepage": "https://github.com/yjhmelody/hexo-blog#readme"
 }
