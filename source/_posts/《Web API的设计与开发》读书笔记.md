@@ -37,7 +37,7 @@ category: study
 * 没有设计规范的内容必须遵守相关事实标准
 
 ## 1.6 REST 与 Web API
-REST 一次一般指下面两种意思：
+REST 依次一般指下面两种意思：
 
 * 符合 Fielding 的 REST 架构风格的Web服务系统
 * 符合 RPC风格的 XML (或JSON) + HTTP 接口的系统(不使用SOAP)
