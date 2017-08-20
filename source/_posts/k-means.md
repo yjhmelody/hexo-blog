@@ -1,7 +1,7 @@
 ---
 title: k-means
 date: 2017-08-08 16:18:09
-tags: [ml, cluster]
+tags: ml
 categry: study
 ---
 
