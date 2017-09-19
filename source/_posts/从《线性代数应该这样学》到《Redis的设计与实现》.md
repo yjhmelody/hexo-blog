@@ -1,8 +1,8 @@
 ---
 title: 从《线性代数应该这样学》到《Redis的设计与实现》
 date: 2017-09-08 21:50:19
-tags: Summary
-category: Study
+tags: summary
+category: study
 ---
 # 从《线性代数应该这样学》到《Redis的设计与实现》
 

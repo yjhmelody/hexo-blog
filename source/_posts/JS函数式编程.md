@@ -2,7 +2,7 @@
 title: JS函数式编程笔记
 date: 2017-09-19 20:47:31
 tags: JS
-category: Study
+category: study
 ---
 # JS函数式编程
 

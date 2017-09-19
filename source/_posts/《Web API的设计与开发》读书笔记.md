@@ -1,8 +1,8 @@
 ---
 title: 《Web API的设计与开发》读书笔记
 date: 2017-08-08 12:11:10
-tags: Web
-category: Study
+tags: web
+category: study
 ---
 # 第1章 什么是 Web API
 
