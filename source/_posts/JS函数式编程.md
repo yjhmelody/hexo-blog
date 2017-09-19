@@ -8,7 +8,7 @@ category: Study
 
 ## 我们在做什么
 
->> “we both know what happens when you assume”，源自一句名言“When you assume you make an ASS of U and ME”，意思是“让两人都难堪”）。但我猜想你在使用可变状态（mutable state）、无限制副作用（unrestricted side effects）和无原则设计（unprincipled design）的过程中已经遇到过一些麻烦。
+> “we both know what happens when you assume”，源自一句名言“When you assume you make an ASS of U and ME”，意思是“让两人都难堪”）。但我猜想你在使用可变状态（mutable state）、无限制副作用（unrestricted side effects）和无原则设计（unprincipled design）的过程中已经遇到过一些麻烦。
 
 现在已经有一些通用的编程原则了，各种缩写词带领我们在编程的黑暗隧道里前行：DRY（不要重复自己，don't repeat yourself），高内聚低耦合（loosecoupling high cohesion），YAGNI （你不会用到它的，ya ain't gonna need it），最小意外原则（Principle of least surprise），单一责任（single responsibility）等等。这些原则同样适用于函数式编程(FP)。
 
@@ -155,7 +155,7 @@ fs.readFile('freaky_friday.txt', Db.save.bind(Db));
 
 ## 纯函数的好处
 
->> 纯函数是这样一种函数，即相同的输入，永远会得到相同的输出，而且没有任何可观察的副作用。
+> 纯函数是这样一种函数，即相同的输入，永远会得到相同的输出，而且没有任何可观察的副作用。
 
 slice 跟 splice
 
@@ -209,7 +209,7 @@ var immutableState = Object.freeze({
 });
 ```
 
->> 副作用是在计算结果的过程中，系统状态的一种变化，或者与外部世界进行的可观察的交互。
+> 副作用是在计算结果的过程中，系统状态的一种变化，或者与外部世界进行的可观察的交互。
 
 副作用可能包含，但不限于：
 
