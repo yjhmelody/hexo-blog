@@ -2,7 +2,7 @@
 title: k-means
 date: 2017-08-08 16:18:09
 tags: ML
-categry: study
+categry: Study
 ---
 
 公式排版目前没法解决唉，博客写个数学公式怎么这么揪心，好不容易解决了公式显示问题，但排版又很难控制
