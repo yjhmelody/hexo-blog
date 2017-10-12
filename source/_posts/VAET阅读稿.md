@@ -13,6 +13,8 @@ category: study
 
 <!-- more -->
 
+![图1](VAET-system.png)
+
 ## INTRODUCTION 介绍
 
 The E-transaction time-series contains transactions among multiple users in a time range. Each record contains a time stamp, the IDs of the seller and buyer, and the associated attributes of the commodities. Each record is an atomic element representing an online transaction among a seller and a buyer.
@@ -225,7 +227,7 @@ The analysts pointed out that there were several major drawbacks in this design:
 
 ### KnotLines （结线）
 
-为了解决上述问题，我们设计了一个增强的视觉隐喻调用KnotLines。 它受到音乐符号的启发，这可以被看作是一个改进的散点图，它沿着时间轴放置不同类型的点（音符）。它是时间序列（例如节拍和节奏）及其连接的复杂视觉表示。
+为了解决上述问题，我们设计了一个增强的视觉隐喻调用KnotLines。它受到音乐符号的启发，这可以被看作是一个改进的散点图，它沿着时间轴放置不同类型的点（音符）。它是时间序列（例如节拍和节奏）及其连接的复杂视觉表示。
 
 这里就不详细说明了，具体见表2。
 
@@ -241,7 +243,7 @@ The analysts pointed out that there were several major drawbacks in this design:
 | 一个结 | 在一段时间内，同一卖家与同名销售类别的交易（一节）|
 | 结的颜色 | 该结点的销售类别|
 | 结的大小 | 该结点的商品数量|
-| 一个未打结的结点 | 与卖方或买方位置异常的交易|
+| 一个未填充的结点 | 与卖方或买方位置异常的交易|
 
 ![表2](Visual-Encoding.png)
 
@@ -249,18 +251,164 @@ The analysts pointed out that there were several major drawbacks in this design:
 
 除了布局模式的规范和详细结点的调查之外，KnotLines还提供了一套用于分析多个结线的交互。
 
-## CASE STUDY 案例分析
+* `显着调制` KnotLines视图中显示的每个事务都包含一个显着值。 分析师可以显示从2D TOS地图中选择的所有交易，或仅显示显着值大于给定阈值（例如，0.8）的所选交易。 当视图中显示许多节线时，此过滤操作非常有用，因此它支持T2和T3。 图9显示了显着性调制的影响。
+* `查看导航` KnotLines视图可以水平放大，以清楚说明，这对T2和T3有帮助。 时间间隔的长度将相应调整。 分析师可以垂直或水平滚动查看更多的knotlines。
+* `兴趣选择结` 我们可以通过单击或使用套索工具拖动来选择一组结。 指定结时，会以黄色的圆圈突出显示。 由同一买家制造的相关结也用灰色的圆环突出显示分析师的注意力（图1（b））。 将出现一个浮动文本框，显示所选结的详细信息，如卖方的位置，支付金额和销售类别。 分析员可以在详细视图（图1（e））中的所选结（部分）中检查交易的信息（例如，买方和卖方的位置，子类别和商品编号），其中 是为T2设计的。 对T4有帮助的统计视图（图1（f））用于提供所选结的统计信息，如交易频率和卖方支付金额的趋势。
+* `标签` 当特定交易被分析师识别为突出显示时，可以将其添加到标记数据中进行迭代视觉分析和探索。
+
+
+* `Saliency Modulation` Each transaction shown in the KnotLines view contains a saliency value. The analysts can show either all transactions selected from the 2D TOS map or only the selected transactions whose saliency values are larger than a given threshold (e.g., 0.8).This filtering operation is useful when there are many knotlines shown in the view, so it supports T2 and T3. Figure 9 demonstrates the effect of saliency modulation.
+
+* `View navigation` The KnotLines view can be zoomed horizontally for clear illustration, a function helpful for T2 and T3. The lengths of the time intervals will be adjusted accordingly. Analysts can scroll vertically or horizontally to see more knotlines.
+
+* `Knots of Interest Selection` We can select a set of knots by clicking, or dragging using a lasso tool. When a knot is specified, it is highlighted with a yellow ring. Related knots which are made by the same buyer are also highlighted with grey rings to draw the analysts’ attention (Figure 1 (b)). A floating text box will appear displaying the detailed information of the selected knot such as the location of the seller, the payment amount, and the sales category. Analysts can check the information of the transactions (e.g., the location of the buyer and the seller, the sub-category, and the commodity number) in the selected knot (section) in the detail view (Figure 1 (e)), which is designed for T2. A statistic view (Figure 1 (f)), which is helpful for T4, is used to present statistical information for the selected knot, such as the trend of the transaction frequency and the payment amount of the seller.
+
+* `Labeling` When a specific transaction is identified as salient by analysts,it can be added to the labeled data for iterative visual analysis and exploration.
+
+![图1](VAET-system.png)
+
+## CASE STUDY 案例研究
+
+`PS:` 这部分应该是论文作者讲述一次真实分析过程，里面有分析的思路与流程，还有该系统的使用特点。
+
+来自我们的客户 - 客户（C2C）零售业务的数据部门的分析师参与了这项研究。 该公司提供了一个数据集，其中包含2600万个在线电子交易，从中他们想要检测假交易。 约有930万卖家和买家参与了数据集。 他有兴趣通过与合作伙伴买家建立假交易来识别卖家何时积累信用。 异常交易行为的一些指标可能是异常大量的商品，支付金额的大幅变化，特定卖方和买方之间的频繁交易，以及价值超出其正常范围的属性。
 
 ### Construction of Decision Tree 决策树构建
 
+计算每个时间间隔内的卖方的交易频率并将其用作`时间特征`。 根据由分析者提供并用作文本特征的敏感字典，提取了评论中的`关键词`和`短语`（例如“信用”）。我们标注了大约300笔交易，这些交易是使用分层抽样从每个类别中选出的。 我们用标记的数据训练了决策树。 将要分析的交易的提取特征描述作为决策树的`输入`，并为每个输入产生显着性值。
+
+我们使用`精确率`p和`召回率`r来评估决策树的效率：p = TP /（TP + FP）= 0.89，r = TP /（T P + FN）= 0.92，其中TP，TN，FP和FN 从训练数据的预测结果中计数（见表1）。
+`PS:` 这几个概念一般用于评估机器学习算法的性能等指标，也是广泛用于信息检索和统计学分类领域的两个度量值，用来评价结果的质量。 决策树算法在这里的作用只是用来找到显著性值。
+
 ### Abnormal Frequency and Locations of Transactions 异常频率和交易地点
+
+分析师在简短的培训课程之后开始在TOS地图中进行勘探。他注意到一个具有`高度显着性的长长的地区`（图10）。随后，分析师指定了时间窗口，并放大到所需的区域。为了进一步研究交易行为，分析师选择了这个地区，发现许多交易在9月19日上午10点被分类为“图书”。分析师注意到连续的红色结在图1（b）的连线上连接。他告诉我们，*这种模式表明卖家在选定的时间间隔内频繁交易*。经查核详细资料后，分析师发现这些交易属于“充值卡”类别，并由*不同的买家*组成。他评论说，这可能是一个促销活动，因为他在这些交易中没有发现异常信息。分析师将显着阈值增加到0.8，`显着调制滑块`（Saliency Modulation）。*这使得分析师能够有效地过滤出许多不太显着的交易*。分析师立即找到多个未填充的结，指示具有缺失值的交易。他评论说，使用未填充的结来呈现缺失值的交易有效地吸引了他的注意。为了进一步调查这些记录是否表示促销或假交易，分析师进行了进一步分析。*当他点击这条结线中的一个未填充的结时，同一个结线中的许多其他结被突出显示*（图1（b）），表明这些结的大部分交易是由同一买方和卖方进行的。分析师注意到，详细信息视图中，买方的交货地址为空，通过查看此结线中的结的详细信息（图1（e））。他评论说这是可疑的，因为如果买方不填写他的地址，买家就不会买到这个商品。通过查看结的交易历史（图1（f）），分析师发现，卖方的销售额在一段时间内急剧增加。
+
+分析师认为这些交易可能与赚取`信用`有关。 该结论由数据提供商的商业智能部门的分析师进行了验证，他们检查了与交易相关的其他信息，如卖方和买方的IP地址。 他们解释说，这些交易是由一组帮助卖家增加`信用`的买家进行的，卖家没有真正交付产品。 分析师将这一结线中的交易标示为`显着`，并将它们添加到训练数据集中。
+
+![图10](salient-transactions.png)
+
+![图1](VAET-system.png)
 
 ### Abnormal Attribute Values of Transactions 交易的异常属性值
 
+分析师在TOS映射中选择了另一个时间窗口。通过查看`条形图`视图中的销售类别信息（图11（a）），分析师发现，“电子配件”类别中销售的商品总数远远大于其他销售类别。*分析师认为，由于商品数量庞大，这将是促销活动*。他在`knotline`视图中调查了这个假设，但没有发现任何包含频繁连续的“电子配件”结。
+
+分析师在TOS映射中选择了此类别，以过滤掉不相关的类别。通过仔细检查剩余的结，分析师发现一个具有短茎的极大的结（图11（b）），表明一个较大的商品数量，总支付金额却较低。分析师告诉我们，“*通过这种knotline，我第一眼就注意到支付和商品数量之间的异常关系*”。结的详细视图（图11（c））显示，本节包含单笔交易，支付金额仅为10美分，商品却为22万件。通过进一步调查卖方的交易历史（图11（d）），分析师消除了销售促销的概率，因为卖方在一段时间内交易次数很少，表明销售商品很少。分析师认为这是一个事件，卖方试图根据已经出售的商品数量增加他们的互联网搜索排名。*分析师还将该交易标注为显着，并将其添加到训练数据集*。
+
+![图11](fig11.png)
+
 ## USER STUDY 用户研究
+
+我们进行了用户研究，*以评估VAET支持低级别分析任务的能力*，即第3节中讨论的T1-T4。所使用的数据集是第8节（即上一节）中探讨的交易数据集。
+
+`PS:` 
 
 ### Design 设计
 
+10名参与者（6名男性和4名女性）年龄介于21岁至35岁之间进行了用户研究。 其中两人是分析师，其他人则是研究生。 所有参与者都具有使用在线商务的经验，并且对电脑熟悉。 学生的专业包括计算机科学，设计，数学和生物学。 以前他们都没有使用过VAET。
+
+参与者一个接一个地参加研究。 对于每个参与者，在测试部分之前进行了短暂的训练。 在培训部分，教练首先向参与者介绍了VAET的25分钟演示。 在演示过程中，教练解释了VAET的视觉设计和功能。 在演示之后，参与者在教练的帮助下练习了VAET提供的互动5分钟。 在测试部分，参与者被要求完成9次练习，与实际分析中遇到的练习类似，无需教练帮助。 然后，他们被要求通过回答问卷并提供主观反馈来评估系统。
+
+这9个练习是针对三种不同的具体情况而设计的，其中两项是在第8节中描述的。每个低级任务都通过一项或多项练习进行评估。 他们评估的练习和任务如下（任务显示在括号中）：
+
+* E1 “使用TOS映射，从9月21日上午9点至10点选择具有最高显着性的销售类别。”目标：确定TOS地图（T1）中感兴趣的时间段和销售类别。
+
+E2和E3来自第8.3节所述的情况。
+
+* E2 “选择商品数量最大的销售类别”。目标：解释条形图并确定感兴趣的销售类别（T1）。
+
+* E3 “查找KnotLines中商品数量最多的交易。”目标：解释一个结的视觉编码，并识别具有特定属性（T2）的有趣模式的交易。
+
+要完成E4-E6，参加者将被要求在9月19日晚上18点至19点之间设置时间，并选择“充值卡”。
+
+* E4 “从KnotLines视图中找到具有最高交易频率的卖家（knotline）”。目标：解释knotline的视觉编码，并识别有趣的交易模式（T3）的卖家。
+
+* E5 “在KnotLines视图中，哪些卖方的交易模式不会发生？ （a）大量商品的单笔交易，但支付金额很小。 （b）低频连续交易。 （c）持续交易频率高，支付金额小。 （d）我不知道。“目标：解释这个knotlines和识别有趣的卖家交易模式（T3）。
+
+* E6 “E4中卖方交易历史的一个特征是什么？ （a）持续，频繁的交易。 （b）偶尔交易。 （c）突然，频繁的交易。“目标：以统计视角检查卖方的行为（T4）。
+
+E7 - E9与8.2节描述的情况相同。 
+
+* E7 “在KnotLines视图中查找未填充的结，并报告买方城市。”目标：使用详细信息视图（T2）检查事务的属性值。
+
+* E8 “E7中确定的卖方交易历史的主要特点是什么？ （a）持续，频繁的交易。 （b）偶尔交易。 （c）突然，频繁的交易。“目标：使用统计视图检查卖方的行为（T4）。
+
+* E9 “E7中确定的卖方的交易行为是什么？ （a）具有大量商品编号的单一交易。 （b）付款金额低的频繁交易。 （c）与异常购买城市频繁交易。“目标：解释和检查KnotLines（T4）的卖方交易模式。
+
+E1 “Choose the sales category with the highest saliency value from 9 am to 10 am on September 21 using the TOS map.” Objective: Identify time periods and sales categories of interest in the TOS map (T1).
+
+E2 and E3 were from the case described in Section 8.3.
+
+E2 “Choose the sales category with the largest commodity number.” Objective: Interpret the bar chart and identify sales categories of interest (T1).
+
+E3 “Find the transaction with the largest number of commodities in KnotLines.” Objective: Interpret the visual encoding of a knot and identify transactions with interesting patterns in specific attributes (T2).
+
+To finish E4 - E6, participants were asked to set the time between 18 pm and 19 pm on September 19, and choose “Top-up Card”.
+
+E4 “Find the seller (knotline) with the highest transaction frequency from the KnotLines view.” Objective: Interpret the visual encoding of a knotline and identify sellers with interesting transaction patterns (T3).
+
+E5 “In the KnotLines view, which transaction pattern of the seller does not occur? (a) Single transaction with a large number of commodities but a small payment amount. (b) Continuous transactions with low frequency. (c) Continuous transactions with high frequency and a small payment amount. (d) I don’t know.” Objective: Interpret the knotlines and identify interesting seller transaction patterns (T3). 
+
+E6 “Which is a feature of the seller transaction history of the knot in E4? (a) Continuous, frequent transactions. (b) Occasional transactions. (c) Sudden, frequent transactions.” Objective: Examine the seller’s behavior in the statistic view (T4). 
+
+E7 - E9 were the same case described in Section 8.2.
+
+E7 “Find unfilled knots in the KnotLines view and report the buyer cities of them.” Objective: Examine the attribute values of the transactions using the detailed information view (T2). 
+
+E8 “What is the main feature of the seller’s transaction history of the knot identified in E7? (a) Continuous, frequent transactions. (b) Occasional transactions. (c) Sudden ,frequent transactions.” Objective: Examine the seller’s behavior using the statistic view (T4).
+
+E9 “What is the transaction behavior of the seller identified in E7? (a) A single transaction with a large commodity number. (b) Frequent transactions with low payment amounts. (c) Frequent transactions with abnormal buyer cities.” Objective: Interpret and examine the seller’s transaction patterns from KnotLines (T4).
+
+练习结束后，参加者完成了由6个问题组成的调查问卷（Q1〜Q6）。 要求用1到5评估等级（1=非常简单或高效，5=非常困难或低效），*学习该VAET系统的难度和VAET的效率*。 这些问题也收集到主观反馈。 六个问题如下：
+
+1. 容易或难以学习TOS映射？
+2. 使用TOS映射探索显着数据是否有效？
+3. 单个结的`视觉编码`是否容易或难以解释？
+4. KnotLines的视觉编码和布局是否容易或难以解释？
+5. 使用KnotLines分析用户交易模式是否有效？
+6. 使用VAET整体分析多用户行为是否容易或困难？
+
+----
+
+1. Is it easy or hard to learn the TOS map?
+2. Is it efficient or not to explore salient data with the TOS map?
+3. Is it easy or hard to interpret the visual encoding of a single knot?
+4. Is it easy or hard to interpret the visual encoding and layout of KnotLines?
+5. Is it efficient or not to analyze the user transaction patterns with KnotLines?
+6. Is it easy or hard to analyze multi-user behavior with VAET as a whole?
+
 ### Results 结果
 
+收集9次练习的准确性和时间进行评估
+
+总体来说，参加者完成了练习，在90次全部练习中产生5次错误（精准度为94.4％）。分析师正确回答了所有问题。对于学生参与者，其中两人在E5上出错，E8上有两个错，E9上有一个错。
+
+我们采访了E5的错误参与者。他们都说他们“只注意到knotlines的主要模式，忽略了发生较少的模式”。但是，他们没有解释用户行为的问题。回答E8的参与者错误地提到他们忘记检查统计视图中显示的卖家历史信息（图1（f）），而是根据KnotLines视图回答问题。在E9错误的参与者认为，零买家城市（null buyer cities）对于不需要交货地址的电子书等虚拟商品的交易是正常的。事实上，“图书”类别中的所有商品都是实物。虽然一些参与者有T3和T4的问题，但总体准确性表明VAET可以很好地支持任务。
+
+Overall, the participants completed the exercises, yielding 5 mistakes out of the 90 total exercises (94.4% accuracy). The analysts answered all questions correctly. As for the student participants, two of them erred on E5, two erred on E8 and one erred on E9. 
+
+We interviewed the participants who erred on E5. They both said that they “only noticed the main patterns of the knotlines and ignored the patterns with fewer occurrence”. However, they had no problem interpreting the user behavior from them. The participants who answered E8 incorrectly mentioned that they forgot to check the seller history information shown in the statistic view (Figure 1(f)) and answered the question based on the KnotLines view instead. The participant who erred on E9 thought that null buyer cities are normal for transactions of virtual commodities such as E-books, which do not need delivery addresses. In fact, all commodities in the “Books” category are real items. Although some participants had problems with T3 and T4, the overall accuracy indicates that VAET supports the tasks well.
+
+图12显示了每次锻炼的完成时间的平均值和标准偏差。 E3，E4和E7的时间比其他问题的时间长。 这三个练习要求参与者搜索具有特定特征的knotlines，这可能需要更多的时间仔细检查视图。 参与者能够快速完成其他6个问题。 完成时间为5.14s至44.22s。 分析师花费的时间远远少于学生参与者。 总体而言，VAET允许大多数参与者在90秒内完成复杂的练习和任务（如E4和T3）。 在考虑交易的各种属性以及它们之间的关系时，这是相当快的。
+
+![图12](fig12.png)
+
+
+分析师的反馈与讨论
+
+在用户研究结束时，我们采访了分析师和其他参与者。 两位分析师都对分类结果感到满意。 他们评论说，在分析不同类型的交易时，特征提取和决策树的集成是高效和灵活的。 我们要求他们将决策树与之前使用的逻辑回归进行比较。 他们认为我们的模型有几个优点：
+
+* 决策树对于分析师来说很简单易懂。
+* 在处理属性的缺失值时，决策树比逻辑回归更强大。
+* 使用决策树的分类比逻辑回归更快。 
+
+他认为我们可以通过使用更多的信息来改进我们的方法，比如今后买家和卖家的IP地址。
+
+他们评论说，TOS地图是直观的，勘探方便。一位分析师表示：“KnotLines的多用户行为的可视化是创造性和生动的。”*虽然一位分析师认为该系统很难学习，但很少参与者难以解释可视化*，大多数人能够在简短的培训会议后找到有趣的交易。两位分析师都提到，VAET能够帮助他们探索未被发现的交易模式。这是至关重要的，因为“欺骗人总是不断改变伎俩”。他们认为，VAET有能力找到新兴的交易模式，并帮助他们改进数据模型。分析师们渴望将VAET用于实际的多用户应用程序，在这些应用程序中，他们发现许多高维度事务之间的上下文和时间相关性。有趣的是，一些参与者最初认为使用我们的系统需要基本的音乐知识。其他与会者提到，他们对音乐笔记的了解影响了对设计的理解。例如，茎长度固定在音符中，但在我们的设计中是可变的。此外，有些人认为与其他knotbunches（类似于四分之一音符）没有连接的单个knotbunch持续比连接的knotbunch短（类似于第八个音符）。事实是，交易没有持续时间，因为它们都是立即在线发生的。与会者告诉我们，在他们学会如何解读设计之后，这种差异并没有妨碍他们的分析。
+
 ## CONCLUSION 总结
+
+本文提出了一种用于识别基本交易数据和研究*大片碎片记录*的`时间`或`集体行为`的新型视觉探索方案。 在对KnotLines进行选择交易的详细探索和推理之前，执行决策树算法和TOS映射的过滤过程，以从大量记录中选择潜在有趣的交易。 案例研究和用户研究证实，VAET可以有效地支持大部分任务。 根据结果，一些任务如T3需要更好地解决，因为交易模式可以是`动态的`和`多层次的`。 为了使VAET更容易学习和使用，我们希望使TOS映射和KnotLines的设计更加直观。 对于未来的工作，我们也希望对更多的数据集进行扩展。
+
+This paper presents a novel visual exploration scheme for identifying elementary transaction data and studying the temporal or collective behavior from large pieces of fragmented records. Prior to detailed exploration and reasoning of the chosen transactions with KnotLines, a decision tree algorithm and a filtering process by TOS map are performed to choose potentially interesting transactions from a huge amount of records. The case study and the user study verify that VAET can effectively support most of the tasks. According to the result, some tasks such as T3 need to be better addressed as the patterns of transactions can be dynamic and multi-level. To make VAET easier to learn and use, we would like to make the design of TOS map and KnotLines more intuitive. For future work, we also would like to extend our approach for more datasets.
