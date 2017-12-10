@@ -18,13 +18,16 @@
 <meta property="og:site_name" content="yjhmelody&#39;s blog">
 <meta property="og:description" content="DNSDNS 是域名系统（Domain Name System）的缩写，它是一种用于 TCP/IP 应用程序的分布式数据库，它提供主机名字和 I P 地址之间的转换及有关电子邮件的选路信息。所谓“分布式”是指在 Internet 上的单个站点不能拥有所有的信息。每个站点（如大学中的系、校园、公司或公司中的部门）保留它自己的信息数据库，并运行一个服务器程序供 Internet上的其他系统（客户程序）">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://yjhmelody.github.io/2017/11/11/计算机网络实验/DNS-format.png">
 <meta property="og:image" content="https://yjhmelody.github.io/2017/11/11/计算机网络实验/DNS-header.png">
 <meta property="og:image" content="https://yjhmelody.github.io/2017/11/11/计算机网络实验/DNS-request.png">
-<meta property="og:updated_time" content="2017-12-10T09:07:45.409Z">
+<meta property="og:image" content="https://yjhmelody.github.io/2017/11/11/计算机网络实验/DNS-response.png">
+<meta property="og:image" content="https://yjhmelody.github.io/2017/11/11/计算机网络实验/DNS-not-such-name.png">
+<meta property="og:updated_time" content="2017-12-10T09:15:33.582Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DNS知识点">
 <meta name="twitter:description" content="DNSDNS 是域名系统（Domain Name System）的缩写，它是一种用于 TCP/IP 应用程序的分布式数据库，它提供主机名字和 I P 地址之间的转换及有关电子邮件的选路信息。所谓“分布式”是指在 Internet 上的单个站点不能拥有所有的信息。每个站点（如大学中的系、校园、公司或公司中的部门）保留它自己的信息数据库，并运行一个服务器程序供 Internet上的其他系统（客户程序）">
-<meta name="twitter:image" content="https://yjhmelody.github.io/2017/11/11/计算机网络实验/DNS-header.png">
+<meta name="twitter:image" content="https://yjhmelody.github.io/2017/11/11/计算机网络实验/DNS-format.png">
   
     <link rel="alternate" href="/atom.xml" title="yjhmelody&#39;s blog" type="application/atom+xml">
   
@@ -208,12 +211,18 @@
 <li>Zero：随后的 3 bit 字段必须为 0。</li>
 <li>Rcode：是一个 4 bit 的返回码字段。通常的值为 0（没有差错）和 3（名字差错）。名字差错只有从一个授权 DNS 服务器上返回，它表示在查询中制定的域名不存在。随后的 4 个 16 bit 字段说明最后 4 个变长字段中包含的条目数。对于查询报文，问题（question）数通常是 1，而其他 3 项则均为 0。类似地，对于应答报文，回答数至少是 1，剩下的两项可以是 0 或非 0。</li>
 </ul>
+<p><img src="DNS-format.png" alt=""></p>
 <h2 id="DNS-请求"><a href="#DNS-请求" class="headerlink" title="DNS 请求"></a>DNS 请求</h2><p>这里DNS报文首部前16bit格式如下：</p>
 <p><img src="DNS-header.png" alt=""></p>
+<p>DNS服务器通过<code>Transaction ID</code>来分辨同台主机的不同请求。</p>
 <p>我打开浏览器访问百度</p>
 <p>我请求百度dns的字段如下：</p>
 <p><img src="DNS-request.png" alt=""></p>
 <p>这里的前16bit是0x0100</p>
+<p>而dns的响应如下：</p>
+<p><img src="DNS-response.png" alt=""></p>
+<p>如果请求的域名不存在，则如下：</p>
+<p><img src="DNS-not-such-name.png" alt=""></p>
 
       
     </div>
