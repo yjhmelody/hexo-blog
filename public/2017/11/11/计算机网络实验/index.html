@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://yjhmelody.github.io/2017/11/11/计算机网络实验/DNS-request.png">
 <meta property="og:image" content="https://yjhmelody.github.io/2017/11/11/计算机网络实验/DNS-response.png">
 <meta property="og:image" content="https://yjhmelody.github.io/2017/11/11/计算机网络实验/DNS-not-such-name.png">
-<meta property="og:updated_time" content="2017-12-10T09:15:33.582Z">
+<meta property="og:updated_time" content="2017-12-10T09:17:52.896Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DNS知识点">
 <meta name="twitter:description" content="DNSDNS 是域名系统（Domain Name System）的缩写，它是一种用于 TCP/IP 应用程序的分布式数据库，它提供主机名字和 I P 地址之间的转换及有关电子邮件的选路信息。所谓“分布式”是指在 Internet 上的单个站点不能拥有所有的信息。每个站点（如大学中的系、校园、公司或公司中的部门）保留它自己的信息数据库，并运行一个服务器程序供 Internet上的其他系统（客户程序）">
@@ -200,7 +200,7 @@
 <p>DNS 命名方式中，采用了分散和分层的机制来实现域名空间的委派授权，以及域名与地址相转换的授权。通过使用 DNS 的命名方式来为遍布全球的网络设备分配域名，而这则是由分散在世界各地的服务器实现的。</p>
 <a id="more"></a>
 <h2 id="DNS-工作流程"><a href="#DNS-工作流程" class="headerlink" title="DNS 工作流程"></a>DNS 工作流程</h2><p>域名服务分为客户端和服务器端，客户端提出请求，询问一个 Domain Name 的 IP 地址，服务器端必须回答客户端的请求。本地 DNS 首先查询自己的数据库，如果自己的数据库中没有对应的 IP 地址，则向本地 DNS 上所设的上一级 DNS 询问，得到结果之后，将收到的结果保存在高速缓冲区，并回答给客户端。标识字段由客户程序设置并由服务器返回结果。客户程序通过它来确定响应与查询是否匹配。16 bit 的标志字段被划分为若干子字段</p>
-<p>标志中每一位的含义如下：</p>
+<h2 id="DNS-协议"><a href="#DNS-协议" class="headerlink" title="DNS 协议"></a>DNS 协议</h2><p>标志中每一位的含义如下：</p>
 <ul>
 <li>QR：是 1 bit 字段，0 表示查询报文，1 表示响应报文。</li>
 <li>Opcode：报文类型，是一个 4 bit 字段，通常值为 0（标准查询），其他值为 1（反向查询）和 2（服务器状态请求）。</li>
@@ -212,7 +212,7 @@
 <li>Rcode：是一个 4 bit 的返回码字段。通常的值为 0（没有差错）和 3（名字差错）。名字差错只有从一个授权 DNS 服务器上返回，它表示在查询中制定的域名不存在。随后的 4 个 16 bit 字段说明最后 4 个变长字段中包含的条目数。对于查询报文，问题（question）数通常是 1，而其他 3 项则均为 0。类似地，对于应答报文，回答数至少是 1，剩下的两项可以是 0 或非 0。</li>
 </ul>
 <p><img src="DNS-format.png" alt=""></p>
-<h2 id="DNS-请求"><a href="#DNS-请求" class="headerlink" title="DNS 请求"></a>DNS 请求</h2><p>这里DNS报文首部前16bit格式如下：</p>
+<h2 id="DNS-抓包"><a href="#DNS-抓包" class="headerlink" title="DNS 抓包"></a>DNS 抓包</h2><p>这里DNS报文首部前16bit格式如下：</p>
 <p><img src="DNS-header.png" alt=""></p>
 <p>DNS服务器通过<code>Transaction ID</code>来分辨同台主机的不同请求。</p>
 <p>我打开浏览器访问百度</p>
@@ -266,7 +266,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DNS"><span class="nav-number">1.</span> <span class="nav-text">DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS-工作流程"><span class="nav-number">1.1.</span> <span class="nav-text">DNS 工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS-请求"><span class="nav-number">1.2.</span> <span class="nav-text">DNS 请求</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DNS"><span class="nav-number">1.</span> <span class="nav-text">DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS-工作流程"><span class="nav-number">1.1.</span> <span class="nav-text">DNS 工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS-协议"><span class="nav-number">1.2.</span> <span class="nav-text">DNS 协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS-抓包"><span class="nav-number">1.3.</span> <span class="nav-text">DNS 抓包</span></a></li></ol></li></ol>
     
     </div>
   </aside>
