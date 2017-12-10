@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>计算机系统结构chapter1 | yjhmelody&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="blog, cs, life" />
+  
+  
+  
+  
+  <meta name="description" content="系统结构的课后作业，因为需要写成电子版，故稍微整理下也放入到博客中，方便你我他。书是张晨曦的《计算机系统结构（第2版）》 第一章1.1翻译技术是先把 L+1 级程序全部变换成 L 级程序后，再去执行新产生的 L 级程序，在执行过程中 L+1 级程序不再被访问。 解释技术是每当一条 L+1 级指令被译码后，就直接去执行一串等效的 L 级指令，然后再去取下一条 L+1 级指令，以此重复进行。 计算机系">
+<meta name="keywords" content="系统结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机系统结构chapter1">
+<meta property="og:url" content="https://yjhmelody.github.io/2017/09/28/计算机系统结构chapter1/index.html">
+<meta property="og:site_name" content="yjhmelody&#39;s blog">
+<meta property="og:description" content="系统结构的课后作业，因为需要写成电子版，故稍微整理下也放入到博客中，方便你我他。书是张晨曦的《计算机系统结构（第2版）》 第一章1.1翻译技术是先把 L+1 级程序全部变换成 L 级程序后，再去执行新产生的 L 级程序，在执行过程中 L+1 级程序不再被访问。 解释技术是每当一条 L+1 级指令被译码后，就直接去执行一串等效的 L 级指令，然后再去取下一条 L+1 级指令，以此重复进行。 计算机系">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-28T11:52:37.651Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机系统结构chapter1">
+<meta name="twitter:description" content="系统结构的课后作业，因为需要写成电子版，故稍微整理下也放入到博客中，方便你我他。书是张晨曦的《计算机系统结构（第2版）》 第一章1.1翻译技术是先把 L+1 级程序全部变换成 L 级程序后，再去执行新产生的 L 级程序，在执行过程中 L+1 级程序不再被访问。 解释技术是每当一条 L+1 级指令被译码后，就直接去执行一串等效的 L 级指令，然后再去取下一条 L+1 级指令，以此重复进行。 计算机系">
+  
+    <link rel="alternate" href="/atom.xml" title="yjhmelody&#39;s blog" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-计算机系统结构chapter1" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      计算机系统结构chapter1
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/09/28/计算机系统结构chapter1/" class="article-date">
+	  <time datetime="2017-09-28T11:48:52.000Z" itemprop="datePublished">2017-09-28</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/study/">study</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>系统结构的课后作业，因为需要写成电子版，故稍微整理下也放入到博客中，方便你我他。<br>书是张晨曦的《计算机系统结构（第2版）》</p>
+<h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><h2 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h2><p><code>翻译</code>技术是先把 L+1 级程序全部变换成 L 级程序后，再去执行新产生的 L 级程序，在执行过程中 L+1 级程序不再被访问。</p>
+<p><code>解释</code>技术是每当一条 L+1 级指令被译码后，就直接去执行一串等效的 L 级指令，然后再去取下一条 L+1 级指令，以此重复进行。</p>
+<p>计算机<code>系统结构</code>是程序员所看到的计算机属性，即概念性结构与功能特性。</p>
+<p><code>Amdahl定律</code>：加快某部件执行速度所能获得的系统性能加速比，受限于该部件的执行时间占系统中总执行时间的百分比。</p>
+<p><code>程序的局部性原理</code>是指程序执行时所访问的存储器地址不是随机的，而是相对簇聚。局部性原理又表现为：时间局部性和空间局部性。<br>时间局部性是指如果程序中的某条指令一旦执行，则不久之后该指令可能再次被执行；如果某数据被访问，则不久之后该数据可能再次被访问。<br>空间局部性是指一旦程序访问了某个存储单元，则不久之后。其附近的存储单元也将被访问。</p>
+<p><code>CPI</code>(Cycles Per Instruction，每天指令的周期数) <code>CPI = 执行程序所需要的时钟时间 / 执行指令个数</code>。</p>
+<p><code>模拟</code>是指用软件的方法在一台现有的计算机（宿主机host）上实现另一台计算机（虚拟机VM）的指令集。</p>
+<p><code>仿真</code>是指用一台计算机（宿主机host）上的微程序去解释实现另一台计算机（目标机）的指令集。</p>
+<h2 id="1-3"><a href="#1-3" class="headerlink" title="1.3"></a>1.3</h2><p><code>Flynn分类法</code>是按照指令流和数据流的多倍性进行分类的。</p>
+<p>Flynn分类法把计算机系统结构分为以下4类：</p>
+<ul>
+<li>单指令流单数据流（SISD）</li>
+<li>单指令流多数据流（SIMD）</li>
+<li>多指令流单数据流（MISD）</li>
+<li>多指令流多数据流（MIMD）</li>
+</ul>
+<h2 id="1-4"><a href="#1-4" class="headerlink" title="1.4"></a>1.4</h2><p>计算机系统设计经常使用的4个定量原理</p>
+<ul>
+<li>以经常性事件为重点，按照对经常性情况采用优化方法的原则，能得到更多整体上的改进。</li>
+<li>Amdahl定律，加快某部件执行速度所能获得的系统性能加速比，受限于该部件的执行时间占系统中总执行时间的百分比。</li>
+<li>CPU性能公式，<code>CPU时间 = 时钟周期时间 x CPI x IC</code>，只要改进任何一个参数都能提高CPU性能</li>
+<li>程序的局部性原理，程序执行时所访问的存储器地址不是随机的，而是相对簇聚。</li>
+</ul>
+<h2 id="1-6"><a href="#1-6" class="headerlink" title="1.6"></a>1.6</h2><p>CPI ~= 1.776(s)</p>
+<p>MIPS ~= 225.217</p>
+<p>执行时间 = 0.000575(s)</p>
+<h2 id="1-8"><a href="#1-8" class="headerlink" title="1.8"></a>1.8</h2><ol>
+<li>0.361</li>
+<li>0.816</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '',
+  alipayImage: ''
+});
+</script>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统结构/">系统结构</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/09/24/人工智能发展报告/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">人工智能发展报告</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章"><span class="nav-number">1.</span> <span class="nav-text">第一章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1"><span class="nav-number">1.1.</span> <span class="nav-text">1.1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3"><span class="nav-number">1.2.</span> <span class="nav-text">1.3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4"><span class="nav-number">1.3.</span> <span class="nav-text">1.4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6"><span class="nav-number">1.4.</span> <span class="nav-text">1.6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-8"><span class="nav-number">1.5.</span> <span class="nav-text">1.8</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2017 - 2017 yjhmelody&#39;s blog All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            yjhmelody&#39;s blog
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 yjhmelody All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

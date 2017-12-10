@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>计算机系统结构 | yjhmelody&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="blog, cs, life" />
+  
+  
+  
+  
+  <meta name="description" content="系统结构的部分课后作业，因为需要写成电子版，故稍微整理下也放入到博客中，方便你我他。答案是自己组织的，不保证一定正确。书是张晨曦的《计算机系统结构（第2版）》">
+<meta name="keywords" content="系统结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机系统结构">
+<meta property="og:url" content="https://yjhmelody.github.io/2017/09/28/计算机系统结构/index.html">
+<meta property="og:site_name" content="yjhmelody&#39;s blog">
+<meta property="og:description" content="系统结构的部分课后作业，因为需要写成电子版，故稍微整理下也放入到博客中，方便你我他。答案是自己组织的，不保证一定正确。书是张晨曦的《计算机系统结构（第2版）》">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://yjhmelody.github.io/2017/09/28/计算机系统结构/3-11.jpg">
+<meta property="og:updated_time" content="2017-11-20T08:18:15.382Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机系统结构">
+<meta name="twitter:description" content="系统结构的部分课后作业，因为需要写成电子版，故稍微整理下也放入到博客中，方便你我他。答案是自己组织的，不保证一定正确。书是张晨曦的《计算机系统结构（第2版）》">
+<meta name="twitter:image" content="https://yjhmelody.github.io/2017/09/28/计算机系统结构/3-11.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="yjhmelody&#39;s blog" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-计算机系统结构" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      计算机系统结构
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/09/28/计算机系统结构/" class="article-date">
+	  <time datetime="2017-09-28T11:48:52.000Z" itemprop="datePublished">2017-09-28</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/study/">study</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>系统结构的部分课后作业，因为需要写成电子版，故稍微整理下也放入到博客中，方便你我他。答案是自己组织的，不保证一定正确。<br>书是张晨曦的《计算机系统结构（第2版）》</p>
+<a id="more"></a>
+<h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><h2 id="1"><a href="#1" class="headerlink" title="1"></a>1</h2><p><code>翻译</code>技术是先把 L+1 级程序全部变换成 L 级程序后，再去执行新产生的 L 级程序，在执行过程中 L+1 级程序不再被访问。</p>
+<p><code>解释</code>技术是每当一条 L+1 级指令被译码后，就直接去执行一串等效的 L 级指令，然后再去取下一条 L+1 级指令，以此重复进行。</p>
+<p>计算机<code>系统结构</code>是程序员所看到的计算机属性，即概念性结构与功能特性。</p>
+<p><code>Amdahl定律</code>：加快某部件执行速度所能获得的系统性能加速比，受限于该部件的执行时间占系统中总执行时间的百分比。</p>
+<p><code>程序的局部性原理</code>是指程序执行时所访问的存储器地址不是随机的，而是相对簇聚。局部性原理又表现为：时间局部性和空间局部性。<br>时间局部性是指如果程序中的某条指令一旦执行，则不久之后该指令可能再次被执行；如果某数据被访问，则不久之后该数据可能再次被访问。<br>空间局部性是指一旦程序访问了某个存储单元，则不久之后。其附近的存储单元也将被访问。</p>
+<p><code>CPI</code>(Cycles Per Instruction，每天指令的周期数) <code>CPI = 执行程序所需要的时钟时间 / 执行指令个数</code>。</p>
+<p><code>模拟</code>是指用软件的方法在一台现有的计算机（宿主机host）上实现另一台计算机（虚拟机VM）的指令集。</p>
+<p><code>仿真</code>是指用一台计算机（宿主机host）上的微程序去解释实现另一台计算机（目标机）的指令集。</p>
+<h2 id="3"><a href="#3" class="headerlink" title="3"></a>3</h2><p><code>Flynn分类法</code>是按照指令流和数据流的多倍性进行分类的。</p>
+<p>Flynn分类法把计算机系统结构分为以下4类：</p>
+<ul>
+<li>单指令流单数据流（SISD）</li>
+<li>单指令流多数据流（SIMD）</li>
+<li>多指令流单数据流（MISD）</li>
+<li>多指令流多数据流（MIMD）</li>
+</ul>
+<h2 id="4"><a href="#4" class="headerlink" title="4"></a>4</h2><p>计算机系统设计经常使用的4个定量原理</p>
+<ul>
+<li>以经常性事件为重点，按照对经常性情况采用优化方法的原则，能得到更多整体上的改进。</li>
+<li>Amdahl定律，加快某部件执行速度所能获得的系统性能加速比，受限于该部件的执行时间占系统中总执行时间的百分比。</li>
+<li>CPU性能公式，<code>CPU时间 = 时钟周期时间 x CPI x IC</code>，只要改进任何一个参数都能提高CPU性能</li>
+<li>程序的局部性原理，程序执行时所访问的存储器地址不是随机的，而是相对簇聚。</li>
+</ul>
+<h2 id="6"><a href="#6" class="headerlink" title="6"></a>6</h2><p>执行时间 = 0.000575(s)</p>
+<p>CPI =(45000 + 750000 <em> 2 + 8000 </em> 4+ 1500 * 2) / （45000 + 75000 + 8000 + 1500）~= 1.776(s) </p>
+<p>MIPS = 400Mhz / (CPI * 10^6) ~= 225.217 </p>
+<p>执行时间 = 总时钟周期时间数 * 平均周期时间 = 0.000575(s) </p>
+<h2 id="8"><a href="#8" class="headerlink" title="8"></a>8</h2><ol>
+<li>加速比= 1/((0.9-x)+0.3/30+0.3/20+x/10)=10  x=0.361</li>
+<li>加速比=1/(0.2+0.3/30+0.2/20+0.2/10)=1/0.245 比例=0.2 * 加速比 ~= 0.816 </li>
+</ol>
+<h1 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h1><h2 id="1-1"><a href="#1-1" class="headerlink" title="1"></a>1</h2><p>CISC Complex Instruction Set Computer 复杂指令集计算机</p>
+<p>复杂指令集计算机的设计策略是使用大量的指令，包括复杂指令。与其他设计相比，在CISC中进行程序设计要比在其他设计中容易，因为每一项简单或复杂的任务都有一条对应的指令。程序设计者不需要写一大堆指令去完成一项复杂的任务。 但指令集的复杂性使得CPU和控制单元的电路非常复杂。</p>
+<p>RISC Reduced Instruction Set Computer 精简指令集计算机</p>
+<p>精简指令集计算机是一种执行较少类型计算机指令的微处理器。它能够以更快的速度执行操作（每秒执行更多百万条指令，即MIPS）。因为计算机执行每个指令类型都需要额外的晶体管和电路元件，计算机指令集越大就会使微处理器更复杂，执行操作也会更慢。</p>
+<p>数据表示(data representation) 是指计算机硬件能够直接识别和指令集可以直接调用的数据类型。</p>
+<h2 id="2"><a href="#2" class="headerlink" title="2"></a>2</h2><p>区分指令集结构的主要因素：寻址方式，数据表示，指令格式。<br>根据该因素可将指令集结构分为以下三类：</p>
+<ul>
+<li>寄存器-寄存器类型(R-R)</li>
+<li>寄存器-存储器类型(R-M）</li>
+<li>存储器-存储器类型(M-M)</li>
+</ul>
+<h2 id="4-1"><a href="#4-1" class="headerlink" title="4"></a>4</h2><p>指令集应满足的基本要求：完备性，规整性，高效性，兼容性</p>
+<h2 id="5"><a href="#5" class="headerlink" title="5"></a>5</h2><p>指令集结构设计所涉及的内容有指令功能设计，数据表示，寻址方式，指令格式 </p>
+<h2 id="9"><a href="#9" class="headerlink" title="9"></a>9</h2><p>表示寻址方式的主要方法有2种：</p>
+<ul>
+<li>把寻址方式编码于操作码中，操作码在描述指令功能的同时也描述了相应的寻址方式，这缩短了指令长度，译码快，但增加了指令的条数和多样性，也增加了CPU对指令译码的难度。</li>
+<li>把寻址方式跟操作码分离，为每个操作数设置一个地址描述符，由地址描述符表示相应操作数的寻址方式，这扩大了寻址的范围，但增大了指令长度。这种方式译码较慢，但操作码和寻址互相独立，易于扩展。</li>
+</ul>
+<h2 id="10"><a href="#10" class="headerlink" title="10"></a>10</h2><p>体系结构中常用的指令格式有变长编码格式，定长编码格式，混合编码格式。<br>分别是考虑目标代码的大小，性能，和兼顾两者。</p>
+<h1 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h1><h2 id="1-2"><a href="#1-2" class="headerlink" title="1"></a>1</h2><p>流水线：把一个重复的过程分解为若干个子过程，每个子过程由专门的功能部件实现。把多个处理过程在时间上错开，依次通过各功能段，这样每个子过程及其功能部件可以与其他子过程并行进行。</p>
+<p>流水线的特点：</p>
+<ul>
+<li>把大的处理功能分解为多个独立的功能部件，依靠他们的并行工作来缩短程序的执行时间</li>
+<li>流水线中的各段的时间尽可能相等，否则会引起流水线的阻塞、断流，因为时间长的段会成为流水线的瓶颈</li>
+<li>流水线每个功能部件后面都要有一个锁存器，作用是在相邻两段传送数据，保证后面要用到的数据，并把各段处理的工作隔离</li>
+<li>适用于大量重复的时序过程，只有在输入不断地提供任务，才能充分发挥效率</li>
+<li>流水线需要通过时间跟排空时间。</li>
+</ul>
+<p>流水线的分类：</p>
+<ul>
+<li>单功能流水线，多功能流水线</li>
+<li>静态流水线，动态流水线</li>
+<li>部件级流水线，处理机级流水线，处理机间流水线</li>
+<li>线性流水线，非线性流水线</li>
+<li>顺序流水线，乱序流水线</li>
+</ul>
+<p><code>吞吐率ThroughPut</code>是指单位时间内流水线所完成的任务数量或输出结果的数量。</p>
+<p><code>流水线加速比Speedup</code>是指完成同一批任务，不使用流水线与使用流水线所用时间之比。</p>
+<p><code>流水线的效率Efficiency</code>是指流水线中的设备实际使用时间与整个运行时间比值，即流水线设备的利用率。</p>
+<p>名相关是指某两条指令使用相同的名，但是它们之间没有数据流动。</p>
+<p><code>定向技术</code>：在某条指令产生计算结果之前，其他指令并不真正理解需要该计算结果，如果能够将该计算结果从其产生的地方直接送到其他指令需要它的地方，那么就可以避免停顿。</p>
+<p><code>链接技术</code>是指具有先写后读相关的两条指令，在不出现功能部件冲突    和源向量冲突的情况下，可以把功能部件链接起来进行流水处理，以达到加快执行的目的。</p>
+<p><code>分段开采技术</code>：当向量长度大于向量寄存器长度时，必须把长向量分成长度固定的段，然后循环分段处理    ，每次循环只处理一个向量段。</p>
+<h2 id="3-1"><a href="#3-1" class="headerlink" title="3"></a>3</h2><p>解决流水线瓶颈问题通常有两种方法：细分瓶颈段，重复设置瓶颈段</p>
+<h2 id="4-2"><a href="#4-2" class="headerlink" title="4"></a>4</h2><p>减少分支延迟的静态方法：预测分支失败；预测分支成功；延迟分支。</p>
+<h2 id="7"><a href="#7" class="headerlink" title="7"></a>7</h2><p>3种向量处理方式：</p>
+<ul>
+<li>横向处理方式：向量长度为N时，则相当于N次循环，使用流水线时，在每次循环会出现数据相关和功能转换的问题，所以不适合流水线处理。</li>
+<li>纵向处理方式：将整个向量按相同的运算符处理完后，再去进行别的运算。无论N多大，相同运算都用一条向量指令完成。因此需要采用存储器-存储器结构流水线。</li>
+<li>纵横处理方式：结合以上两种，它把向量分成若干组，组内用纵向处理方式，依次处理各组。可以设置能快速访问的向量寄存器，用于存放源向量、目的向量、中间结果，构成了寄存器-寄存器结构流水线。</li>
+</ul>
+<h2 id="9-1"><a href="#9-1" class="headerlink" title="9"></a>9</h2><h3 id="1-3"><a href="#1-3" class="headerlink" title="1)"></a>1)</h3><p>TP = 10 / (50 + 50 + (10-1) * 200) = 1/220</p>
+<p>E = (10 <em> (50 + 50 + 100 + 200)) / ((50 + 50 + 200 + (10 – 1) </em> 200) * 4) = 5/11</p>
+<h3 id="2-1"><a href="#2-1" class="headerlink" title="2)"></a>2)</h3><p>该流水线的瓶颈在第四段。分别采用细分瓶颈段和重复设置瓶颈段。<br>两种的吞吐率和效率相同</p>
+<p>TP = 10 / (50 + 50 + 100 + 100 + 100 + (10 – 1) * 100) = 1/130</p>
+<p>E = 10 <em> 400 / (1300 </em> 5) = 8/13</p>
+<h2 id="11"><a href="#11" class="headerlink" title="11"></a>11</h2><p>TP = 8 / ((1+2+1+1) + 2<em>3 + (1+1+1) + 1</em> 3) = 8 / 17</p>
+<p>S = 4 <em> (1+2+1+1) + 4 </em> (1+1+1) / 17 = 32/17</p>
+<p>E = S/TP = 1/4</p>
+<p><img src="3-11.jpg" alt="时空图"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '',
+  alipayImage: ''
+});
+</script>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统结构/">系统结构</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/10/11/VAET阅读稿/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          VAET阅读稿
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/24/人工智能发展报告/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">人工智能发展报告</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章"><span class="nav-number">1.</span> <span class="nav-text">第一章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1"><span class="nav-number">1.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3"><span class="nav-number">1.2.</span> <span class="nav-text">3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4"><span class="nav-number">1.3.</span> <span class="nav-text">4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6"><span class="nav-number">1.4.</span> <span class="nav-text">6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8"><span class="nav-number">1.5.</span> <span class="nav-text">8</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章"><span class="nav-number">2.</span> <span class="nav-text">第二章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1"><span class="nav-number">2.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2"><span class="nav-number">2.2.</span> <span class="nav-text">2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1"><span class="nav-number">2.3.</span> <span class="nav-text">4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5"><span class="nav-number">2.4.</span> <span class="nav-text">5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9"><span class="nav-number">2.5.</span> <span class="nav-text">9</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10"><span class="nav-number">2.6.</span> <span class="nav-text">10</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第三章"><span class="nav-number">3.</span> <span class="nav-text">第三章</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2"><span class="nav-number">3.1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1"><span class="nav-number">3.2.</span> <span class="nav-text">3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2"><span class="nav-number">3.3.</span> <span class="nav-text">4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7"><span class="nav-number">3.4.</span> <span class="nav-text">7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-1"><span class="nav-number">3.5.</span> <span class="nav-text">9</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3"><span class="nav-number">3.5.1.</span> <span class="nav-text">1)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1"><span class="nav-number">3.5.2.</span> <span class="nav-text">2)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11"><span class="nav-number">3.6.</span> <span class="nav-text">11</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2017 - 2017 yjhmelody&#39;s blog All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            yjhmelody&#39;s blog
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 yjhmelody All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

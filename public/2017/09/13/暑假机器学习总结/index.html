@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>暑假机器学习总结 | yjhmelody&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="blog, cs, life" />
+  
+  
+  
+  
+  <meta name="description" content="机器学习学习总结经过两个月的学习，从对机器学习一点点懵懂认知，到现在对机器学习的基础知识跟体系有一定的认知。如今学习暂告一段落，总结如今学习过的重点知识，可以起到很好的复习作业，也是对两个月以来的交代。以下，我将按照每周学习进度来总结回顾机器学习的知识。">
+<meta name="keywords" content="ML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="暑假机器学习总结">
+<meta property="og:url" content="https://yjhmelody.github.io/2017/09/13/暑假机器学习总结/index.html">
+<meta property="og:site_name" content="yjhmelody&#39;s blog">
+<meta property="og:description" content="机器学习学习总结经过两个月的学习，从对机器学习一点点懵懂认知，到现在对机器学习的基础知识跟体系有一定的认知。如今学习暂告一段落，总结如今学习过的重点知识，可以起到很好的复习作业，也是对两个月以来的交代。以下，我将按照每周学习进度来总结回顾机器学习的知识。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-24T11:34:31.239Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="暑假机器学习总结">
+<meta name="twitter:description" content="机器学习学习总结经过两个月的学习，从对机器学习一点点懵懂认知，到现在对机器学习的基础知识跟体系有一定的认知。如今学习暂告一段落，总结如今学习过的重点知识，可以起到很好的复习作业，也是对两个月以来的交代。以下，我将按照每周学习进度来总结回顾机器学习的知识。">
+  
+    <link rel="alternate" href="/atom.xml" title="yjhmelody&#39;s blog" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-暑假机器学习总结" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      暑假机器学习总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/09/13/暑假机器学习总结/" class="article-date">
+	  <time datetime="2017-09-13T12:49:32.000Z" itemprop="datePublished">2017-09-13</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/study/">study</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="机器学习学习总结"><a href="#机器学习学习总结" class="headerlink" title="机器学习学习总结"></a>机器学习学习总结</h1><p>经过两个月的学习，从对机器学习一点点懵懂认知，到现在对机器学习的基础知识跟体系有一定的认知。如今学习暂告一段落，总结如今学习过的重点知识，可以起到很好的复习作业，也是对两个月以来的交代。以下，我将按照每周学习进度来总结回顾机器学习的知识。</p>
+<a id="more"></a>
+<h2 id="第一周"><a href="#第一周" class="headerlink" title="第一周"></a>第一周</h2><p>我们先学习了<code>python</code>编程基础，之后的学习是基于python各种库来实验的。我之前已经比较熟悉python，所以很快就完成这段学习；之后接触<code>numpy</code>，这是C语言为python编写的底层矩阵库，我之前也接触过，但比较浅，不过numpy封装的很好，用起来门槛也很低，很快就上手了；numpy之后就是<code>pandas</code>,它是数据分析常用的库，基于numpy，非常全面，我之前也用过，但基本需要重新学习，pandas比较难用，尤其是IO部分，有细粒度的操作，文档看起来也比较麻烦，没有示例，所以学习的过程中，是遇到问题再去查找方法，后面的学习pandas其实用到的也比较少。</p>
+<p>以上内容大概花了两天，算是对机器学习的预备知识的准备。当然期间也学习了简单的使用anaconda，jupyter等工具，不再一一总结了。</p>
+<p>之后开始学习基本的图像知识：</p>
+<ul>
+<li><a href="http://baike.baidu.com/item/%E9%A2%9C%E8%89%B2%E7%9B%B4%E6%96%B9%E5%9B%BE" target="_blank" rel="external">颜色直方图</a>,它所描述的是不同色彩在整幅图像中所占的比例，而并不关心每种色彩所处的空间位置。之后有几次作业中要编写颜色直方图的处理，一开始还是挺棘手的。不过跟后来的图像特征提取就是小巫见大巫了</li>
+<li><a href="http://blog.csdn.net/zouxy09/article/details/7929348" target="_blank" rel="external">HOG特征</a>，主要思想：在一副图像中，局部目标的表象和形状（appearance and shape）能够被梯度或边缘的方向密度分布很好地描述。（本质：梯度的统计信息，而梯度主要存在于边缘的地方）。这也是之后的需要实现的任务，学习过程中，只有这个博客资料可以参考，其他资料要么可能是全英文晦涩难懂，要么还不如这个。这个博客写的太精炼了，初学的时候，实现起来非常困难，以至于有些同学对<code>根据这个博客写出算法</code>的可能性产生怀疑。我这周的作业也卡在这里了，学习机器学习的时候反而是因为图像处理知识不过关。后来经过讲解对这些特征有更新的认识了，不过可能实现起来对于现在我的依然有些困难。</li>
+<li><a href="http://blog.csdn.net/zouxy09/article/details/7929531" target="_blank" rel="external">LBP特征</a>、<a href="http://blog.csdn.net/zouxy09/article/details/7929570" target="_blank" rel="external">Haar特征</a>也是这周的基础知识，我稍微学习了下LBP，发现比HOG要好懂，Haar并没有怎么看，最后这2个内容没有出现在作业里，我对这些也只有粗浅的认识。<code>LBP</code>（Local Binary Pattern，局部二值模式）是一种用来描述图像局部纹理特征的算子；它具有旋转不变性和灰度不变性等显著的优点。而<code>Haar</code>特征值反映了图像的灰度变化情况。</li>
+</ul>
+<p>图像的部分内容学习后，开始了最基础的机器学习的内容：</p>
+<ul>
+<li><p><a href="http://www.bilibili.com/video/av10590361/" target="_blank" rel="external">Regression</a>，先从最简单的<code>线性回归</code>开始，线性回归可能是踏入机器学习世界的第一步吧，它教你如何做最简单的预测和机器学习比较本质的思维。前几周学习的知识大多是看李宏毅的视频，前几周感觉还是不错的。从线性回归开始，学到了基本的<code>梯度下降</code>思想和度量性能的<code>代价函数</code>。</p>
+</li>
+<li><p><a href="http://www.bilibili.com/video/av10590361/#page=2" target="_blank" rel="external">Error</a>，第二节就是深入理解各种模型评估的知识，讲授了<code>误差</code>,<code>偏差</code>,<code>方差</code>的区别与联系。</p>
+</li>
+<li><p><a href="http://www.bilibili.com/video/av10590361/#page=3" target="_blank" rel="external">Gradient Descent</a>，最后是深入学习梯度下降，学习推导基本的梯度下降，然后提出<code>随机梯度下降(SGD)</code>，从大量数据中随机选择一定量数据来训练，提高学习效率。除此之外，讲解了梯度下降的问题：学习率的选择。然后基于此讲解了一个算法<code>Adagrad</code>来控制学习率。</p>
+</li>
+<li><p>最后还有一些比较杂的知识，了解了<a href="https://github.com/basicv8vc/Python-Machine-Learning-zh/blob/master/%E7%AC%AC%E5%85%AD%E7%AB%A0/ch6_section2.md" target="_blank" rel="external">K折交叉验证</a>的思想与作用，把数据集分割为训练集，验证集，测试集的思想与作用。各种<a href="http://blog.csdn.net/shiwei408/article/details/7602324" target="_blank" rel="external">距离度量</a>，可以衡量样本近似度。最后完成两个作业</p>
+</li>
+</ul>
+<p>图像知识可能在第一周学习，有点不知其有何用的感觉，就算想在思想上重视它，但没有实际用起来，还是难以深刻理解它的重要性吧。谈点个人感受，我其实挺不擅长也不太喜欢处理图像的，大一自己有简单接触过图像处理（跟现在的学的不太一样，而是常规的图像处理，不跟特征，知识等内容关联），虽然不比这些难，但也很吃力。</p>
+<h2 id="第二周"><a href="#第二周" class="headerlink" title="第二周"></a>第二周</h2><p>第二周主要学习的是<code>分类</code>的基础算法，分别学习<code>K近邻</code>,<code>决策树</code>,<code>逻辑斯蒂回归</code>：</p>
+<ul>
+<li><p><a href="http://cs231n.github.io/classification/" target="_blank" rel="external">KNN</a>的思想就是把某个样本跟其他所有样本进行距离度量并总和，该样本离哪个类别’最近’，就标记为该类别。KNN是<code>懒惰学习</code>的典型算法，即到需要分类的时候才使用上训练集。在学习KNN的时候还了解到矢量化编程的重要性，减少不必要的python for 循环可以利于底层numpy优化为并行代码，在我这次实验里速度提升了近百倍。</p>
+</li>
+<li><p><a href="https://www.bilibili.com/video/av10590361/#page=5" target="_blank" rel="external">Logistic Regression</a> 该算法跟线性回归（跟感知器也类似）基本类似，不过它加入了<code>sigmoid</code>函数来进行分类而不是回归。后来学习<code>深度学习</code>才知道这里有<code>神经网络</code>的最基本的思想，或者说可能是最简单的神经网络了。</p>
+</li>
+<li><p><a href="https://www.bilibili.com/video/av12469267/#page=34" target="_blank" rel="external">Decision Tree</a>决策树可能是到这周为止最难的算法了，写起来会特别长。思想其实很简单，就是树的思想 + 人类决策过程。常用的决策树有<code>ID3</code>,<code>C4.5</code>,<code>C5.0</code>,<code>CART</code>等，不过我只编写了最简单的ID3，其他决策树进行了简单的了解。学习过程中认识到如果生成完整的决策树，那会变得非常耗时，后面学习到剪枝知识（我在作业里面编写<code>预剪枝</code>了，不过效果很差）。学习决策树里面知道了一些信息论的知识，如<code>信息熵</code>,<code>信息增益</code>,<code>纯度</code>等知识，决策的依据便是依据这些数值来找到最佳决策特征。</p>
+</li>
+</ul>
+<p>最后根据学到的知识完成一个井字棋胜负预测，不过我的模型很一般。这周的知识量不是很大，更多侧重机器学习基础编程，但是感觉学到东西很多的一周。</p>
+<h2 id="第三周"><a href="#第三周" class="headerlink" title="第三周"></a>第三周</h2><p>这周学习的机器学习非常强大和实用，是现在也很常用的模型：</p>
+<ul>
+<li><p><a href="https://www.bilibili.com/video/av9770190/index_27.html#page=20" target="_blank" rel="external">SVM</a>非常理论，学到这里，我感觉我的高数白学了。其实现在我也不是很了解SVM，只对基本概念有了解。基本思想应该是把低维空间的非线性问题映射到高维空间线性问题来解决。然后里面概念非常多：支持向量的概念，距离度量，核函数，核方法，对偶问题，KKT等。</p>
+</li>
+<li><p><a href="https://www.bilibili.com/video/av10590361/index_22.html#page=22" target="_blank" rel="external">集成学习</a>非常实用且广用。许多一般模型集成后都可以大幅度提升性能。这周接触了许多集成学习算法：</p>
+<ul>
+<li><p><code>bagging</code>，非常简单的集成学习算法，我后来实现了bagging决策树，性能提升了许多。基本思想是<code>自助采样</code>一些样本后，分别训练n个模型，然后进行投票决策。这样可以大大减少过拟合而提升性能。</p>
+</li>
+<li><p><code>Random Forest</code>，bagging算法的变体，基于决策树实现的。它与bagging的区别在于特化了决策树，在节点决策时，加入<code>属性扰动</code>（即只从一部分特征里选择最优特征），而bagging只有<code>样本扰动</code>（随机采集样本）。它的性能一般来说比bagging要好，我猜大概是加入了新的扰动后，更能避免决策树容易过拟合的缺点吧。</p>
+</li>
+<li><p>其他如 <code>boosting</code>的<code>adboost</code>和<code>xgboost</code>，进行了简单了解，xgboost在kaggle里面很热门，因为性能特别好。不过这几个算法难度更大，我了解的也比较少。adboost的基本思想是让之前训练错误的部分对应的权重变大，让模型认识到这点。</p>
+</li>
+</ul>
+</li>
+<li><p>最后是一点点图像特征的知识<a href="https://gurus.pyimagesearch.com/the-bag-of-visual-words-model/" target="_blank" rel="external">bag of words model</a>，对此进行一些了解</p>
+</li>
+</ul>
+<h2 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h2><p>这周学习无监督学习，主要是聚类跟降维，不过主要是侧重分析并运用这些技术：</p>
+<ul>
+<li><p><code>聚类</code>可以按结构特性分为原型聚类，层次聚类，密度聚类。<a href="https://www.bilibili.com/video/av9912938/#page=78" target="_blank" rel="external">K-means</a>是最基础的聚类算法，主要思想是通过多次迭代来把刻画原型，来使误差最小。K-means之后是了解了<code>高斯混合聚类</code>，也是原型聚类。</p>
+</li>
+<li><p><code>降维</code>这部分主要接触了<a href="https://www.bilibili.com/video/av10590361/index_22.html#page=13" target="_blank" rel="external">PCA</a>，不过这部分理论特别麻烦，我只搞懂了基本思想，并学会基本运用。总之，它变换了基底，并把比重最小的维度去掉来降维，这样能最大程度的保存原始样本的信息。</p>
+</li>
+</ul>
+<p>这周机器学习的知识就进入进阶难度了，说实话，我掌握的不太会好，不过算是对机器学习的体系更加了解了。除了以上还有一些<a href="http://ufldl.stanford.edu/wiki/index.php/UFLDL%E6%95%99%E7%A8%8B" target="_blank" rel="external">其他知识</a>，不过比较零碎，我就不一一总结了。</p>
+<h2 id="第五六七八周"><a href="#第五六七八周" class="headerlink" title="第五六七八周"></a>第五六七八周</h2><p>这里把深度学习一起总结了吧，这几周感觉学习的不太好。</p>
+<p>第六周开始，陆陆续续有许多高大上的报告可以听讲了，了解了许多前沿的应用，思想，算法。从第五周开始也步入了<a href="https://www.bilibili.com/video/av10590361/index_13.html#page=6" target="_blank" rel="external">深度学习</a>的大门。</p>
+<p>这几周主要学习<code>全连接网络</code>跟<code>卷积神经网络</code>跟<code>循环神经网络</code>，理解了很久<a href="https://www.bilibili.com/video/av10590361/index_13.html#page=7" target="_blank" rel="external">反向传播</a>，<a href="https://www.bilibili.com/video/av10590361/index_13.html#page=10" target="_blank" rel="external">卷积运算</a>。其实参考过很多资料，这里就不一一列出了。目前对<code>反向传播</code>也有稍微清晰的了解了，对于卷积，了解了其思想，但对其运算还是只有抽象的认识，反向传播可以说是目前神经网络的基础。<code>全连接网络</code>在理论上是近似的<code>图灵机</code>，不过实用性很差，一般是配合其他网络而使用。而卷积神经网络是针对图像而发明的，在图像处理跟机器视觉应用广泛。而循环神经网络更适用于序列数据，如文本，这在自然语言处理很常用，而由于一般的<code>RNN</code>有局限性，所以有一个<code>LSTM</code>的变体，这个模型我不是很清楚，但它的表现更好（最近好像又出现一个比较厉害的新变体<code>SRU</code>）。</p>
+<p>由于神经网络的代码非常难写，写出来也基本不可以重用，我们学习了<code>keras</code>这个基于<code>tensorflow</code>的深度学习框架来实现一些经典的模型。后来应用keras解决了一些基本的图像分类问题。</p>
+<p>第七八周陆陆续续的讲座也应该提一提，感觉大大开阔了我的视野。原来我以为深度学习基本都是在对图像上进行工作，好像这样也没什么意思。不过后来发现图像几乎是实现人工智能最基本的办法。而老师们的方向五花八门，问题的复杂度也远超过我的脑容量，深度学习反而变成了实现人工智能的基本工具而已，更多在于对于问题的深入研究和对特征的深入探究。</p>
+<p>这几周的学习积极性变得比较差劲了，不过收获还是很多。至少认识到机器学习跟深度学习的基本思想，我觉得未来的程序员都或多或少需要了解这些知识，因为他们可能会用到相应的算法来部署一些人工智能应用到各种设备、各种网站、各种系统中去，而懂得这些知识的人显然能在工作中更胜一筹。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上大概就是我的总结了，很粗略，也没有讲到具体的数学知识，更多是讲到自己的小小收获跟感受。我不清楚以后是否会从事机器学习相关的工作，但我以后肯定会抱着好奇心继续完善我对这些知识认识，了解里面的新思想，跟上人工智能的潮流，做一个终身学习的人吧。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '',
+  alipayImage: ''
+});
+</script>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/19/JS函数式编程/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          JS函数式编程笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/08/从《线性代数应该这样学》到《Redis的设计与实现》/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">从《线性代数应该这样学》到《Redis的设计与实现》</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#机器学习学习总结"><span class="nav-number">1.</span> <span class="nav-text">机器学习学习总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一周"><span class="nav-number">1.1.</span> <span class="nav-text">第一周</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二周"><span class="nav-number">1.2.</span> <span class="nav-text">第二周</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三周"><span class="nav-number">1.3.</span> <span class="nav-text">第三周</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第四周"><span class="nav-number">1.4.</span> <span class="nav-text">第四周</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第五六七八周"><span class="nav-number">1.5.</span> <span class="nav-text">第五六七八周</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.6.</span> <span class="nav-text">总结</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2017 - 2017 yjhmelody&#39;s blog All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            yjhmelody&#39;s blog
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 yjhmelody All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>install mysql5.7 | yjhmelody&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="blog, cs, life" />
+  
+  
+  
+  
+  <meta name="description" content="大二数据库原理的作业，发现还存在电脑里，于是稍微整理下放到博客里。">
+<meta name="keywords" content="Database">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Install MySQL5.7">
+<meta property="og:url" content="https://yjhmelody.github.io/2017/10/26/Install-MySQL5-7/index.html">
+<meta property="og:site_name" content="yjhmelody&#39;s blog">
+<meta property="og:description" content="大二数据库原理的作业，发现还存在电脑里，于是稍微整理下放到博客里。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://yjhmelody.github.io/2017/10/26/Install-MySQL5-7/mysql目录结构.png">
+<meta property="og:image" content="https://yjhmelody.github.io/2017/10/26/Install-MySQL5-7/Navicat使用期限.png">
+<meta property="og:image" content="https://yjhmelody.github.io/2017/10/26/Install-MySQL5-7/Navicat使用界面.png">
+<meta property="og:image" content="https://yjhmelody.github.io/2017/10/26/Install-MySQL5-7/操作界面.png">
+<meta property="og:image" content="https://yjhmelody.github.io/2017/10/26/Install-MySQL5-7/pic/mysql安装.png">
+<meta property="og:image" content="https://yjhmelody.github.io/2017/10/26/Install-MySQL5-7/mysql安装路径.png">
+<meta property="og:image" content="https://yjhmelody.github.io/2017/10/26/Install-MySQL5-7/mysql启动.png">
+<meta property="og:image" content="https://yjhmelody.github.io/2017/10/26/Install-MySQL5-7/查看mysql字符编码.png">
+<meta property="og:image" content="https://yjhmelody.github.io/2017/10/26/Install-MySQL5-7/mysql配置完成.png">
+<meta property="og:updated_time" content="2017-10-26T05:37:01.302Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Install MySQL5.7">
+<meta name="twitter:description" content="大二数据库原理的作业，发现还存在电脑里，于是稍微整理下放到博客里。">
+<meta name="twitter:image" content="https://yjhmelody.github.io/2017/10/26/Install-MySQL5-7/mysql目录结构.png">
+  
+    <link rel="alternate" href="/atom.xml" title="yjhmelody&#39;s blog" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Install-MySQL5-7" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Install MySQL5.7
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/10/26/Install-MySQL5-7/" class="article-date">
+	  <time datetime="2017-10-26T05:30:18.000Z" itemprop="datePublished">2017-10-26</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/study/">study</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>大二数据库原理的作业，发现还存在电脑里，于是稍微整理下放到博客里。</p>
+<a id="more"></a>
+<h1 id="windows下mysql安装"><a href="#windows下mysql安装" class="headerlink" title="windows下mysql安装"></a>windows下mysql安装</h1><p>我下载的是zip压缩包，假设解压到<code>D:\software</code>目录下，官网下载的只有服务端和简单的<code>shell</code>，可以去搜索<code>Navicat</code>客户端，支持多种数据库管理系统，下载<code>MySQL</code>客户端，也支持<code>MariaDB</code>使用。</p>
+<p>注意：Navicat是收费的，免费使用14天。你还可以使用其他客户端，比如phpAdminMySQL。</p>
+<h2 id="mysql的简单配置"><a href="#mysql的简单配置" class="headerlink" title="mysql的简单配置"></a>mysql的简单配置</h2><p>mysql的目录结构如下</p>
+<p><img src="mysql目录结构.png" alt=""></p>
+<p>环境变量需要配置bin目录，mysql的程序都在bin目录下，所以环境变量是在PATH变量上新增<code>D:\software\mysql\bin</code>。</p>
+<p>各个版本目录可能不同，data目录存放系统数据，一开始应该没有，需要自己新建。</p>
+<p>另一个重要的是my.ini文件(或my-default.ini)，需要进行一些简单的配置才能使用。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="section">[mysql]</span></div><div class="line"><span class="comment"># 设置mysql客户端默认字符集</span></div><div class="line"><span class="attr">default-character-set</span> = utf8</div><div class="line"></div><div class="line"><span class="section">[mysqld]</span></div><div class="line"><span class="comment">#skip_grant_tables  这个先不要，这是忽略权限。</span></div><div class="line"><span class="comment">#设置3306端口</span></div><div class="line"><span class="attr">port</span> = <span class="number">3306</span></div><div class="line"><span class="comment"># 设置mysql的安装目录</span></div><div class="line"><span class="attr">basedir</span> = <span class="string">"D:/software/mysql-5.7.16-winx64"</span></div><div class="line"><span class="comment"># 设置mysql数据库的数据的存放目录</span></div><div class="line"><span class="attr">datadir</span> = <span class="string">"D:/software/mysql-5.7.16-winx64/data"</span></div><div class="line"><span class="comment"># 允许最大连接数</span></div><div class="line"><span class="attr">max_connections</span> = <span class="number">200</span></div><div class="line"><span class="comment"># 服务端使用的字符集默认为8比特编码的latin1字符集，我们改为通用的utf8</span></div><div class="line"><span class="attr">character-set-server</span> = utf8</div><div class="line"><span class="comment"># 创建新表时将使用的默认存储引擎</span></div><div class="line"><span class="attr">default-storage-engine</span> = INNODB</div></pre></td></tr></table></figure>
+<p>常用的2个程序是<code>mysql</code>和<code>mysqld</code>，需要给服务端设置一些配置，如上，语法跟作用一目了然。</p>
+<p>windows下运行mysql需要使用<code>cmd管理员权限</code>，使用<code>net start mysql</code> 启动mysql服务，<code>net stop mysql</code> 关闭服务。</p>
+<p>一开始需要使用<code>root</code>帐号登录，不需要密码，在命令行下使用<code>mysql -u root -p</code>登录，进入shell后可以使用<code>help</code>命令查看简单的用法。</p>
+<p>具体其他使用方法请查看文档手册或者搜索引擎。</p>
+<h2 id="Navicat-客户端简单使用"><a href="#Navicat-客户端简单使用" class="headerlink" title="Navicat 客户端简单使用"></a>Navicat 客户端简单使用</h2><p>按照安装包的引导安装即可。</p>
+<p><img src="Navicat使用期限.png" alt=""></p>
+<p>注意使用期限是14天。</p>
+<p><img src="Navicat使用界面.png" alt=""></p>
+<p>Navicat界面比较简洁，也只提供基本的功能，如需要使用强大的功能可能需要购买或使用其他客户端。</p>
+<p>Navicat窗口帮助下可以打开本地中文文档，可以查看各种数据库的使用。</p>
+<p>在文件下建立数据库连接写好帐号密码即可连接（不要忘记先在cmd管理员权限下启动mysql服务）。</p>
+<p>然后可以简单的开始操作DBMS了。</p>
+<p><img src="操作界面.png" alt=""></p>
+<h1 id="linux-ubuntu-命令行下mysql安装"><a href="#linux-ubuntu-命令行下mysql安装" class="headerlink" title="linux ubuntu 命令行下mysql安装"></a>linux ubuntu 命令行下mysql安装</h1><p>我选择最简单的安装方式</p>
+<p><img src="pic/mysql安装.png" alt=""></p>
+<p>如上，用<code>sudo apt install mysql-server-5.7</code>下载</p>
+<p>当然你可以先用图形界面找到需要的版本的包或者路径，用wget等工具下载，这里不详细说明，总体思路跟windows下是一致的。</p>
+<p><img src="mysql安装路径.png" alt=""></p>
+<p>用 <code>whereis mysql</code> 命令查看mysql等命令已经添加到环境变量中。</p>
+<p><img src="mysql启动.png" alt=""></p>
+<p>如图，用<code>sudo service mysql start</code> 启动，即使远程连接断开也在后台运行，<code>mysql -u root -p</code>登录root用户连接mysql，可以用<code>ps -ef | grep mysql</code> 来查看。</p>
+<p><img src="查看mysql字符编码.png" alt=""></p>
+<p>登录以后，在mysql下用<code>show variables like &#39;character%</code> 可以查看一些字符相关的环境配置，发现很多是latin1编码，我们需要改为utf8编码</p>
+<p>我们来到/etc/mysql目录下，这里存放许多mysql的配置。我们修改一些配置<code>sudo vim mysql.conf.d/mysqld.cnf</code>，在<code>[mysqld]</code>下配置<code>character-set-server = utf8</code>，当然在这里你还可以修改一些其他配置。</p>
+<p>继续修改另外一个配置<code>sudo vim conf.d/mysql.cnf</code>，在<code>[mysql]</code>下配置<code>default-character-set = utf8</code>，这样重启mysql后字符编码就改变了如下：</p>
+<p><img src="mysql配置完成.png" alt=""></p>
+<hr>
+<p>以上，最基本的配置就完成了，大概作为学习用途已经足够了，再复杂的配置得参考相应的资料了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '',
+  alipayImage: ''
+});
+</script>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/05/2017-11-5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          2017-11-5
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/11/VAET阅读稿/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">VAET阅读稿</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#windows下mysql安装"><span class="nav-number">1.</span> <span class="nav-text">windows下mysql安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql的简单配置"><span class="nav-number">1.1.</span> <span class="nav-text">mysql的简单配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Navicat-客户端简单使用"><span class="nav-number">1.2.</span> <span class="nav-text">Navicat 客户端简单使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#linux-ubuntu-命令行下mysql安装"><span class="nav-number">2.</span> <span class="nav-text">linux ubuntu 命令行下mysql安装</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2017 - 2017 yjhmelody&#39;s blog All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            yjhmelody&#39;s blog
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 yjhmelody All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

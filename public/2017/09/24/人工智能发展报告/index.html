@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>人工智能发展报告 | yjhmelody&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="blog, cs, life" />
+  
+  
+  
+  
+  <meta name="description" content="人工智能的发展数据挖掘课程的作业报告，放在这里分享一下，都是一些蠢话。">
+<meta name="keywords" content="ML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="人工智能发展报告">
+<meta property="og:url" content="https://yjhmelody.github.io/2017/09/24/人工智能发展报告/index.html">
+<meta property="og:site_name" content="yjhmelody&#39;s blog">
+<meta property="og:description" content="人工智能的发展数据挖掘课程的作业报告，放在这里分享一下，都是一些蠢话。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-24T11:33:42.785Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="人工智能发展报告">
+<meta name="twitter:description" content="人工智能的发展数据挖掘课程的作业报告，放在这里分享一下，都是一些蠢话。">
+  
+    <link rel="alternate" href="/atom.xml" title="yjhmelody&#39;s blog" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-人工智能发展报告" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      人工智能发展报告
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/09/24/人工智能发展报告/" class="article-date">
+	  <time datetime="2017-09-24T11:29:28.000Z" itemprop="datePublished">2017-09-24</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/study/">study</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="人工智能的发展"><a href="#人工智能的发展" class="headerlink" title="人工智能的发展"></a>人工智能的发展</h1><p>数据挖掘课程的作业报告，放在这里分享一下，都是一些蠢话。<br><a id="more"></a></p>
+<h2 id="符号主义（逻辑主义）"><a href="#符号主义（逻辑主义）" class="headerlink" title="符号主义（逻辑主义）"></a>符号主义（逻辑主义）</h2><h3 id="推理期"><a href="#推理期" class="headerlink" title="推理期"></a>推理期</h3><p>二十世纪五十年代到七十年代初，人工智能的研究处于“推理期”，那时候人们普遍认为机器获得智能的方法是赋予机器逻辑推理的能力。该阶段比较有代表的工作比如在1955年12月，赫伯特·西蒙（Herbert Simon）和艾伦·纽厄尔（Allen Newell）开发出<code>逻辑理论家</code>，这是世界上第一个人工智能程序，有能力证明罗素和怀特海《数学原理》第二章52个定理中的38个定理，<br>甚至在后来证明了全部52个定理。这两位也因此在1975年获得了图灵奖。</p>
+<h3 id="知识期"><a href="#知识期" class="headerlink" title="知识期"></a>知识期</h3><p>随着后来的研究进展，人们意识到仅仅具有逻辑推理能力是远远无法实现人工智能的。从二十世纪七十年代中期开始，人工智能的研究进入<code>知识期</code>。专家系统被大量开发出来，E.A. Feigenbaum 作为“<code>知识工程</code>”之父在1994年获得图灵奖。不过后来人们又意识到专家系统的“知识工程瓶颈”，把人类总结的知识教授给计算机是相当困难的。</p>
+<h2 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h2><p>八十年代左右，“<code>从样例中学习</code>”的一大主流还是符号主义的思想，其代表如决策树（Decision tree）和基于逻辑的学习。决策树以信息论为基础，而基于逻辑的学习是归纳逻辑程序设计，可看作是机器学习与逻辑程序设计的交叉。</p>
+<h3 id="神经网络（联结主义）"><a href="#神经网络（联结主义）" class="headerlink" title="神经网络（联结主义）"></a>神经网络（联结主义）</h3><p>九十年代中期之前，“从样例中学习”的另一个主流是基于神经网络的联结主义。1986年，D.E. Rumelhart 等人重新发明了BP算法，产生了深远影响，如今的深度学习最基本的概念便是BP算法。不过联结主义产生的是“<code>黑箱</code>”模型，从知识获取角度看有明显的弱点。然而，由于BP算法，深度学习算法在实际中非常有用，在2006年开始第三次神经网络高潮以深度学习之名重新爆发而来，在2012年之后成为人工智能的主流算法。当然，在九十年代统计学习兴起时，而又因为当时的局限性，曾经落入低潮。</p>
+<h3 id="统计学习"><a href="#统计学习" class="headerlink" title="统计学习"></a>统计学习</h3><p>九十年代中期，“<code>统计学习</code>”迅速兴起并成为主流，如今依然是主流的机器学习算法，典型代表是SVM。早在九十年代之前，统计学习的许多基础理论已经出现，但因为联结主义的神经网络在九十年代具有局限性而没落后，统计学习被人瞄准目光而迅速流行起来。</p>
+<h2 id="谈谈自己的理解"><a href="#谈谈自己的理解" class="headerlink" title="谈谈自己的理解"></a>谈谈自己的理解</h2><p>前面的一些概括是我认为比较重要的历史的整理。如今看来，人工智能的历史虽然不漫长，却可以说的上丰富与多变。现如今，从学术、商业、工业角度来审视的人工智能，占据主流的是传统机器学习跟深度学习，然后才是强化学习跟规则学习（个人看法）。当然，如今的机器学习算法或多或少都用上了概率统计的知识。</p>
+<p>深度学习如今越来越火热，在我自己开始留意机器学习的内容开始，深度学习相关的文章跟新闻就狂轰滥炸地映入我的眼里，以至于我没法不正视它。后来我也简单的接触深度学习，才发现它确实不可思议。在训练深度学习时，它就是在特征空间里不断逼近然后拟合到数据特征的“万能函数”，怪不得说它是<code>万能近似图灵机</code>。把它应用到许多领域感觉也就不奇怪了，当然它不一定比传统的机器学习和其他人工智能算法要更有效。</p>
+<p>不过可能是因为深度学习的<code>万用性</code>导致它的<code>黑箱性</code>，大部分人在使用它来解决问题的时候，没有获得很好的解释，无论是从深度学习结构模型的理论角度还是问题本身特性的角度。只是在设计网络架构时，粗略地分析问题的特性，然后改良别人成功的架构跟“合理”的解释来解决问题。在问题较满意的解决后，没有合理的可解释性或者干脆从他人理解的来解释。</p>
+<p>当然，从实用性跟工作角度来说，我觉得这样没错。深度学习跟你的剪刀和锤子一样，只是解决问题跟生产的工具，并不需要在意内部机理。这样的比喻来解释可能非常不妥当，不过我想表达的是，如今主流的人工智能方法：深度学习，虽然在构造时有比较好的理论基础，但在优化模型，优化架构，并且在解释优化可能性与优化思路上，缺乏理论。（对深度学习接触才几周，造成这样可能有偏差的认知，如有错误，欢迎指出）</p>
+<p>相比于深度学习，传统偏向于统计的机器学习，可解释性就比较强了，而且在很多时候，从各种角度上与深度学习比较，丝毫不逊色。而且现实的问题非常复杂，蕴含大量不确定跟随机的事件，而概率论与数理统计就是对现实世界建立这样的一些模型跟假设，这方面的理论也算比较完善了，所以传统机器学习更能在数学理论上解释一些模型的行为。</p>
+<p>而最近神经网络之父 Geoffrey Hinton 也表明对<code>BP</code>非常怀疑，应该抛弃它。BP如今是深度学习最常用的算法了，如果丢弃它，深度学习大概会大变样吧。如此看来，深度学习没有那么“完美”，仍需要大量基础研究甚至真的可能在未来被更好的算法替代。</p>
+<h2 id="展望未来的人工智能"><a href="#展望未来的人工智能" class="headerlink" title="展望未来的人工智能"></a>展望未来的人工智能</h2><p>如果想到三十年以后，大街小巷到处有序而不拥挤地行驶着无人车，载着乘客去景点；天空上时不时飞过一架架无人机，拍摄城市风景与监控城市安全；新闻报道是程序根据许多视频、图片。文本而撰写的；家里布满了传感器跟智能家具，许多繁琐事情可以通过简单对话跟指令来处理。<br>想到如果真能如此，不由对如今的人工智能算法寄予厚望并抱有乐观的想法。</p>
+<p>但在我看来，上面的美好描述可能还是过于乐观了。</p>
+<p>之前曾在哪里看到一个观点，20年后人工智能将会代替80%的工作。我觉得这个也太乐观了。当今现实生活中，从事脑力活动的人已经多余从事体力活动的人了，未来这个趋势应该更加明显。而以目前人工智能的能力，很多脑力活动不能代替（或者说，实现这些能代替脑力活动的程序需要更多脑力的脑力活动）。若人工智能的算法更加成熟稳定，许多人应该会从事人工智能相关的工作，建设基础设施（其实现在就有很多人往机器学习这个方向转业），普及人工智能，而只有少部分人推动人工智能的发展。</p>
+<p>其实我一直不敢想像未来，这对于我太难了。十年前我对未来的展望似乎跟如今的现实大相径庭了。自己觉得可能出现的东西往往没有到来，反而出现一些超出以前认知的意外事物。说不定，以后深度学习也不再是实现人工智能的主力了，出现一些特定算法可以实现以前难以实现的智能，但却无法较好完成如今研究的方向。最坏的情况就是深度学习仍然是主流，而其理论仍然不明朗，调参也没有完备的方法论，人工智能发展停滞了几十年，直到我们这一代人死去，这后面的事情我也不想展望了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '',
+  alipayImage: ''
+});
+</script>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/28/计算机系统结构/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          计算机系统结构
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/19/JS函数式编程/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">JS函数式编程笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#人工智能的发展"><span class="nav-number">1.</span> <span class="nav-text">人工智能的发展</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#符号主义（逻辑主义）"><span class="nav-number">1.1.</span> <span class="nav-text">符号主义（逻辑主义）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#推理期"><span class="nav-number">1.1.1.</span> <span class="nav-text">推理期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#知识期"><span class="nav-number">1.1.2.</span> <span class="nav-text">知识期</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习"><span class="nav-number">1.2.</span> <span class="nav-text">机器学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络（联结主义）"><span class="nav-number">1.2.1.</span> <span class="nav-text">神经网络（联结主义）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#统计学习"><span class="nav-number">1.2.2.</span> <span class="nav-text">统计学习</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#谈谈自己的理解"><span class="nav-number">1.3.</span> <span class="nav-text">谈谈自己的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#展望未来的人工智能"><span class="nav-number">1.4.</span> <span class="nav-text">展望未来的人工智能</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2017 - 2017 yjhmelody&#39;s blog All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            yjhmelody&#39;s blog
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 yjhmelody All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

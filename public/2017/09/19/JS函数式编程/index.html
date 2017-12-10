@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>js函数式编程笔记 | yjhmelody&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="blog, cs, life" />
+  
+  
+  
+  
+  <meta name="description" content="JS函数式编程我们在做什么 “we both know what happens when you assume”，源自一句名言“When you assume you make an ASS of U and ME”，意思是“让两人都难堪”）。但我猜想你在使用可变状态（mutable state）、无限制副作用（unrestricted side effects）和无原则设计（unprincip">
+<meta name="keywords" content="JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS函数式编程笔记">
+<meta property="og:url" content="https://yjhmelody.github.io/2017/09/19/JS函数式编程/index.html">
+<meta property="og:site_name" content="yjhmelody&#39;s blog">
+<meta property="og:description" content="JS函数式编程我们在做什么 “we both know what happens when you assume”，源自一句名言“When you assume you make an ASS of U and ME”，意思是“让两人都难堪”）。但我猜想你在使用可变状态（mutable state）、无限制副作用（unrestricted side effects）和无原则设计（unprincip">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-24T11:33:54.207Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS函数式编程笔记">
+<meta name="twitter:description" content="JS函数式编程我们在做什么 “we both know what happens when you assume”，源自一句名言“When you assume you make an ASS of U and ME”，意思是“让两人都难堪”）。但我猜想你在使用可变状态（mutable state）、无限制副作用（unrestricted side effects）和无原则设计（unprincip">
+  
+    <link rel="alternate" href="/atom.xml" title="yjhmelody&#39;s blog" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-JS函数式编程" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      JS函数式编程笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/09/19/JS函数式编程/" class="article-date">
+	  <time datetime="2017-09-19T12:47:31.000Z" itemprop="datePublished">2017-09-19</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/study/">study</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JS函数式编程"><a href="#JS函数式编程" class="headerlink" title="JS函数式编程"></a>JS函数式编程</h1><h2 id="我们在做什么"><a href="#我们在做什么" class="headerlink" title="我们在做什么"></a>我们在做什么</h2><blockquote>
+<p>“we both know what happens when you assume”，源自一句名言“When you assume you make an ASS of U and ME”，意思是“让两人都难堪”）。但我猜想你在使用可变状态（mutable state）、无限制副作用（unrestricted side effects）和无原则设计（unprincipled design）的过程中已经遇到过一些麻烦。</p>
+</blockquote>
+<p>现在已经有一些通用的编程原则了，各种缩写词带领我们在编程的黑暗隧道里前行：DRY（不要重复自己，don’t repeat yourself），高内聚低耦合（loosecoupling high cohesion），YAGNI （你不会用到它的，ya ain’t gonna need it），最小意外原则（Principle of least surprise），单一责任（single responsibility）等等。这些原则同样适用于函数式编程(FP)。</p>
+<a id="more"></a>
+<p>先看基本的例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span> (<span class="params">x, y</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> x + y</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> multiply = <span class="function"><span class="keyword">function</span> (<span class="params">x, y</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> x * y</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> a = <span class="number">4</span>;</div><div class="line"><span class="keyword">var</span> b = <span class="number">2</span>;</div><div class="line"><span class="keyword">var</span> c = <span class="number">0</span>;</div><div class="line"><span class="keyword">var</span> result = add(multiply(b, add(a, c)), multiply(a, b));</div><div class="line"><span class="comment">//=&gt;16</span></div></pre></td></tr></table></figure>
+<p>你会发现我们不过是在运用古人早已获得的知识</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 结合律（assosiative）</span></div><div class="line">add(add(x, y), z) == add(x, add(y, z));</div><div class="line"><span class="comment">// 交换律（commutative）</span></div><div class="line">add(x, y) == add(y, x);</div><div class="line"><span class="comment">// 同一律（identity）</span></div><div class="line">add(x, <span class="number">0</span>) == x;</div><div class="line"><span class="comment">// 分配律（distributive）</span></div><div class="line">multiply(x, add(y, z)) == add(multiply(x, y), multiply(x, z));</div><div class="line"></div><div class="line"><span class="comment">// 原有代码</span></div><div class="line">add(multiply(b, add(a, c)), multiply(a, b));</div><div class="line"><span class="comment">// 应用同一律，去掉多余的加法操作（add(a, c) == a）</span></div><div class="line">add(multiply(b, a), multiply(a, b));</div><div class="line"><span class="comment">// 再应用分配律</span></div><div class="line">multiply(b, add(a, a));</div></pre></td></tr></table></figure>
+<h2 id="一等公民的函数"><a href="#一等公民的函数" class="headerlink" title="一等公民的函数"></a>一等公民的函数</h2><p>先看看常见的JS风格的一个例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">ajaxCall</span>(<span class="params">func</span>) </span>&#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 用一个函数把另一个函数包起来，目的仅仅是延迟执行，真的是非常糟糕的编程习惯</span></div><div class="line"><span class="keyword">var</span> getServerStuff = <span class="function"><span class="keyword">function</span> (<span class="params">callback</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> ajaxCall(<span class="function"><span class="keyword">function</span> (<span class="params">json</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> callback(json);</div><div class="line">    &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 这行</span></div><div class="line"><span class="comment">// return ajaxCall(function (json) &#123;</span></div><div class="line"><span class="comment">// return callback(json);</span></div><div class="line"><span class="comment">// &#125;);</span></div><div class="line"><span class="comment">// 等价于这行</span></div><div class="line"><span class="comment">// return ajaxCall(callback);</span></div><div class="line"></div><div class="line"><span class="comment">// 应该改成这样</span></div><div class="line"><span class="keyword">var</span> getServerStuff = ajaxCall;</div></pre></td></tr></table></figure>
+<p>再看另一个例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Views</span> </span>&#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Db</span> </span>&#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 这样做除了徒增代码量，提高维护和检索代码的成本外，没有任何用处</span></div><div class="line"><span class="keyword">var</span> BlogController = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> index = <span class="function"><span class="keyword">function</span> (<span class="params">posts</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> Views.index(posts);</div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">var</span> show = <span class="function"><span class="keyword">function</span> (<span class="params">post</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> Views.show(post);</div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">var</span> create = <span class="function"><span class="keyword">function</span> (<span class="params">attrs</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> Db.create(attrs);</div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">var</span> update = <span class="function"><span class="keyword">function</span> (<span class="params">post, attrs</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> Db.update(post, attrs);</div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">var</span> destroy = <span class="function"><span class="keyword">function</span> (<span class="params">post</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> Db.destroy(post);</div><div class="line">    &#125;;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        index,</div><div class="line">        show,</div><div class="line">        create,</div><div class="line">        update,</div><div class="line">        destroy</div><div class="line">    &#125;;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line"><span class="comment">// 我们可以把它重写成这样：</span></div><div class="line"><span class="keyword">var</span> BlogController = &#123;</div><div class="line">    index: Views.index,</div><div class="line">    show: Views.show,</div><div class="line">    create: Db.create,</div><div class="line">    update: Db.update,</div><div class="line">    destroy: Db.destroy</div><div class="line">&#125;;</div><div class="line"><span class="comment">// 或者直接全部删掉，因为它的作用仅仅就是把视图（Views）和数据库（Db）打包在一起而已</span></div></pre></td></tr></table></figure>
+<p>另外，如果一个函数被不必要地包裹起来了，而且发生了改动，那么包裹它的那个函数也要做相应的变更。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">httpGet(<span class="string">'/post/2'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">json</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> renderPost(json);</div><div class="line">&#125;);</div><div class="line"><span class="comment">// 如果 httpGet 要改成可以抛出一个可能出现的 err 异常，那我们还要回过头去把“胶水”函数也改了</span></div><div class="line"></div><div class="line"><span class="comment">// 把整个应用里的所有 httpGet 调用都改成这样，可以传递 err 参数。</span></div><div class="line">httpGet(<span class="string">'/post/2'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">json, err</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> renderPost(json, err);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 写成一等公民函数的形式，要做的改动将会少得多</span></div><div class="line">httpGet(<span class="string">'/post/2'</span>, renderPost); </div><div class="line"><span class="comment">// renderPost 将会在 httpGet 中调用，想要多少参数都行</span></div></pre></td></tr></table></figure>
+<p>除了删除不必要的函数，正确地为参数命名也必不可少。当然命名不是什么大问题，但还是有可能存在一些不当的命名，尤其随着代码量的增长以及需求的变更，这种可能性也会增加。</p>
+<p>如果一个底层函数使用了 this，而且是以一等公民的方式被调用的，那你就等着 JS 这个蹩脚的抽象概念发怒吧</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"><span class="comment">// 太可怕了</span></div><div class="line">fs.readFile(<span class="string">'freaky_friday.txt'</span>, Db.save);</div><div class="line"><span class="comment">// 好一点点</span></div><div class="line">fs.readFile(<span class="string">'freaky_friday.txt'</span>, Db.save.bind(Db));</div></pre></td></tr></table></figure>
+<h2 id="纯函数的好处"><a href="#纯函数的好处" class="headerlink" title="纯函数的好处"></a>纯函数的好处</h2><blockquote>
+<p>纯函数是这样一种函数，即相同的输入，永远会得到相同的输出，而且没有任何可观察的副作用。</p>
+</blockquote>
+<p>slice 跟 splice</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xs = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</div><div class="line"><span class="comment">// 纯的</span></div><div class="line">xs.slice(<span class="number">0</span>,<span class="number">3</span>);</div><div class="line"><span class="comment">//=&gt; [1,2,3]</span></div><div class="line">xs.slice(<span class="number">0</span>,<span class="number">3</span>);</div><div class="line"><span class="comment">//=&gt; [1,2,3]</span></div><div class="line">xs.slice(<span class="number">0</span>,<span class="number">3</span>);</div><div class="line"><span class="comment">//=&gt; [1,2,3]</span></div><div class="line"><span class="comment">// 不纯的</span></div><div class="line">xs.splice(<span class="number">0</span>,<span class="number">3</span>);</div><div class="line"><span class="comment">//=&gt; [1,2,3]</span></div><div class="line">xs.splice(<span class="number">0</span>,<span class="number">3</span>);</div><div class="line"><span class="comment">//=&gt; [4,5]</span></div><div class="line">xs.splice(<span class="number">0</span>,<span class="number">3</span>);</div><div class="line"><span class="comment">//=&gt; []</span></div></pre></td></tr></table></figure>
+<p>下一个例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 不纯的</span></div><div class="line"><span class="keyword">var</span> minimum = <span class="number">21</span>;</div><div class="line"><span class="keyword">var</span> checkAge = <span class="function"><span class="keyword">function</span> (<span class="params">age</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> age &gt;= minimum;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 纯的</span></div><div class="line"><span class="keyword">var</span> checkAge = <span class="function"><span class="keyword">function</span> (<span class="params">age</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> minimum = <span class="number">21</span>;</div><div class="line">    <span class="keyword">return</span> age &gt;= minimum;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 纯的</span></div><div class="line"><span class="keyword">const</span> minimum = <span class="number">21</span>;</div><div class="line"><span class="keyword">var</span> checkAge = <span class="function"><span class="keyword">function</span> (<span class="params">age</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> age &gt;= minimum;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>在不纯的版本中， checkAge 的结果将取决于 minimum 这个可变变量的值。换句话说，它取决于系统状态（system state）；这一点令人沮丧，因为它引入了外部的环境，从而增加了认知负荷（cognitive load）。</p>
+<p>另一方面，使用纯函数的形式，函数就能做到自给自足。我们也可以让 minimum成为一个不可变（immutable）对象，这样就能保留纯粹性，因为状态不会有变化。要实现这个效果，必须得创建一个对象，然后调用 Object.freeze 方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> immutableState = <span class="built_in">Object</span>.freeze(&#123;</div><div class="line">    minimun: <span class="number">21</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>副作用是在计算结果的过程中，系统状态的一种变化，或者与外部世界进行的可观察的交互。</p>
+</blockquote>
+<p>副作用可能包含，但不限于：</p>
+<ul>
+<li>更改文件系统</li>
+<li>往数据库插入记录</li>
+<li>发送一个 http 请求</li>
+<li>可变数据</li>
+<li>打印/log</li>
+<li>获取用户输入</li>
+<li>DOM 查询</li>
+<li>访问系统状态</li>
+</ul>
+<p>这个列表还可以继续写下去。概括来讲，只要是跟函数外部环境发生的交互就都是副作用——这一点可能会让你怀疑无副作用编程的可行性。函数式编程的哲学就是假定副作用是造成不正当行为的主要原因。</p>
+<p>这并不是说，要禁止使用一切副作用，而是说，要让它们在可控的范围内发生。后面讲到 functor 和 monad 的时候我们会学习如何控制它们。</p>
+<h3 id="追求“纯”的好处"><a href="#追求“纯”的好处" class="headerlink" title="追求“纯”的好处"></a>追求“纯”的好处</h3><ul>
+<li>可缓存性（Cacheable）</li>
+<li>可移植性／自文档化（Portable / SelfDocumenting）</li>
+<li>可测试性（Testable）</li>
+<li>合理性（Reasonable）</li>
+<li>并行性(Parallelism)</li>
+</ul>
+<p>首先，纯函数总能够根据输入来做缓存。实现缓存的一种典型方式是 memoize 技术</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> squareNumber = memoize(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> x * x&#125;);</div><div class="line">squareNumber(<span class="number">4</span>);</div><div class="line"><span class="comment">//=&gt; 16</span></div><div class="line">squareNumber(<span class="number">4</span>); <span class="comment">// 从缓存中读取输入值为 4 的结果</span></div><div class="line"><span class="comment">//=&gt; 16</span></div><div class="line">squareNumber(<span class="number">5</span>);</div><div class="line"><span class="comment">//=&gt; 25</span></div><div class="line">squareNumber(<span class="number">5</span>); <span class="comment">// 从缓存中读取输入值为 5 的结果</span></div><div class="line"><span class="comment">//=&gt; 25</span></div></pre></td></tr></table></figure>
+<p>下面的代码是一个简单的实现，尽管它不太健壮</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">momoize</span>(<span class="params">f</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> cache = &#123;&#125;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> arg_str = <span class="built_in">JSON</span>.stringify(<span class="built_in">arguments</span>)</div><div class="line">        <span class="comment">// 有cache则返回cache里的，总是保存到cache里</span></div><div class="line">        cache[arg_str] = cache[arg_str] || f(...arguments)</div><div class="line">        <span class="keyword">return</span> cache[arg_str]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>值得注意的一点是，可以通过延迟执行的方式把不纯的函数转换为纯函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pureHttpCall = memoize(<span class="function"><span class="keyword">function</span>(<span class="params">url, params</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> $.getJSON(url, params); &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这里有趣的地方在于我们并没有真正发送 http 请求——只是返回了一个函数，当调用它的时候才会发请求。这个函数之所以有资格成为纯函数，是因为它总是会根据相同的输入返回相同的输出：给定了 url 和 params 之后，它就只会返回同一个发送 http 请求的函数</p>
+<p>我们的 memoize 函数工作起来没有任何问题，虽然它缓存的并不是 http 请求所返回的结果，而是生成的函数。</p>
+<p>重点是我们可以缓存任意一个函数，不管它们看起来多么具有破坏性。</p>
+<hr>
+<p>纯函数是完全自给自足的，它需要的所有东西都能轻易获得。仔细思考思考这一点…这种自给自足的好处是什么呢？首先，纯函数的依赖很明确，因此更易于观察和理解</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 不纯的</span></div><div class="line"><span class="keyword">var</span> signUp = <span class="function"><span class="keyword">function</span> (<span class="params">attrs</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> user = saveUser(attrs);</div><div class="line">    welcomeUser(user);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> saveUser = <span class="function"><span class="keyword">function</span> (<span class="params">attrs</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> user = Db.save(attrs);</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> welcomeUser = <span class="function"><span class="keyword">function</span> (<span class="params">user</span>) </span>&#123;</div><div class="line">    <span class="comment">// Email(user, ...);</span></div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 纯的</span></div><div class="line"><span class="keyword">var</span> signUp = <span class="function"><span class="keyword">function</span> (<span class="params">Db, Email, attrs</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">// 参数绑定</span></div><div class="line">        <span class="keyword">var</span> user = saveUser(Db, attrs);</div><div class="line">        welcomeUser(Email, user);</div><div class="line">    &#125;;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> saveUser = <span class="function"><span class="keyword">function</span> (<span class="params">Db, attrs</span>) </span>&#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> welcomeUser = <span class="function"><span class="keyword">function</span> (<span class="params">Email, user</span>) </span>&#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>纯函数对于其依赖必须要诚实，这样我们就能知道它的目的。仅从纯函数版本的 signUp 的签名就可以看出，它将要用到 Db、Email 和 attrs ，这在最小程度上给了我们足够多的信息。</p>
+<p>其次，通过强迫“注入”依赖，或者把它们当作参数传递，我们的应用也更加灵活；因为数据库或者邮件客户端等等都参数化了</p>
+<p>命令式编程中“典型”的方法和过程都深深地根植于它们所在的环境中，通过状态、依赖和有效作用（available effects）达成；纯函数与此相反，它与环境无关，只要我们愿意，可以在任何地方运行它。</p>
+<p>第三点，纯函数让测试更加容易。</p>
+<p>我们不需要伪造一个“真实的”支付网关，或者每一次测试之前都要配置、之后都要断言状态（assert the state）。只需简单地给函数一个输入，然后断言输出就好了。</p>
+<p>很多人相信使用纯函数最大的好处是引用透明性（referential transparency）。如果一段代码可以替换成它执行所得的结果，而且是在不改变整个程序行为的前提下替换的，那么我们就说这段代码是引用透明的。</p>
+<p>来观察一个例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Immutable = <span class="built_in">require</span>(<span class="string">'immutable'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> decrementHP = <span class="function"><span class="keyword">function</span>(<span class="params">player</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> player.set(<span class="string">"hp"</span>, player.hp<span class="number">-1</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> isSameTeam = <span class="function"><span class="keyword">function</span>(<span class="params">player1, player2</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> player1.team === player2.team;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> punch = <span class="function"><span class="keyword">function</span>(<span class="params">player, target</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(isSameTeam(player, target)) &#123;</div><div class="line">        <span class="keyword">return</span> target;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> decrementHP(target);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> jobe = Immutable.Map(&#123;<span class="attr">name</span>:<span class="string">"Jobe"</span>, <span class="attr">hp</span>:<span class="number">20</span>, <span class="attr">team</span>: <span class="string">"red"</span>&#125;);</div><div class="line"><span class="keyword">var</span> michael = Immutable.Map(&#123;<span class="attr">name</span>:<span class="string">"Michael"</span>, <span class="attr">hp</span>:<span class="number">20</span>, <span class="attr">team</span>: <span class="string">"green"</span>&#125;);</div><div class="line"></div><div class="line">punch(jobe, michael);</div><div class="line"><span class="comment">//=&gt; Immutable.Map(&#123;name:"Michael", hp:19, team: "green"&#125;)</span></div></pre></td></tr></table></figure>
+<p>decrementHP 、 isSameTeam 和 punch 都是纯函数，所以是引用透明的。我们可以使用一种叫做“等式推导”（equational reasoning）的技术来分析代码。所谓“等式推导”就是“一对一”替换，有点像在不考虑程序性执行的怪异行为（quirks of programmatic evaluation）的情况下，手动执行相关代码。我们借助引用透明性来剖析一下这段代码。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> punch = <span class="function"><span class="keyword">function</span>(<span class="params">player, target</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(player.team === target.team) &#123;</div><div class="line">        <span class="keyword">return</span> target;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> decrementHP(target);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>因为是不可变数据，我们可以直接把 team 替换为实际值：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> punch = <span class="function"><span class="keyword">function</span>(<span class="params">player, target</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="string">"red"</span> === <span class="string">"green"</span>) &#123;</div><div class="line">        <span class="keyword">return</span> target;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> decrementHP(target);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>if 语句执行结果为 false ，所以可以把整个 if 语句都删掉：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> punch = <span class="function"><span class="keyword">function</span>(<span class="params">player, target</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> decrementHP(target);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>如果再内联 decrementHP ，我们会发现这种情况下， punch 变成了一个让 hp 的值减 1 的调用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> punch = <span class="function"><span class="keyword">function</span>(<span class="params">player, target</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> target.set(<span class="string">"hp"</span>, target.hp<span class="number">-1</span>);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>总之，等式推导带来的分析代码的能力对重构和理解代码非常重要。事实上，我们重构海鸥程序使用的正是这项技术：利用加和乘的特性。</p>
+<p>最后一点，也是决定性的一点：我们可以并行运行任意纯函数。因为纯函数根本不需要访问共享的内存，而且根据其定义，纯函数也不会因副作用而进入竞争态（race condition）。</p>
+<p>并行代码在服务端 js 环境以及使用了 web worker 的浏览器那里是非常容易实现的，因为它们使用了线程（thread）。</p>
+<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '',
+  alipayImage: ''
+});
+</script>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/24/人工智能发展报告/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          人工智能发展报告
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/13/暑假机器学习总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">暑假机器学习总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JS函数式编程"><span class="nav-number">1.</span> <span class="nav-text">JS函数式编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#我们在做什么"><span class="nav-number">1.1.</span> <span class="nav-text">我们在做什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一等公民的函数"><span class="nav-number">1.2.</span> <span class="nav-text">一等公民的函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#纯函数的好处"><span class="nav-number">1.3.</span> <span class="nav-text">纯函数的好处</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#追求“纯”的好处"><span class="nav-number">1.3.1.</span> <span class="nav-text">追求“纯”的好处</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未完待续"><span class="nav-number">1.4.</span> <span class="nav-text">未完待续</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2017 - 2017 yjhmelody&#39;s blog All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            yjhmelody&#39;s blog
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 yjhmelody All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

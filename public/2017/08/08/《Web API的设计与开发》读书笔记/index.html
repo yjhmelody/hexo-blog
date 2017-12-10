@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>《web api的设计与开发》读书笔记 | yjhmelody&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="blog, cs, life" />
+  
+  
+  
+  
+  <meta name="description" content="第1章 什么是 Web APIWeb API 的重要性一些在线服务能够对那些公开的API进行会话控制、访问控制、服务分析，提供面向用户的仪表盘，以及发布文档等，承接了各种各样的工作。 通过对外公开 Web API，同外部其他服务的集成变得更加便捷，并从中衍生出了新的价值，使在线服务以及业务不断发展，逐步形成了“API经济学”的景象，并在这几年受到相当大的关注。 各种各样的 API 模式 将已发布的">
+<meta name="keywords" content="web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Web API的设计与开发》读书笔记">
+<meta property="og:url" content="https://yjhmelody.github.io/2017/08/08/《Web API的设计与开发》读书笔记/index.html">
+<meta property="og:site_name" content="yjhmelody&#39;s blog">
+<meta property="og:description" content="第1章 什么是 Web APIWeb API 的重要性一些在线服务能够对那些公开的API进行会话控制、访问控制、服务分析，提供面向用户的仪表盘，以及发布文档等，承接了各种各样的工作。 通过对外公开 Web API，同外部其他服务的集成变得更加便捷，并从中衍生出了新的价值，使在线服务以及业务不断发展，逐步形成了“API经济学”的景象，并在这几年受到相当大的关注。 各种各样的 API 模式 将已发布的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-19T14:59:46.213Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Web API的设计与开发》读书笔记">
+<meta name="twitter:description" content="第1章 什么是 Web APIWeb API 的重要性一些在线服务能够对那些公开的API进行会话控制、访问控制、服务分析，提供面向用户的仪表盘，以及发布文档等，承接了各种各样的工作。 通过对外公开 Web API，同外部其他服务的集成变得更加便捷，并从中衍生出了新的价值，使在线服务以及业务不断发展，逐步形成了“API经济学”的景象，并在这几年受到相当大的关注。 各种各样的 API 模式 将已发布的">
+  
+    <link rel="alternate" href="/atom.xml" title="yjhmelody&#39;s blog" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-《Web API的设计与开发》读书笔记" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      《Web API的设计与开发》读书笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/08/08/《Web API的设计与开发》读书笔记/" class="article-date">
+	  <time datetime="2017-08-08T04:11:10.000Z" itemprop="datePublished">2017-08-08</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/study/">study</a>
+
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="第1章-什么是-Web-API"><a href="#第1章-什么是-Web-API" class="headerlink" title="第1章 什么是 Web API"></a>第1章 什么是 Web API</h1><h2 id="Web-API-的重要性"><a href="#Web-API-的重要性" class="headerlink" title="Web API 的重要性"></a>Web API 的重要性</h2><p>一些在线服务能够对那些公开的API进行会话控制、访问控制、服务分析，提供面向用户的仪表盘，以及发布文档等，承接了各种各样的工作。</p>
+<p>通过对外公开 Web API，同外部其他服务的集成变得更加便捷，并从中衍生出了新的价值，使在线服务以及业务不断发展，逐步形成了“API经济学”的景象，并在这几年受到相当大的关注。</p>
+<h2 id="各种各样的-API-模式"><a href="#各种各样的-API-模式" class="headerlink" title="各种各样的 API 模式"></a>各种各样的 API 模式</h2><ul>
+<li>将已发布的 Web 在线服务的数据或功能通过 API 公开</li>
+<li>将附加在其他网页上的微件公开</li>
+<li>构建现代 Web 应用</li>
+<li>开发智能手机应用</li>
+<li>公司内部多个系统的集成</li>
+</ul>
+<h2 id="应该通过-API-公开什么"><a href="#应该通过-API-公开什么" class="headerlink" title="应该通过 API 公开什么"></a>应该通过 API 公开什么</h2><ul>
+<li>最简洁的答案是将你的在线服务所能做的事情全部通过API公开</li>
+<li>不存在彻底屏蔽搜集信息的行为，所以无需担心盗用，公开 API并不意味着毫无限制的访问</li>
+<li>公开 API 将原来的服务组合成新的应用来为用户提供服务的“间接销售”模式</li>
+</ul>
+<h2 id="设计优美-API-的重要性"><a href="#设计优美-API-的重要性" class="headerlink" title="设计优美 API 的重要性"></a>设计优美 API 的重要性</h2><ul>
+<li>易于使用</li>
+<li>便于更改</li>
+<li>健壮性好</li>
+<li>不怕公之于众</li>
+</ul>
+<h2 id="如何美化-Web-API"><a href="#如何美化-Web-API" class="headerlink" title="如何美化 Web API"></a>如何美化 Web API</h2><p>两个重要原则：</p>
+<ul>
+<li>设计规范明确的内容必须遵守相关规范</li>
+<li>没有设计规范的内容必须遵守相关事实标准</li>
+</ul>
+<h2 id="REST-与-Web-API"><a href="#REST-与-Web-API" class="headerlink" title="REST 与 Web API"></a>REST 与 Web API</h2><p>REST 依次一般指下面两种意思：</p>
+<ul>
+<li>符合 Fielding 的 REST 架构风格的Web服务系统</li>
+<li>符合 RPC风格的 XML (或JSON) + HTTP 接口的系统(不使用SOAP)</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>如果尚未公开 Web AP，则应立即考虑公开</li>
+<li>设计优美的 Web API</li>
+<li>不用过分拘泥于 REST 一词</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '',
+  alipayImage: ''
+});
+</script>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/08/k-means/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          k-means
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/08/欢迎，刚搭建好的博客/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">欢迎，刚搭建好的博客</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第1章-什么是-Web-API"><span class="nav-number">1.</span> <span class="nav-text">第1章 什么是 Web API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Web-API-的重要性"><span class="nav-number">1.1.</span> <span class="nav-text">Web API 的重要性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各种各样的-API-模式"><span class="nav-number">1.2.</span> <span class="nav-text">各种各样的 API 模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应该通过-API-公开什么"><span class="nav-number">1.3.</span> <span class="nav-text">应该通过 API 公开什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计优美-API-的重要性"><span class="nav-number">1.4.</span> <span class="nav-text">设计优美 API 的重要性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何美化-Web-API"><span class="nav-number">1.5.</span> <span class="nav-text">如何美化 Web API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#REST-与-Web-API"><span class="nav-number">1.6.</span> <span class="nav-text">REST 与 Web API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.7.</span> <span class="nav-text">小结</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2017 - 2017 yjhmelody&#39;s blog All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            yjhmelody&#39;s blog
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 yjhmelody All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

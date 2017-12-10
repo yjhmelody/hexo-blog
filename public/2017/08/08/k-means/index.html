@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>k-means | yjhmelody&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="blog, cs, life" />
+  
+  
+  
+  
+  <meta name="description" content="公式排版目前没法解决唉，博客写个数学公式怎么这么揪心，好不容易解决了公式显示问题，但排版又很难控制 k-means基本原理这个星期学无监督学习(unsuperviser-learning), 最基本的是k-means算法.k-means属于原型聚类:假设聚类结构能通过一组原型刻画. 而聚类本身是根据数据相似度来划分的,即”距离”.我这里不展开讲距离计算, 姑且用欧几里德距离来理解，即平时最常见的公">
+<meta name="keywords" content="ML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="k-means">
+<meta property="og:url" content="https://yjhmelody.github.io/2017/08/08/k-means/index.html">
+<meta property="og:site_name" content="yjhmelody&#39;s blog">
+<meta property="og:description" content="公式排版目前没法解决唉，博客写个数学公式怎么这么揪心，好不容易解决了公式显示问题，但排版又很难控制 k-means基本原理这个星期学无监督学习(unsuperviser-learning), 最基本的是k-means算法.k-means属于原型聚类:假设聚类结构能通过一组原型刻画. 而聚类本身是根据数据相似度来划分的,即”距离”.我这里不展开讲距离计算, 姑且用欧几里德距离来理解，即平时最常见的公">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-19T14:59:58.696Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="k-means">
+<meta name="twitter:description" content="公式排版目前没法解决唉，博客写个数学公式怎么这么揪心，好不容易解决了公式显示问题，但排版又很难控制 k-means基本原理这个星期学无监督学习(unsuperviser-learning), 最基本的是k-means算法.k-means属于原型聚类:假设聚类结构能通过一组原型刻画. 而聚类本身是根据数据相似度来划分的,即”距离”.我这里不展开讲距离计算, 姑且用欧几里德距离来理解，即平时最常见的公">
+  
+    <link rel="alternate" href="/atom.xml" title="yjhmelody&#39;s blog" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-k-means" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      k-means
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/08/08/k-means/" class="article-date">
+	  <time datetime="2017-08-08T08:18:09.000Z" itemprop="datePublished">2017-08-08</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>公式排版目前没法解决唉，博客写个数学公式怎么这么揪心，好不容易解决了公式显示问题，但排版又很难控制</p>
+<h1 id="k-means"><a href="#k-means" class="headerlink" title="k-means"></a>k-means</h1><h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><p>这个星期学无监督学习(unsuperviser-learning), 最基本的是k-means算法.<br>k-means属于<code>原型聚类</code>:假设聚类结构能通过一组原型刻画. 而聚类本身是根据数据相似度来划分的,即”距离”.我这里不展开讲距离计算, 姑且用欧几里德距离来理解，即平时最常见的公式.<br>
+
+我们先写出k-means的最小化平方误差: 给定样本集合 $D = {x_1, x_2, \dots, x_m}$,
+
+k-means对聚类所得的簇划分 $C = {C_1, C_2, \dots, C_k}$
+的最小平方误差是 $E = \sum_{i=1}^k \sum_{x \in C_i} ||x - \mu_i||_2^2 $,
+
+其中 $\mu_i = \frac{1}{|C_i|} \sum_{x \in C_i}x$是簇$ C_i $ 的均值向量
+</p>
+<p>可以看出来, 求该式子的最优解并不容易, 因为需要考察每个样本可能的划分情况(<code>NP难问题</code>),<br>所以k-means 采用贪心策略, 通过迭代优化求近似解.</p>
+<p>感觉学完以上内容, 脑子里好像有了这个算法的轮廓了, 但仔细一想, 还有很多地方需要斟酌.<br>k-means是划分为k个类别, 那一开始怎么划分呢?<br>我们想到一开始需要选k个样本当作中心点来计算距离, 根据这k个位置就求得每个样本离哪个位置最接近. 这样,第一次聚类就完成了, 但是由于这次聚类造成每个类别的中心点发生了偏移,</p>
+<p>我们需要重新计算这时候的中心点,而由于发生了偏移,我们又需要重新计算所有样本最接近的… 如何反复,直到中心点(即均值向量)不变, 便完成了聚类. </p>
+<p>如此说来, 这个算法还是蛮朴素的, 但是还有需要斟酌的地方.<br>如何选初始点呢？万一2个点靠得近，或者是离群点, 岂不是可能会出现很极端的聚类(比如一个人一个类别).个人觉得这有时候很难避免, 但可以通过多次随机选取初始点并评估各个聚类的效果(最小平方误差),来减少这种情况.</p>
+<p>嗯,好像对算法的轮廓又清晰了, 但可能又有疑问, 到底如何选择k值呢?这里应该要具体问题具体分析了.如果只是想得到更好的性能, 把应该把k值从小到大递增来比较选择最优, 但这不一定给你带来实际上的最大收益.比如你是服装商, 把消费者划分了不同尺码的类别来针对客户进行推荐商品, 那到底多细才最优呢,反正我是不知道, 这得根据实际情况和专家经验来决策,而k-means在这里不充当决策者, 更像是打下手的.</p>
+<p>扯远了,总之对于k-means, 知道k值我觉得往往很关键.</p>
+<h2 id="算法伪代码"><a href="#算法伪代码" class="headerlink" title="算法伪代码"></a>算法伪代码</h2><p>这样子算法应该比较清晰了,我下来列出(抄上)伪代码, 参考自周志华的西瓜书:</p>
+
+输入: 
+样本集 $D = \{x_1, x_2, ..., x_m\}$, 聚类簇数 k
+
+过程:
+从D中随机选择k个样本作为初始均值向量 $\{\mu_1, \mu_2, ..., \mu_k\}$
+repeat 
+	$C_i = \emptyset$
+	for j = 1, 2, ..., m do
+		计算$x_j$与各均值向量 \mu_i(1 \leq i \leq k)的距离: $d_ji = ||x_i - \mu_i||_2$;
+		根据距离最近的均值向量确定x_j的簇标记: $\lambda_j = argmin_{i \in \{1,2,...,k\}}d_ij$;
+		将样本$x_j$划入相应的簇: $C_{\lambda_j} = C_{\lambda_j} \bigcup\{x_j\}$
+	end for
+
+	for i = 1, 2, ..., k do
+		计算新均值向量: $\mu_i^` = \frac{1}{|C_i|}\sum_{x \in C_i|}x$;
+		if $\mu_i^ \ne\mu_i$ then
+			更新 $\mu_i$
+		else
+			保持当前均值向量不变
+		end if
+
+	end for
+
+util 当前均值向量都没有更新
+
+输出: 簇划分 $C = \{C_1, C_2, ..., C_k\}$
+
+<h2 id="扯淡"><a href="#扯淡" class="headerlink" title="扯淡"></a>扯淡</h2><p>暂时先写到这里,第一次写latex,第一次写博客,写的不好请见谅,以上大段文字<br>有些是建立在自己的理解写的,如果有错误,希望能不吝赐教.写的比较浅,其实也没什么意思啊,就是梳理下自己跟其他同学的思路.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '',
+  alipayImage: ''
+});
+</script>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/10/机器学习里的一些小概念/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          机器学习里的一些小概念
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/08/《Web API的设计与开发》读书笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">《Web API的设计与开发》读书笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#k-means"><span class="nav-number">1.</span> <span class="nav-text">k-means</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本原理"><span class="nav-number">1.1.</span> <span class="nav-text">基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法伪代码"><span class="nav-number">1.2.</span> <span class="nav-text">算法伪代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扯淡"><span class="nav-number">1.3.</span> <span class="nav-text">扯淡</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2017 - 2017 yjhmelody&#39;s blog All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            yjhmelody&#39;s blog
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 yjhmelody All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
