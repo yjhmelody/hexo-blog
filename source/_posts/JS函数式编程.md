@@ -584,8 +584,7 @@ snakeCase = compose(replace(/\s+/ig, '_'), toUpperCase)
 组合的一个常见错误是，在没有局部调用之前，就组合类似 map 这样接受两个参数的函数。
 
 ```js
-// 错误做法：我们传给了 `angry` 一个数组，根本不知道最后传给 `map` 的是什
-么东西。
+// 错误做法：我们传给了 `angry` 一个数组，根本不知道最后传给 `map` 的是什么东西。
 let latin = compose(map, angry, reverse)
 latin(["frog", "eyes"])
 // error
