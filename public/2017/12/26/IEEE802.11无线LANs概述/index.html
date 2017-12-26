@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>归档: 2017/10 | yjhmelody&#39;s blog</title>
+  <title>ieee802.11概述 | yjhmelody&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="blog, cs, life" />
@@ -11,16 +11,21 @@
   
   
   
-  <meta name="description" content="想记录很多东西">
-<meta property="og:type" content="website">
-<meta property="og:title" content="yjhmelody&#39;s blog">
-<meta property="og:url" content="https://yjhmelody.github.io/archives/2017/10/index.html">
+  <meta name="description" content="IEEE 802.11无线 LANs 概述无线链路和网络特征当我们寻找有线和无线网络的重要区别时，应该重点关注链路层，我们确实可以发现有线链路和无线链路有许多重要区别：  递减的信号强度。信号强度受到发送方和接收方距离的增加而递减。 来自其他源的干扰。在同一个频段发送信号的电波源会互相干扰。 多径传播（multipath propagation）。当电磁波受到反射，会在发送方和接收方之间走过多条不">
+<meta name="keywords" content="network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IEEE802.11概述">
+<meta property="og:url" content="https://yjhmelody.github.io/2017/12/26/IEEE802.11无线LANs概述/index.html">
 <meta property="og:site_name" content="yjhmelody&#39;s blog">
-<meta property="og:description" content="想记录很多东西">
+<meta property="og:description" content="IEEE 802.11无线 LANs 概述无线链路和网络特征当我们寻找有线和无线网络的重要区别时，应该重点关注链路层，我们确实可以发现有线链路和无线链路有许多重要区别：  递减的信号强度。信号强度受到发送方和接收方距离的增加而递减。 来自其他源的干扰。在同一个频段发送信号的电波源会互相干扰。 多径传播（multipath propagation）。当电磁波受到反射，会在发送方和接收方之间走过多条不">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://yjhmelody.github.io/2017/12/26/IEEE802.11无线LANs概述/802.11.jpg">
+<meta property="og:image" content="https://yjhmelody.github.io/2017/12/26/IEEE802.11无线LANs概述/中央基站.jpg">
+<meta property="og:updated_time" content="2017-12-26T14:08:17.272Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yjhmelody&#39;s blog">
-<meta name="twitter:description" content="想记录很多东西">
+<meta name="twitter:title" content="IEEE802.11概述">
+<meta name="twitter:description" content="IEEE 802.11无线 LANs 概述无线链路和网络特征当我们寻找有线和无线网络的重要区别时，应该重点关注链路层，我们确实可以发现有线链路和无线链路有许多重要区别：  递减的信号强度。信号强度受到发送方和接收方距离的增加而递减。 来自其他源的干扰。在同一个频段发送信号的电波源会互相干扰。 多径传播（multipath propagation）。当电磁波受到反射，会在发送方和接收方之间走过多条不">
+<meta name="twitter:image" content="https://yjhmelody.github.io/2017/12/26/IEEE802.11无线LANs概述/802.11.jpg">
   
     <link rel="alternate" href="/atom.xml" title="yjhmelody&#39;s blog" type="application/atom+xml">
   
@@ -57,8 +62,6 @@
   
 
   
-    <link rel="stylesheet" href="/css/archive.css" >
-  
   
   
     <link rel="stylesheet" href="/css/vdonate.css" >
@@ -68,7 +71,7 @@
 
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   
@@ -91,7 +94,7 @@
             
               <a class="brand" style="
                  margin-top: 0px;"  
-                 >
+                href="#" data-toggle="modal" data-target="#myModal" >
                   <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
               </a>
             
@@ -160,210 +163,118 @@
             
       <div id="content" class="outer">
         
-          <section id="main">
-  <div class="archives-tags-wrap"><blockquote><span>嗯，目前共计16篇文章</span></blockquote>
-
-
-<!-- 分页显示 -->
-
-	
-	
-		
-		
-		  
-		  
-		  <section class="archives-wrap">
-		    <div class="archive-year-wrap">
-		      <h1><a href="/archives/2017" class="archive-year">2017</a></h1>
-		    </div>
-		    <div class="archives">
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-	<a href="/2017/10/26/Install-MySQL5-7/" class="archive-article-date">
-	  <time datetime="2017-10-26T05:30:18.000Z" itemprop="datePublished">2017-10-26</time>
-	</a>
-
-      
+          <section id="main" style="float:none;"><article id="post-IEEE802.11无线LANs概述" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2017/10/26/Install-MySQL5-7/">Install MySQL5.7</a>
+    <h1 class="thumb" class="article-title" itemprop="name">
+      IEEE802.11概述
     </h1>
   
 
-    </header>
-  </div>
-</article>
-	
-		
-		
-		<article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
+      </header>
+    
+    <div class="article-meta">
       
-	<a href="/2017/10/11/VAET阅读稿/" class="archive-article-date">
-	  <time datetime="2017-10-11T10:53:34.000Z" itemprop="datePublished">2017-10-11</time>
+	<a href="/2017/12/26/IEEE802.11无线LANs概述/" class="article-date">
+	  <time datetime="2017-12-26T14:03:46.000Z" itemprop="datePublished">2017-12-26</time>
 	</a>
 
       
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="archive-article-title" href="/2017/10/11/VAET阅读稿/">VAET阅读稿</a>
-    </h1>
-  
+    <a class="article-category-link" href="/categories/study/">study</a>
 
-    </header>
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="IEEE-802-11无线-LANs-概述"><a href="#IEEE-802-11无线-LANs-概述" class="headerlink" title="IEEE 802.11无线 LANs 概述"></a>IEEE 802.11无线 LANs 概述</h1><h2 id="无线链路和网络特征"><a href="#无线链路和网络特征" class="headerlink" title="无线链路和网络特征"></a>无线链路和网络特征</h2><p>当我们寻找有线和无线网络的重要区别时，应该重点关注链路层，我们确实可以发现有线链路和无线链路有许多重要区别：</p>
+<ul>
+<li>递减的信号强度。信号强度受到发送方和接收方距离的增加而递减。</li>
+<li>来自其他源的干扰。在同一个频段发送信号的电波源会互相干扰。</li>
+<li>多径传播（multipath propagation）。当电磁波受到反射，会在发送方和接收方之间走过多条不同长度的路径，此时出现多径传播，这使得接受的信号变得模糊。</li>
+</ul>
+<h2 id="IEEE-802-11-标准"><a href="#IEEE-802-11-标准" class="headerlink" title="IEEE 802.11 标准"></a>IEEE 802.11 标准</h2><p>常见的关于LAN的802.11标准包括 802.11b、802.11a、802.11g。<br>它们使用相同的媒体访问协议CSMA/CA，并且使用相同的链路层帧格式。</p>
+<p><img src="802.11.jpg" alt="常见协议"></p>
+<h2 id="802-11-体系结构"><a href="#802-11-体系结构" class="headerlink" title="802.11 体系结构"></a>802.11 体系结构</h2><p>802.11 体系结构的基本构建模块是<code>基本服务集（Basic Service Set BSS）</code>，一个BBS包含<code>若干个无线站点</code>和一个被称为接入点（AP）的中央基站。<br>与以太网设备类似，每个802.11无线站点都具有6字节的MAC地址。<br>每个AP的无线接口也具有一个MAC地址。这些MAC地址也由IEEE管理，理论上全球唯一。</p>
+<p><img src="中央基站.jpg" alt="中央基站"></p>
+<h3 id="信道与关联"><a href="#信道与关联" class="headerlink" title="信道与关联"></a>信道与关联</h3><p>在802.11中，每个无线站点在发送或者接受网络层数据前，必须与一个AP相关联。<br>而安装一个AP时，需要为其分配单字或者双字的服务集标识（SSID）。<br>除了SSID，还需要分配一个信道号。</p>
+<p>信道：</p>
+<p>802.11定义了<code>11个部分重叠的信道</code>，当且仅当2个信道由4个或更多的信道隔开时，它们才不重叠。<br>比如 1、6、11是唯一的3个非重叠信道集合。这样就可以在同一个物理网络安装3个AP。</p>
+<p>关联：</p>
+<p>为了获得互联网接入，你的无线站点需要加入其中一个子网并需要与其中一个AP相关联（associate）。<br>关联意味着该无线站点在自身与该AP之间创建了一个虚拟线路。</p>
+<p>然而，首先得回答：<br>你的无线站点如何与某个特定的AP相关联呢？<br>或者你的无线站点如何知道当前位置哪个AP可以使用呢？</p>
+<p>802.11标准要求每个AP周期性地发送<code>信标帧（beacon frame）</code>，每个信标帧包括该AP的SSID和MAC地址。<br>你的无线站点为了得知正在发送信标帧的AP，扫描11个信道，找到可能来着可能位于该区域的AP所发出的信标帧。</p>
+<p>不过，802.11标准没有指定选择哪个可用的AP进行关联的算法，这个由802.11固件和无线主机的软件设计者来设计。<br>比如，主机选择接收到的具有最高信号强度的信标帧，但可能过载。</p>
+<p>这里扫描分两种：</p>
+<ul>
+<li>被动扫描（passive scanning），自AP发送信标帧，无线站点<em>扫描信道</em>和<em>监听信标帧</em>，然后向选择的AP发送<em>关联请求帧</em>，最后AP响应<em>关联响应帧</em></li>
+<li>主动扫描（active scanning），无线站点广播<em>探测请求帧</em>，AP发送<em>探测响应</em>，然后无线站点选择AP发送<em>关联请求帧</em>，最后AP响应<em>关联响应帧</em></li>
+</ul>
+<h3 id="鉴别与接入"><a href="#鉴别与接入" class="headerlink" title="鉴别与接入"></a>鉴别与接入</h3><p>为了与特定的AP创建关联，某无线站点可能需要向该AP鉴别它自身。<br>802.11 提供了几种不同的鉴别和接入方法</p>
+<ul>
+<li>基于站点的MAC地址允许其接入网络</li>
+<li>基于用户名和口令</li>
+</ul>
+<p>上述两种情况下，可能使用的RADIUS和DIAMETER这样的协议。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '',
+  alipayImage: ''
+});
+</script>
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network/">network</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/11/JS函数式编程/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">JS函数式编程笔记1</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-	
-	
-		</div></section>
-	
 
-	<!-- 页数指示器 -->
-	
+<!-- Table of Contents -->
 
-
-
-
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IEEE-802-11无线-LANs-概述"><span class="nav-number">1.</span> <span class="nav-text">IEEE 802.11无线 LANs 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#无线链路和网络特征"><span class="nav-number">1.1.</span> <span class="nav-text">无线链路和网络特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IEEE-802-11-标准"><span class="nav-number">1.2.</span> <span class="nav-text">IEEE 802.11 标准</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#802-11-体系结构"><span class="nav-number">1.3.</span> <span class="nav-text">802.11 体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#信道与关联"><span class="nav-number">1.3.1.</span> <span class="nav-text">信道与关联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#鉴别与接入"><span class="nav-number">1.3.2.</span> <span class="nav-text">鉴别与接入</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
 </section>
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">关注我</h3>
-    <div class="widget widget_athemes_social_icons">
-
-    	<ul class="clearfix widget-social-icons">   
-    	
-          
-     			  <li><a href="https://github.com/yjhmelody" title="Github"><i class="fa fa-github" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-     			  <li><a href="" title="Weibo"><i class="fa fa-weibo" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-     			  <li><a href="" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-     			  <li><a href="" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-     			  <li><a href="" title="Google-plus"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-     			  <li><a href="" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-     			  <li><a href="" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-     			  <li><a href="" title="Flickr"><i class="fa fa-flickr" aria-hidden="true"></i></a></li> 
-          
-   		
-          
-            <li><a href="mailto:465402634@qq.com?subject=请联系我&body=我能帮你什么" title="email"><i class="fa fa-envelope" aria-hidden="true"></i></a></li> 
-          
-   		
-   		</ul>
-
-
-   		<!--
-   		<ul class="clearfix widget-social-icons">   		
-   		<li class="widget-si-twitter"><a href="http://twitter.com" title="Twitter"><i class="ico-twitter"></i></a></li> 
-		<li class="widget-si-facebook"><a href="http://facebook.com" title="Facebook"><i class="ico-facebook"></i></a></li>
-			<li class="widget-si-gplus"><a href="http://plus.google.com" title="Google+"><i class="ico-gplus"></i></a></li>
-			<li class="widget-si-pinterest"><a href="http://pinterest.com" title="Pinterest"><i class="ico-pinterest"></i></a></li>
-			<li class="widget-si-flickr"><a href="http://flickr.com" title="Flickr"><i class="ico-flickr"></i></a></li>
-			<li class="widget-si-instagram"><a href="http://instagram.com" title="Instagram"><i class="ico-instagram"></i></a></li>
-		</ul> -->
-
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/life/">life</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/study/">study</a><span class="category-list-count">10</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Database/">Database</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/FP/">FP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/">JS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML/">ML</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/life/">life</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network/">network</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/summary/">summary</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据可视化/">数据可视化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统结构/">系统结构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/论文阅读/">论文阅读</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/FP/" style="font-size: 10px;">FP</a> <a href="/tags/JS/" style="font-size: 10px;">JS</a> <a href="/tags/ML/" style="font-size: 20px;">ML</a> <a href="/tags/life/" style="font-size: 13.33px;">life</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/summary/" style="font-size: 16.67px;">summary</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/数据可视化/" style="font-size: 10px;">数据可视化</a> <a href="/tags/系统结构/" style="font-size: 10px;">系统结构</a> <a href="/tags/论文阅读/" style="font-size: 10px;">论文阅读</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">6</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2017/12/26/IEEE802.11无线LANs概述/">IEEE802.11概述</a>
-          </li>
-        
-          <li>
-            <a href="/2017/12/11/JS函数式编程/">JS函数式编程笔记1</a>
-          </li>
-        
-          <li>
-            <a href="/2017/11/11/计算机网络实验/">DNS知识点</a>
-          </li>
-        
-          <li>
-            <a href="/2017/11/05/2017-11-5/">2017-11-5</a>
-          </li>
-        
-          <li>
-            <a href="/2017/10/26/Install-MySQL5-7/">Install MySQL5.7</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
         
       </div>
       
@@ -459,6 +370,8 @@
 
 
 
+  <script src="/js/dialog.js"></script>
+
 
 
 
@@ -542,6 +455,8 @@
   
   <a id="rocket" href="#top" class=""></a>
   <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
 </body>
 </html>
