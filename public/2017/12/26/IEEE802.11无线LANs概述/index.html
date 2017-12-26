@@ -21,7 +21,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://yjhmelody.github.io/2017/12/26/IEEE802.11无线LANs概述/802.11.jpg">
 <meta property="og:image" content="https://yjhmelody.github.io/2017/12/26/IEEE802.11无线LANs概述/中央基站.jpg">
-<meta property="og:updated_time" content="2017-12-26T14:08:17.272Z">
+<meta property="og:updated_time" content="2017-12-26T14:20:26.666Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IEEE802.11概述">
 <meta name="twitter:description" content="IEEE 802.11无线 LANs 概述无线链路和网络特征当我们寻找有线和无线网络的重要区别时，应该重点关注链路层，我们确实可以发现有线链路和无线链路有许多重要区别：  递减的信号强度。信号强度受到发送方和接收方距离的增加而递减。 来自其他源的干扰。在同一个频段发送信号的电波源会互相干扰。 多径传播（multipath propagation）。当电磁波受到反射，会在发送方和接收方之间走过多条不">
@@ -202,6 +202,7 @@
 <li>来自其他源的干扰。在同一个频段发送信号的电波源会互相干扰。</li>
 <li>多径传播（multipath propagation）。当电磁波受到反射，会在发送方和接收方之间走过多条不同长度的路径，此时出现多径传播，这使得接受的信号变得模糊。</li>
 </ul>
+<a id="more"></a>
 <h2 id="IEEE-802-11-标准"><a href="#IEEE-802-11-标准" class="headerlink" title="IEEE 802.11 标准"></a>IEEE 802.11 标准</h2><p>常见的关于LAN的802.11标准包括 802.11b、802.11a、802.11g。<br>它们使用相同的媒体访问协议CSMA/CA，并且使用相同的链路层帧格式。</p>
 <p><img src="802.11.jpg" alt="常见协议"></p>
 <h2 id="802-11-体系结构"><a href="#802-11-体系结构" class="headerlink" title="802.11 体系结构"></a>802.11 体系结构</h2><p>802.11 体系结构的基本构建模块是<code>基本服务集（Basic Service Set BSS）</code>，一个BBS包含<code>若干个无线站点</code>和一个被称为接入点（AP）的中央基站。<br>与以太网设备类似，每个802.11无线站点都具有6字节的MAC地址。<br>每个AP的无线接口也具有一个MAC地址。这些MAC地址也由IEEE管理，理论上全球唯一。</p>
@@ -224,7 +225,7 @@
 <li>基于站点的MAC地址允许其接入网络</li>
 <li>基于用户名和口令</li>
 </ul>
-<p>上述两种情况下，可能使用的RADIUS和DIAMETER这样的协议。</p>
+<p>上述两种情况下，可能使用的RADIUS（基于UDP）和DIAMETER（最初作为RADIUS的改良）这样的协议。</p>
 
       
     </div>
