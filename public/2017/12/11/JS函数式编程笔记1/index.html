@@ -15,17 +15,17 @@
 <meta name="keywords" content="JS,FP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JS函数式编程笔记1">
-<meta property="og:url" content="https://yjhmelody.github.io/2017/12/11/JS函数式编程/index.html">
+<meta property="og:url" content="https://yjhmelody.github.io/2017/12/11/JS函数式编程笔记1/index.html">
 <meta property="og:site_name" content="yjhmelody&#39;s blog">
 <meta property="og:description" content="JS函数式编程我们在做什么 “we both know what happens when you assume”，源自一句名言“When you assume you make an ASS of U and ME”，意思是“让两人都难堪”）。但我猜想你在使用可变状态（mutable state）、无限制副作用（unrestricted side effects）和无原则设计（unprincip">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://yjhmelody.github.io/2017/12/11/JS函数式编程/范畴学.png">
-<meta property="og:image" content="https://yjhmelody.github.io/2017/12/11/JS函数式编程/compose.png">
-<meta property="og:updated_time" content="2017-12-14T06:34:14.750Z">
+<meta property="og:image" content="https://yjhmelody.github.io/2017/12/11/JS函数式编程笔记1/范畴学.png">
+<meta property="og:image" content="https://yjhmelody.github.io/2017/12/11/JS函数式编程笔记1/compose.png">
+<meta property="og:updated_time" content="2017-12-31T11:37:27.419Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS函数式编程笔记1">
 <meta name="twitter:description" content="JS函数式编程我们在做什么 “we both know what happens when you assume”，源自一句名言“When you assume you make an ASS of U and ME”，意思是“让两人都难堪”）。但我猜想你在使用可变状态（mutable state）、无限制副作用（unrestricted side effects）和无原则设计（unprincip">
-<meta name="twitter:image" content="https://yjhmelody.github.io/2017/12/11/JS函数式编程/范畴学.png">
+<meta name="twitter:image" content="https://yjhmelody.github.io/2017/12/11/JS函数式编程笔记1/范畴学.png">
   
     <link rel="alternate" href="/atom.xml" title="yjhmelody&#39;s blog" type="application/atom+xml">
   
@@ -163,7 +163,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-JS函数式编程" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-JS函数式编程笔记1" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -179,7 +179,7 @@
     
     <div class="article-meta">
       
-	<a href="/2017/12/11/JS函数式编程/" class="article-date">
+	<a href="/2017/12/11/JS函数式编程笔记1/" class="article-date">
 	  <time datetime="2017-12-11T13:47:31.000Z" itemprop="datePublished">2017-12-11</time>
 	</a>
 
@@ -259,7 +259,7 @@
 <p>我们的 memoize 函数工作起来没有任何问题，虽然它缓存的并不是 http 请求所返回的结果，而是生成的函数。</p>
 <p>重点是我们可以缓存任意一个函数，不管它们看起来多么具有破坏性。</p>
 <hr>
-<h4 id="可移植性／自文档化（Portable-SelfDocumenting）"><a href="#可移植性／自文档化（Portable-SelfDocumenting）" class="headerlink" title="可移植性／自文档化（Portable / SelfDocumenting）"></a>可移植性／自文档化（Portable / SelfDocumenting）</h4><p>纯函数是完全自给自足的，它需要的所有东西都能轻易获得。仔细思考思考这一点…这种自给自足的好处是什么呢？首先，纯函数的依赖很明确，因此更易于观察和理解</p>
+<h4 id="可移植性／自文档化（Portable-SelfDocumenting）"><a href="#可移植性／自文档化（Portable-SelfDocumenting）" class="headerlink" title="可移植性／自文档化（Portable / SelfDocumenting）"></a>可移植性／自文档化（Portable / SelfDocumenting）</h4><p>纯函数是完全自给自足的，它需要的所有东西都能轻易获得。仔细思考思考这一点…这种自给自足的好处是什么呢？首先，纯函数的依赖很明确，因此更易于观察和理解。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 不纯的</span></div><div class="line"><span class="keyword">let</span> signUp = <span class="function"><span class="keyword">function</span> (<span class="params">attrs</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> user = saveUser(attrs);</div><div class="line">    welcomeUser(user);</div><div class="line">&#125;;</div><div class="line"><span class="keyword">let</span> saveUser = <span class="function"><span class="keyword">function</span> (<span class="params">attrs</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> user = Db.save(attrs);</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">let</span> welcomeUser = <span class="function"><span class="keyword">function</span> (<span class="params">user</span>) </span>&#123;</div><div class="line">    <span class="comment">// Email(user, ...);</span></div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 纯的</span></div><div class="line"><span class="keyword">let</span> signUp = <span class="function"><span class="keyword">function</span> (<span class="params">Db, Email, attrs</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">// 参数绑定</span></div><div class="line">        <span class="keyword">let</span> user = saveUser(Db, attrs);</div><div class="line">        welcomeUser(Email, user);</div><div class="line">    &#125;;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">let</span> saveUser = <span class="function"><span class="keyword">function</span> (<span class="params">Db, attrs</span>) </span>&#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">let</span> welcomeUser = <span class="function"><span class="keyword">function</span> (<span class="params">Email, user</span>) </span>&#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>这个例子表明，纯函数对于其依赖必须要诚实，这样我们就能知道它的目的。仅从纯函数版本的 signUp 的签名就可以看出，它将要用到 Db、Email 和 attrs ，这在最小程度上给了我们足够多的信息。</p>
 <p>其次，通过强迫“注入”依赖，或者把它们当作参数传递，我们的应用也更加灵活；因为数据库或者邮件客户端等等都参数化了。</p>
@@ -302,7 +302,8 @@
 <p>组合看起来像是在饲养函数让它们结合，产下一个崭新的函数。组合的用法如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> toUpperCase = <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> str.toUpperCase()</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> toLowerCase = <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> str.toLowerCase()</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> exclaim = <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> str + <span class="string">'!'</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> reverse = <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> str.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> angry = compose(exclaim, toUpperCase)</div><div class="line"></div><div class="line"><span class="keyword">let</span> shout = compose(exclaim, toUpperCase)</div><div class="line"><span class="built_in">console</span>.log(exclaim(toUpperCase(<span class="string">"hello"</span>)))</div><div class="line"><span class="built_in">console</span>.log(shout(<span class="string">"hello"</span>))</div></pre></td></tr></table></figure>
 <p>这个组合中函数的执行顺序应该是显而易见的。尽管我们可以定义一个从左向右的版本，但是从右向左执行更加能够反映数学上的含义——是的，组合的概念直接来自于数学课本。</p>
-<p>现在是时候去看看所有的组合都有的一个特性了。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 结合律（associativity）</span></div><div class="line"><span class="comment">// let associative = compose(f, compose(g, h)) == compose(compose(f, g), h)    </span></div><div class="line"><span class="comment">// true</span></div><div class="line"></div><div class="line"><span class="comment">// 结合律的一大好处是任何一个函数分组都可以被拆开来，然后再以它们自己的组合方式打包在一起</span></div><div class="line"><span class="built_in">console</span>.log(compose(reverse, compose(toUpperCase, exclaim))(<span class="string">"world"</span>))</div><div class="line"><span class="built_in">console</span>.log(compose(compose(reverse, toUpperCase), exclaim)(<span class="string">"world"</span>))</div></pre></td></tr></table></figure></p>
+<p>现在是时候去看看所有的组合都有的一个特性了。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 结合律（associativity）</span></div><div class="line"><span class="comment">// let associative = compose(f, compose(g, h)) == compose(compose(f, g), h)    </span></div><div class="line"><span class="comment">// true</span></div><div class="line"></div><div class="line"><span class="comment">// 结合律的一大好处是任何一个函数分组都可以被拆开来，然后再以它们自己的组合方式打包在一起</span></div><div class="line"><span class="built_in">console</span>.log(compose(reverse, compose(toUpperCase, exclaim))(<span class="string">"world"</span>))</div><div class="line"><span class="built_in">console</span>.log(compose(compose(reverse, toUpperCase), exclaim)(<span class="string">"world"</span>))</div></pre></td></tr></table></figure>
 <p>符合结合律意味着不管你是把 g 和 h 分到一组，还是把 f 和 g 分到一组都不重要。</p>
 <p>结合律的一大好处是任何一个函数分组都可以被拆开来，然后再以它们自己的组合方式打包在一起。</p>
 <h3 id="pointfree"><a href="#pointfree" class="headerlink" title="pointfree"></a>pointfree</h3><p>pointfree 模式指的是，永远不必说出你的数据。它的意思是说，函数无须提及将要操作的数据是什么样的。一等公民的函数、柯里化（curry）以及组合协作起来非常有助于实现这种模式。</p>
@@ -340,7 +341,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// identity</span></div><div class="line">compose(id, f) == compose(f, id) == f</div><div class="line"><span class="comment">// true</span></div></pre></td></tr></table></figure>
 <p>这就是实数的单位元（identity property）嘛！慢慢理解它的无用性，很快我们就会到处使用 id 了，不过暂时我们还是把它当作一个替代给定值的函数。这对写 pointfree 的代码非常有用。</p>
 <p>除了类型和函数，还有什么范畴呢？还有很多，比如我们可以定义一个有向图（directed graph），以节点为对象，以边为态射，以路径连接为组合。还可以定义一个实数类型（Number），以所有的实数为对象，以 &gt;= 为态射（实际上任何偏序（partial order）或全序（total order）都可以成为一个范畴）。范畴的总数是无限的，但我们只需要关心上面定义的范畴就好了。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>组合像一系列管道那样把不同的函数联系在一起，数据就可以也必须在其中流动——毕竟纯函数就是输入对输出，所以打破这个链条就是不尊重输出，就会让我们<br>的应用一无是处。我们认为组合是高于其他所有原则的设计原则，这是因为组合让我们的代码简单而富有可读性。另外范畴学将在应用架构、模拟副作用和保证正确性方面扮演重要角色。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>组合像一系列管道那样把不同的函数联系在一起，数据就可以也必须在其中流动——毕竟纯函数就是输入对输出，所以打破这个链条就是不尊重输出，就会让我们的应用一无是处。我们认为组合是高于其他所有原则的设计原则，这是因为组合让我们的代码简单而富有可读性。另外范畴学将在应用架构、模拟副作用和保证正确性方面扮演重要角色。</p>
 <h2 id="示例应用"><a href="#示例应用" class="headerlink" title="示例应用"></a>示例应用</h2><h3 id="声明式代码"><a href="#声明式代码" class="headerlink" title="声明式代码"></a>声明式代码</h3><p>我们要开始转变观念了，从本章开始，我们将不再指示计算机如何工作，而是指出我们明确希望得到的结果。</p>
 <p>与命令式不同，声明式意味着我们要写表达式，而不是一步一步的指示。</p>
 <p>以 SQL 为例，它就没有“先做这个，再做那个”的命令，有的只是一个指明我们想要从数据库取什么数据的表达式。至于如何取数据则是由它自己决定的。以后数据库升级也好，SQL 引擎优化也好，根本不需要更改查询语句。这是因为，有多种方式解析一个表达式并得到相同的结果。</p>
