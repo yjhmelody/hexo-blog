@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>yjhmelody&#39;s blog</title>
+  <title>js函数式编程笔记1 | yjhmelody&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="blog, cs, life" />
@@ -11,16 +11,22 @@
   
   
   
-  <meta name="description" content="想记录很多东西">
-<meta property="og:type" content="website">
-<meta property="og:title" content="yjhmelody&#39;s blog">
-<meta property="og:url" content="https://yjhmelody.github.io/index.html">
+  <meta name="description" content="JS函数式编程笔记里面常常依赖一些库和之前的代码，而且可能存在理论上的代码和未实现的函数，阅读时，需要仔细。 12345678910111213141516171819const curry = require(&apos;lodash/curry&apos;)const _ = require(&apos;lodash&apos;)const fp = require(&apos;lodash/fp&apos;)const moment = requir">
+<meta name="keywords" content="JS,FP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS函数式编程笔记1">
+<meta property="og:url" content="https://yjhmelody.github.io/2018/02/07/JS函数式编程笔记2/index.html">
 <meta property="og:site_name" content="yjhmelody&#39;s blog">
-<meta property="og:description" content="想记录很多东西">
+<meta property="og:description" content="JS函数式编程笔记里面常常依赖一些库和之前的代码，而且可能存在理论上的代码和未实现的函数，阅读时，需要仔细。 12345678910111213141516171819const curry = require(&apos;lodash/curry&apos;)const _ = require(&apos;lodash&apos;)const fp = require(&apos;lodash/fp&apos;)const moment = requir">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://yjhmelody.github.io/2018/02/07/JS函数式编程笔记2/functor映射.png">
+<meta property="og:image" content="https://yjhmelody.github.io/2018/02/07/JS函数式编程笔记2/functor映射2.png">
+<meta property="og:image" content="https://yjhmelody.github.io/2018/02/07/JS函数式编程笔记2/functor映射实例.png">
+<meta property="og:updated_time" content="2018-02-07T07:17:08.155Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yjhmelody&#39;s blog">
-<meta name="twitter:description" content="想记录很多东西">
+<meta name="twitter:title" content="JS函数式编程笔记1">
+<meta name="twitter:description" content="JS函数式编程笔记里面常常依赖一些库和之前的代码，而且可能存在理论上的代码和未实现的函数，阅读时，需要仔细。 12345678910111213141516171819const curry = require(&apos;lodash/curry&apos;)const _ = require(&apos;lodash&apos;)const fp = require(&apos;lodash/fp&apos;)const moment = requir">
+<meta name="twitter:image" content="https://yjhmelody.github.io/2018/02/07/JS函数式编程笔记2/functor映射.png">
   
     <link rel="alternate" href="/atom.xml" title="yjhmelody&#39;s blog" type="application/atom+xml">
   
@@ -49,9 +55,11 @@
   <link rel="stylesheet" href="/css/bootstrap.css" >
 
   
-    <link rel="stylesheet" href="/css/home.css" >
+    <link rel="stylesheet" href="/css/dialog.css">
   
 
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
   
 
   
@@ -64,207 +72,107 @@
 
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
-  
-    <header id="header">
-
-    
-      <div id="intrologo" class="intro-logo" style="background-position:center; background-repeat:no-repeat; background-image: url(); background-size: auto 100%;">
-
-      <!-- Support rolling -->  
-        
-        <section class="awSlider">
-          <div class="carousel slide carousel-fade " data-ride="carousel">
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-               
-                  
-                    <div class="item active">
-                  
-                    <img id="carousel-img0" src="/css/images/home-bg.jpg">
-                  </div>
-
-                  <!-- 自适应大图 -->
-                  <script>
-                      var img0 = new Image();
-                      var imageTag0 = document.getElementById("carousel-img0");
-                      img0.src = imageTag0.src;
-                      img0.onload=function(){
-                        if (img0.width / img0.height <= document.body.clientWidth / document.body.clientHeight) {
-                          imageTag0.style.width = document.body.clientWidth + "px";
-                        } else {
-                          imageTag0.style.height = document.body.clientHeight + "px";
-                          imageTag0.style.marginLeft = -(document.body.clientHeight * img0.width / img0.height - document.body.clientWidth) / 2 + "px";
-                        }
-                      };
-                  </script>
-                
-                  
-                    <div class="item">
-                  
-                    <img id="carousel-img1" src="/css/images/home-bg2.jpg">
-                  </div>
-
-                  <!-- 自适应大图 -->
-                  <script>
-                      var img1 = new Image();
-                      var imageTag1 = document.getElementById("carousel-img1");
-                      img1.src = imageTag1.src;
-                      img1.onload=function(){
-                        if (img1.width / img1.height <= document.body.clientWidth / document.body.clientHeight) {
-                          imageTag1.style.width = document.body.clientWidth + "px";
-                        } else {
-                          imageTag1.style.height = document.body.clientHeight + "px";
-                          imageTag1.style.marginLeft = -(document.body.clientHeight * img1.width / img1.height - document.body.clientWidth) / 2 + "px";
-                        }
-                      };
-                  </script>
-                
-                  
-                    <div class="item">
-                  
-                    <img id="carousel-img2" src="https://source.unsplash.com/collection/954550/1920x1080">
-                  </div>
-
-                  <!-- 自适应大图 -->
-                  <script>
-                      var img2 = new Image();
-                      var imageTag2 = document.getElementById("carousel-img2");
-                      img2.src = imageTag2.src;
-                      img2.onload=function(){
-                        if (img2.width / img2.height <= document.body.clientWidth / document.body.clientHeight) {
-                          imageTag2.style.width = document.body.clientWidth + "px";
-                        } else {
-                          imageTag2.style.height = document.body.clientHeight + "px";
-                          imageTag2.style.marginLeft = -(document.body.clientHeight * img2.width / img2.height - document.body.clientWidth) / 2 + "px";
-                        }
-                      };
-                  </script>
-                
-            </div>
-
-            <!-- Controls -->
-            <a class="left carousel-control" href=".carousel" role="button" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-              <span class="sr-only">Geri</span>
-            </a>
-            <a class="right carousel-control" href=".carousel" role="button" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-              <span class="sr-only">İleri</span>
-            </a>
-          </div>
-        </section>
-        <script>
-          $('section.awSlider .carousel').carousel({
-              pause: '',
-              interval: 5000
-          });
-          var startImage = $('section.awSlider .item.active > img').attr('src');
-          $('section.awSlider .carousel').on('slid.bs.carousel', function () {
-              var bscn = $(this).find('.item.active > img').attr('src');
-              $('section.awSlider > img').attr('src', bscn);
-          });
-        </script>
-      
-
-    
- 
-
-
-    <canvas width="100%" height="100%"></canvas>
-    <script>
-      var c = document.getElementsByTagName('canvas')[0],
-          x = c.getContext('2d'),
-          w = window.innerWidth,
-          h = window.innerHeight,
-          pr = window.devicePixelRatio || 1,
-          f = 90,
-          q,
-          m = Math,
-          r = 0,
-          u = m.PI*2,
-          v = m.cos,
-          z = m.random
-      c.width = w*pr
-      c.height = h*pr
-      x.scale(pr, pr)
-      x.globalAlpha = 0.6
-
-      
-    </script>
-    
-
-    
-      <div id="homelogo" class="homelogo" style="background: rgba(255,255,255,1);"> 
-    
-
-        
-          <div class="homelogoback"  style="border: 1px solid #404040;" >
-            <h1><a href="#content" id="logo">yjhmelody&#39;s blog</a></h1>
-            <h3>想记录很多东西</h3>
-            <h5>yjhmelody</h5>
-            <!-- <p><a href="https://github.com/iTimeTraveler" target="_blank">Github</a></p> -->
-          </div>
-        
-    
-    </div>
-  </div>
-
-  <!-- 自适应主页背景大图 -->
-  
-
- <!-- home_logo_image居中 -->
- 
-    <script>
-        var homelogodiv = document.getElementById("homelogo");
-        if (document.all.homelogo.offsetWidth > document.body.clientWidth) {
-          homelogodiv.style.width = document.body.clientWidth + "px";
-          homelogodiv.style.marginLeft = document.body.clientWidth * -0.5 + "px";
-        } else {
-          homelogodiv.style.width = homelogodiv.clientWidth  + "px";
-          homelogodiv.style.marginLeft = (homelogodiv.clientWidth)  * -0.5 + "px";
-        }
-    </script>
-  
-
-  <div class="intro-navigate">
-      <p class="navigater-list">
-        
-          <a id="beautifont" class="main-nav-link" href="/">首页</a>
-        
-          <a id="beautifont" class="main-nav-link" href="/archives">归档</a>
-        
-          <a id="beautifont" class="main-nav-link" href="/categories">分类</a>
-        
-          <a id="beautifont" class="main-nav-link" href="/tags">标签</a>
-        
-          <a id="beautifont" class="main-nav-link" href="/about">关于</a>
-        
-      </p>
-  </div>
-
-</header>
   
   <div id="container">
     <div id="wrap">
       
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;">
-  
-    <article id="post-JS函数式编程笔记2"  class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-JS函数式编程笔记2" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
       <header class="article-header">
         
   
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/02/07/JS函数式编程笔记2/">JS函数式编程笔记1</a>
+    <h1 class="thumb" class="article-title" itemprop="name">
+      JS函数式编程笔记1
     </h1>
   
 
@@ -280,6 +188,12 @@
     <a class="article-category-link" href="/categories/study/">study</a>
 
       
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
     </div>
     <div class="article-entry" itemprop="articleBody">
       
@@ -422,114 +336,18 @@
     </div>
     <footer class="article-footer">
       
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FP/">FP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
+        <div id="donation_div"></div>
 
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-IEEE802.11无线LANs概述"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/12/26/IEEE802.11无线LANs概述/">IEEE802.11概述</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/12/26/IEEE802.11无线LANs概述/" class="article-date">
-	  <time datetime="2017-12-26T14:03:46.000Z" itemprop="datePublished">2017-12-26</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/study/">study</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="IEEE-802-11无线-LANs-概述"><a href="#IEEE-802-11无线-LANs-概述" class="headerlink" title="IEEE 802.11无线 LANs 概述"></a>IEEE 802.11无线 LANs 概述</h1><h2 id="无线链路和网络特征"><a href="#无线链路和网络特征" class="headerlink" title="无线链路和网络特征"></a>无线链路和网络特征</h2><p>802.11协议簇是国际电工电子工程学会（IEEE）为无线局域网络制定的标准。虽然WI-FI使用了802.11的媒体访问数据链路层（DLL）和物理层（PHY），但是两者并不完全一致。</p>
-<p>这里主要概述了 802.11无线LAN的特征。不过首先应该关注的是无线网络与有线网络的区别。</p>
-<p>当我们寻找有线和无线网络的重要区别时，应该重点关注链路层，我们确实可以发现有线链路和无线链路有许多重要区别：</p>
-<ul>
-<li>递减的信号强度。信号强度受到发送方和接收方距离的增加而递减。</li>
-<li>来自其他源的干扰。在同一个频段发送信号的电波源会互相干扰。</li>
-<li>多径传播（multipath propagation）。当电磁波受到反射，会在发送方和接收方之间走过多条不同长度的路径，此时出现多径传播，这使得接受的信号变得模糊。</li>
-</ul>
-        <!-- IEEE 802.11无线 LANs 概述无线链路和网络特征802.11协议簇是国际电工电子工程学会（IEEE）为无线局域网络制定的标准。虽然WI-FI使用了802.11的媒体访问数据链路层（DLL）和物理层（PHY），但是两者并不完全一致。
-这里主要概述了 802.11无线LAN的特征。不过首先应该关注的是无线网络与有线网络的区别。
-当我们寻找有线和无线网络的重要区别时，应该重点关注链路层......  -->
-        <p class="article-more-link">
-          <a href="/2017/12/26/IEEE802.11无线LANs概述/#more">阅读全文</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network/">network</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-JS函数式编程笔记1"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/12/11/JS函数式编程笔记1/">JS函数式编程笔记1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/12/11/JS函数式编程笔记1/" class="article-date">
-	  <time datetime="2017-12-11T13:47:31.000Z" itemprop="datePublished">2017-12-11</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/study/">study</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="JS函数式编程"><a href="#JS函数式编程" class="headerlink" title="JS函数式编程"></a>JS函数式编程</h1><h2 id="我们在做什么"><a href="#我们在做什么" class="headerlink" title="我们在做什么"></a>我们在做什么</h2><blockquote>
-<p>“we both know what happens when you assume”，源自一句名言“When you assume you make an ASS of U and ME”，意思是“让两人都难堪”）。但我猜想你在使用可变状态（mutable state）、无限制副作用（unrestricted side effects）和无原则设计（unprincipled design）的过程中已经遇到过一些麻烦。</p>
-</blockquote>
-<p>现在已经有一些通用的编程原则了，各种缩写词带领我们在编程的黑暗隧道里前行：DRY（不要重复自己，don’t repeat yourself），高内聚低耦合（loosecoupling high cohesion），YAGNI （你不会用到它的，ya ain’t gonna need it），最小意外原则（Principle of least surprise），单一责任（single responsibility）等等。这些原则同样适用于函数式编程(FP)。</p>
-        <!-- JS函数式编程我们在做什么
-“we both know what happens when you assume”，源自一句名言“When you assume you make an ASS of U and ME”，意思是“让两人都难堪”）。但我猜想你在使用可变状态（mutable state）、无限制副作用（unrestricted side effects）和无原则设计（unprin......  -->
-        <p class="article-more-link">
-          <a href="/2017/12/11/JS函数式编程笔记1/#more">阅读全文</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '',
+  alipayImage: ''
+});
+</script>
       
       
       
@@ -538,118 +356,33 @@
     </footer>
   </div>
   
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-计算机网络实验"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
     
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/11/11/计算机网络实验/">DNS知识点</a>
-    </h1>
   
+    <a href="/2017/12/26/IEEE802.11无线LANs概述/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">IEEE802.11概述</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/11/11/计算机网络实验/" class="article-date">
-	  <time datetime="2017-11-11T01:40:04.000Z" itemprop="datePublished">2017-11-11</time>
-	</a>
-
-      
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h1><p>DNS 是域名系统（Domain Name System）的缩写，它是一种用于 TCP/IP 应用程序的分布式数据库，它提供主机名字和 I P 地址之间的转换及有关电子邮件的选路信息。所谓“分布式”是指在 Internet 上的单个站点不能拥有所有的信息。每个站点（如大学中的系、校园、公司或公司中的部门）保留它自己的信息数据库，并运行一个服务器程序供 Internet上的其他系统（客户程序）查询。</p>
-<p>DNS 命名方式中，采用了分散和分层的机制来实现域名空间的委派授权，以及域名与地址相转换的授权。通过使用 DNS 的命名方式来为遍布全球的网络设备分配域名，而这则是由分散在世界各地的服务器实现的。</p>
-        <!-- DNSDNS 是域名系统（Domain Name System）的缩写，它是一种用于 TCP/IP 应用程序的分布式数据库，它提供主机名字和 I P 地址之间的转换及有关电子邮件的选路信息。所谓“分布式”是指在 Internet 上的单个站点不能拥有所有的信息。每个站点（如大学中的系、校园、公司或公司中的部门）保留它自己的信息数据库，并运行一个服务器程序供 Internet上的其他系统（客户......  -->
-        <p class="article-more-link">
-          <a href="/2017/11/11/计算机网络实验/#more">阅读全文</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-    </footer>
-  </div>
   
 </article>
 
 <!-- Table of Contents -->
 
-  
-    <article id="post-2017-11-5"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
     
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JS函数式编程"><span class="nav-number">1.</span> <span class="nav-text">JS函数式编程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hindley-Milner-类型签名"><span class="nav-number">1.1.</span> <span class="nav-text">Hindley-Milner 类型签名</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初识类型"><span class="nav-number">1.1.1.</span> <span class="nav-text">初识类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缩小可能性范围"><span class="nav-number">1.1.2.</span> <span class="nav-text">缩小可能性范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自由定理"><span class="nav-number">1.1.3.</span> <span class="nav-text">自由定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型约束"><span class="nav-number">1.1.4.</span> <span class="nav-text">类型约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.1.5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特百惠"><span class="nav-number">1.2.</span> <span class="nav-text">特百惠</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#强大的容器"><span class="nav-number">1.2.1.</span> <span class="nav-text">强大的容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第一个-functor-函子"><span class="nav-number">1.2.2.</span> <span class="nav-text">第一个 functor(函子)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#薛定谔的-Maybe"><span class="nav-number">1.2.3.</span> <span class="nav-text">薛定谔的 Maybe</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#释放容器里的值"><span class="nav-number">1.2.4.</span> <span class="nav-text">释放容器里的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#“纯”错误处理"><span class="nav-number">1.2.5.</span> <span class="nav-text">“纯”错误处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步任务"><span class="nav-number">1.3.</span> <span class="nav-text">异步任务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一点理论"><span class="nav-number">1.3.1.</span> <span class="nav-text">一点理论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自我总结"><span class="nav-number">1.4.</span> <span class="nav-text">自我总结</span></a></li></ol></li></ol>
     
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/11/05/2017-11-5/">2017-11-5</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/11/05/2017-11-5/" class="article-date">
-	  <time datetime="2017-11-05T12:17:06.000Z" itemprop="datePublished">2017-11-05</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/life/">life</a>
-
-      
     </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="10月"><a href="#10月" class="headerlink" title="10月"></a>10月</h1><p>10月就这样过去了。当我觉得这样的10月是多么繁忙的时候，11月时候的我告诉自己，其实大部分时间是自己折腾自己罢了，而且毫无意义。</p>
-        <!-- 10月10月就这样过去了。当我觉得这样的10月是多么繁忙的时候，11月时候的我告诉自己，其实大部分时间是自己折腾自己罢了，而且毫无意义。
-
-10月的作业债11月总是要还的。现在回想起来，好像是各个方面都在学习，但如蜗牛一般，于是乎，忘记自己走到了哪里。唯一欣喜的是，我开始接受其他书籍的洗礼了。之前从同学那儿借来了东野圭吾的《解忧杂货店》，每天熄灯后一小时都在咀嚼此书。跟计算机书籍比起来，这样......  -->
-        <p class="article-more-link">
-          <a href="/2017/11/05/2017-11-5/#more">阅读全文</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/life/">life</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
-  </nav>
-
+  </aside>
 </section>
         
       </div>
-      
-        <div align="center" style="margin-top: 30px;"><hr class="hr" style="margin:0px; height:3px;"></div>
       
       <footer id="footer">
   
@@ -741,9 +474,9 @@
 <script src="/js/scripts.js"></script>
 
 
-  <script src="/js/home.js"></script>
 
 
+  <script src="/js/dialog.js"></script>
 
 
 
@@ -828,6 +561,8 @@
   
   <a id="rocket" href="#top" class=""></a>
   <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
 </body>
 </html>
