@@ -80,6 +80,9 @@ theme: hiker
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/yjhmelody/yjhmelody.github.io
-  # reposity: git@github.com:yjhmelody/yjhmelody.github.io.git
+  repo: https://github.com/yjhmelody/yjhmelody.github.io.git
+  branch: master
+  name: yjhmelody
+  email: 465402634@qq.com
+  # repo: git@github.com:yjhmelody/yjhmelody.github.io.git
   # branch: gh-pages
