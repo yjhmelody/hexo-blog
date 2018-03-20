@@ -256,6 +256,55 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-人工智能发展报告"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2017/09/24/人工智能发展报告/">人工智能发展报告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/09/24/人工智能发展报告/" class="article-date">
+	  <time datetime="2017-09-24T11:29:28.000Z" itemprop="datePublished">2017-09-24</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/study/">study</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="人工智能的发展"><a href="#人工智能的发展" class="headerlink" title="人工智能的发展"></a>人工智能的发展</h1><p>数据挖掘课程的作业报告，放在这里分享一下，都是一些蠢话。<br>
+        <!-- 人工智能的发展数据挖掘课程的作业报告，放在这里分享一下，都是一些蠢话。
+符号主义（逻辑主义）推理期二十世纪五十年代到七十年代初，人工智能的研究处于“推理期”，那时候人们普遍认为机器获得智能的方法是赋予机器逻辑推理的能力。该阶段比较有代表的工作比如在1955年12月，赫伯特·西蒙（Herbert Simon）和艾伦·纽厄尔（Allen Newell）开发出逻辑理论家，这是世界上第一个人工智能程......  -->
+        <p class="article-more-link">
+          <a href="/2017/09/24/人工智能发展报告/#more">阅读全文</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-暑假机器学习总结"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -447,65 +496,6 @@
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/summary/">summary</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-机器学习里的一些小概念"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/08/10/机器学习里的一些小概念/">机器学习里的一些小概念</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/08/10/机器学习里的一些小概念/" class="article-date">
-	  <time datetime="2017-08-10T05:53:56.000Z" itemprop="datePublished">2017-08-10</time>
-	</a>
-
-      
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="机器学习里的一些小概念"><a href="#机器学习里的一些小概念" class="headerlink" title="机器学习里的一些小概念"></a>机器学习里的一些小概念</h1><h2 id="轮廓系数"><a href="#轮廓系数" class="headerlink" title="轮廓系数"></a>轮廓系数</h2><p>轮廓系数（Silhouette Coefficient），是聚类效果好坏的一种评价方式。最早由 Peter J. Rousseeuw 在 1986 提出。<br>它结合内聚度和分离度两种因素。可以用来在相同原始数据的基础上用来评价不同算法、或者算法不同运行方式对聚类结果所产生的影响。</p>
-<h3 id="计算过程"><a href="#计算过程" class="headerlink" title="计算过程"></a>计算过程</h3><p>假设我们已经通过一定算法，将待分类数据进行了聚类。<br>常用的比如使用K-means，将待分类数据分为了k个簇。<br>对于簇中的每个向量。分别计算它们的轮廓系数。<br>对于其中的一个点 i 来说：</p>
-<ul>
-<li>计算 a(i) = average(i向量到所有它属于的簇中其它点的距离)</li>
-<li>计算 b(i) = min(i向量到所有其他簇的点的平均距离)</li>
-</ul>
-<p>那么i向量轮廓系数就为：<br>
-$$ S(i) = \frac{b(i) - a(i)}{max\{a(i), b(i)\}} $$
-</p>
-<h3 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h3><p>可见轮廓系数的值是介于 [-1,1] ，越趋近于1代表内聚度和分离度都相对较优。将所有点的轮廓系数求平均，就是该聚类结果总的轮廓系数。</p>
-<ul>
-<li>a(i) ：i向量到同一簇内其他点不相似程度的平均值</li>
-<li>b(i) ：i向量到其他簇的平均不相似程度的最小值</li>
-<li>S(i)接近1，则说明样本i聚类合理；</li>
-<li>S(i)接近-1，则说明样本i更应该分类到另外的簇；</li>
-<li>若S(i)近似为0，则说明样本i在两个簇的边界上。</li>
-</ul>
-<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/">ML</a></li></ul>
 
     </footer>
   </div>
