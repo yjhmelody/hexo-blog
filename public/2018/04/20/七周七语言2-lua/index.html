@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>yjhmelody&#39;s blog</title>
+  <title>七周七语言2-lua | yjhmelody&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="blog, cs, life" />
@@ -11,16 +11,18 @@
   
   
   
-  <meta name="description" content="想记录很多东西">
-<meta property="og:type" content="website">
-<meta property="og:title" content="yjhmelody&#39;s blog">
-<meta property="og:url" content="https://yjhmelody.github.io/index.html">
+  <meta name="description" content="LuaLua一览Lua 是一门基于 table 的编程语言，它的核心抽象层简单而强大，你可以用它实现过程式、面向对象、事件驱动等。Lua 的 table 很适合基于原型的面向对象编程。这种编程风格中，类和实例不是割裂的概念。你先创建一个实例，这个实例看起来像你需要的对象。然后你再把这个实例复制多份，对每一份做一些定制化。 初窥Lua 的语法友好，并且易于接近，无须担心分号或者空格写哪里。空格对 L">
+<meta name="keywords" content="Lua">
+<meta property="og:type" content="article">
+<meta property="og:title" content="七周七语言2-Lua">
+<meta property="og:url" content="https://yjhmelody.github.io/2018/04/20/七周七语言2-lua/index.html">
 <meta property="og:site_name" content="yjhmelody&#39;s blog">
-<meta property="og:description" content="想记录很多东西">
+<meta property="og:description" content="LuaLua一览Lua 是一门基于 table 的编程语言，它的核心抽象层简单而强大，你可以用它实现过程式、面向对象、事件驱动等。Lua 的 table 很适合基于原型的面向对象编程。这种编程风格中，类和实例不是割裂的概念。你先创建一个实例，这个实例看起来像你需要的对象。然后你再把这个实例复制多份，对每一份做一些定制化。 初窥Lua 的语法友好，并且易于接近，无须担心分号或者空格写哪里。空格对 L">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-04-20T13:38:51.876Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yjhmelody&#39;s blog">
-<meta name="twitter:description" content="想记录很多东西">
+<meta name="twitter:title" content="七周七语言2-Lua">
+<meta name="twitter:description" content="LuaLua一览Lua 是一门基于 table 的编程语言，它的核心抽象层简单而强大，你可以用它实现过程式、面向对象、事件驱动等。Lua 的 table 很适合基于原型的面向对象编程。这种编程风格中，类和实例不是割裂的概念。你先创建一个实例，这个实例看起来像你需要的对象。然后你再把这个实例复制多份，对每一份做一些定制化。 初窥Lua 的语法友好，并且易于接近，无须担心分号或者空格写哪里。空格对 L">
   
     <link rel="alternate" href="/atom.xml" title="yjhmelody&#39;s blog" type="application/atom+xml">
   
@@ -49,9 +51,11 @@
   <link rel="stylesheet" href="/css/bootstrap.css" >
 
   
-    <link rel="stylesheet" href="/css/home.css" >
+    <link rel="stylesheet" href="/css/dialog.css">
   
 
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
   
 
   
@@ -64,207 +68,107 @@
 
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
-  
-    <header id="header">
-
-    
-      <div id="intrologo" class="intro-logo" style="background-position:center; background-repeat:no-repeat; background-image: url(); background-size: auto 100%;">
-
-      <!-- Support rolling -->  
-        
-        <section class="awSlider">
-          <div class="carousel slide carousel-fade " data-ride="carousel">
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-               
-                  
-                    <div class="item active">
-                  
-                    <img id="carousel-img0" src="/css/images/home-bg.jpg">
-                  </div>
-
-                  <!-- 自适应大图 -->
-                  <script>
-                      var img0 = new Image();
-                      var imageTag0 = document.getElementById("carousel-img0");
-                      img0.src = imageTag0.src;
-                      img0.onload=function(){
-                        if (img0.width / img0.height <= document.body.clientWidth / document.body.clientHeight) {
-                          imageTag0.style.width = document.body.clientWidth + "px";
-                        } else {
-                          imageTag0.style.height = document.body.clientHeight + "px";
-                          imageTag0.style.marginLeft = -(document.body.clientHeight * img0.width / img0.height - document.body.clientWidth) / 2 + "px";
-                        }
-                      };
-                  </script>
-                
-                  
-                    <div class="item">
-                  
-                    <img id="carousel-img1" src="/css/images/home-bg2.jpg">
-                  </div>
-
-                  <!-- 自适应大图 -->
-                  <script>
-                      var img1 = new Image();
-                      var imageTag1 = document.getElementById("carousel-img1");
-                      img1.src = imageTag1.src;
-                      img1.onload=function(){
-                        if (img1.width / img1.height <= document.body.clientWidth / document.body.clientHeight) {
-                          imageTag1.style.width = document.body.clientWidth + "px";
-                        } else {
-                          imageTag1.style.height = document.body.clientHeight + "px";
-                          imageTag1.style.marginLeft = -(document.body.clientHeight * img1.width / img1.height - document.body.clientWidth) / 2 + "px";
-                        }
-                      };
-                  </script>
-                
-                  
-                    <div class="item">
-                  
-                    <img id="carousel-img2" src="https://source.unsplash.com/collection/954550/1920x1080">
-                  </div>
-
-                  <!-- 自适应大图 -->
-                  <script>
-                      var img2 = new Image();
-                      var imageTag2 = document.getElementById("carousel-img2");
-                      img2.src = imageTag2.src;
-                      img2.onload=function(){
-                        if (img2.width / img2.height <= document.body.clientWidth / document.body.clientHeight) {
-                          imageTag2.style.width = document.body.clientWidth + "px";
-                        } else {
-                          imageTag2.style.height = document.body.clientHeight + "px";
-                          imageTag2.style.marginLeft = -(document.body.clientHeight * img2.width / img2.height - document.body.clientWidth) / 2 + "px";
-                        }
-                      };
-                  </script>
-                
-            </div>
-
-            <!-- Controls -->
-            <a class="left carousel-control" href=".carousel" role="button" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-              <span class="sr-only">Geri</span>
-            </a>
-            <a class="right carousel-control" href=".carousel" role="button" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-              <span class="sr-only">İleri</span>
-            </a>
-          </div>
-        </section>
-        <script>
-          $('section.awSlider .carousel').carousel({
-              pause: '',
-              interval: 5000
-          });
-          var startImage = $('section.awSlider .item.active > img').attr('src');
-          $('section.awSlider .carousel').on('slid.bs.carousel', function () {
-              var bscn = $(this).find('.item.active > img').attr('src');
-              $('section.awSlider > img').attr('src', bscn);
-          });
-        </script>
-      
-
-    
- 
-
-
-    <canvas width="100%" height="100%"></canvas>
-    <script>
-      var c = document.getElementsByTagName('canvas')[0],
-          x = c.getContext('2d'),
-          w = window.innerWidth,
-          h = window.innerHeight,
-          pr = window.devicePixelRatio || 1,
-          f = 90,
-          q,
-          m = Math,
-          r = 0,
-          u = m.PI*2,
-          v = m.cos,
-          z = m.random
-      c.width = w*pr
-      c.height = h*pr
-      x.scale(pr, pr)
-      x.globalAlpha = 0.6
-
-      
-    </script>
-    
-
-    
-      <div id="homelogo" class="homelogo" style="background: rgba(255,255,255,1);"> 
-    
-
-        
-          <div class="homelogoback"  style="border: 1px solid #404040;" >
-            <h1><a href="#content" id="logo">yjhmelody&#39;s blog</a></h1>
-            <h3>想记录很多东西</h3>
-            <h5>yjhmelody</h5>
-            <!-- <p><a href="https://github.com/iTimeTraveler" target="_blank">Github</a></p> -->
-          </div>
-        
-    
-    </div>
-  </div>
-
-  <!-- 自适应主页背景大图 -->
-  
-
- <!-- home_logo_image居中 -->
- 
-    <script>
-        var homelogodiv = document.getElementById("homelogo");
-        if (document.all.homelogo.offsetWidth > document.body.clientWidth) {
-          homelogodiv.style.width = document.body.clientWidth + "px";
-          homelogodiv.style.marginLeft = document.body.clientWidth * -0.5 + "px";
-        } else {
-          homelogodiv.style.width = homelogodiv.clientWidth  + "px";
-          homelogodiv.style.marginLeft = (homelogodiv.clientWidth)  * -0.5 + "px";
-        }
-    </script>
-  
-
-  <div class="intro-navigate">
-      <p class="navigater-list">
-        
-          <a id="beautifont" class="main-nav-link" href="/">首页</a>
-        
-          <a id="beautifont" class="main-nav-link" href="/archives">归档</a>
-        
-          <a id="beautifont" class="main-nav-link" href="/categories">分类</a>
-        
-          <a id="beautifont" class="main-nav-link" href="/tags">标签</a>
-        
-          <a id="beautifont" class="main-nav-link" href="/about">关于</a>
-        
-      </p>
-  </div>
-
-</header>
   
   <div id="container">
     <div id="wrap">
       
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;">
-  
-    <article id="post-七周七语言2-lua"  class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-七周七语言2-lua" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
       <header class="article-header">
         
   
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/04/20/七周七语言2-lua/">七周七语言2-Lua</a>
+    <h1 class="thumb" class="article-title" itemprop="name">
+      七周七语言2-Lua
     </h1>
   
 
@@ -280,6 +184,12 @@
     <a class="article-category-link" href="/categories/study/">study</a>
 
       
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
     </div>
     <div class="article-entry" itemprop="articleBody">
       
@@ -324,6 +234,19 @@
     </div>
     <footer class="article-footer">
       
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '',
+  alipayImage: ''
+});
+</script>
+      
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lua/">Lua</a></li></ul>
@@ -331,234 +254,33 @@
     </footer>
   </div>
   
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-2018学习和复习"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
     
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/03/20/2018学习和复习/">2018学习和复习</a>
-    </h1>
   
+    <a href="/2018/03/20/2018学习和复习/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">2018学习和复习</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/03/20/2018学习和复习/" class="article-date">
-	  <time datetime="2018-03-20T11:21:06.000Z" itemprop="datePublished">2018-03-20</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/考研/">考研</a><a class="article-category-link" href="/categories/考研/CS/">CS</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="2018学习和复习"><a href="#2018学习和复习" class="headerlink" title="2018学习和复习"></a>2018学习和复习</h1><p>大学做过无数次计划，似乎少有完全达成，这样看来，其实是自己的问题。所以特此再做一次计划，计划不会特别具体，但要让自己严格执行。</p>
-        <!-- 2018学习和复习大学做过无数次计划，似乎少有完全达成，这样看来，其实是自己的问题。所以特此再做一次计划，计划不会特别具体，但要让自己严格执行。
-
-学习把学习和复习分开来计划其实是很明智的。复习计划是与考研强相关的，学习计划则是与专业强相关，与考研弱相关的。当然介于考研其实是场持久战，而且如果要考408的话，复习时间其实是很紧的，所以复习期间看考研不相关的东西其实是不太明智的，除非能提早开始......  -->
-        <p class="article-more-link">
-          <a href="/2018/03/20/2018学习和复习/#more">阅读全文</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/">study</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
 
 <!-- Table of Contents -->
 
-  
-    <article id="post-2018新年与考研"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
     
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Lua"><span class="nav-number">1.</span> <span class="nav-text">Lua</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lua一览"><span class="nav-number">1.1.</span> <span class="nav-text">Lua一览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初窥"><span class="nav-number">1.2.</span> <span class="nav-text">初窥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lua-基础"><span class="nav-number">1.3.</span> <span class="nav-text">Lua 基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表达式"><span class="nav-number">1.4.</span> <span class="nav-text">表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">1.5.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#灵活的参数"><span class="nav-number">1.5.1.</span> <span class="nav-text">灵活的参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具名参数"><span class="nav-number">1.6.</span> <span class="nav-text">具名参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制流程"><span class="nav-number">1.7.</span> <span class="nav-text">控制流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">1.8.</span> <span class="nav-text">变量</span></a></li></ol></li></ol>
     
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/03/07/2018新年与考研/">2018新年与考研</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/03/07/2018新年与考研/" class="article-date">
-	  <time datetime="2018-03-07T05:57:37.000Z" itemprop="datePublished">2018-03-07</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/考研/">考研</a><a class="article-category-link" href="/categories/考研/CS/">CS</a>
-
-      
     </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="2018新年与考研"><a href="#2018新年与考研" class="headerlink" title="2018新年与考研"></a>2018新年与考研</h1><h2 id="新年"><a href="#新年" class="headerlink" title="新年"></a>新年</h2><p>新的2018年到来了，还没用文章对自己过去一年做一个总结。寒假的时候参加美赛，奈何自己太菜，估计只能获得一个<code>参赛奖</code>吧，好像也没什么好说的。</p>
-<p>寒假的后半段基本是自学一些感兴趣的东西，比如<code>Haskell</code>、<code>Rust</code>、<code>Scala</code>，主要是学习函数式编程吧，不过其实也就才刚入门的水平而已。除此之外，还在查阅一些考研相关的资料与信息，因为一直以来都有考研的打算，毕竟GPA不理想，没有机会保研嘛。</p>
-        <!-- 2018新年与考研新年新的2018年到来了，还没用文章对自己过去一年做一个总结。寒假的时候参加美赛，奈何自己太菜，估计只能获得一个参赛奖吧，好像也没什么好说的。
-寒假的后半段基本是自学一些感兴趣的东西，比如Haskell、Rust、Scala，主要是学习函数式编程吧，不过其实也就才刚入门的水平而已。除此之外，还在查阅一些考研相关的资料与信息，因为一直以来都有考研的打算，毕竟GPA不理想，没有......  -->
-        <p class="article-more-link">
-          <a href="/2018/03/07/2018新年与考研/#more">阅读全文</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/">study</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-JS函数式编程笔记2"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/02/07/JS函数式编程笔记2/">JS函数式编程笔记2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/02/07/JS函数式编程笔记2/" class="article-date">
-	  <time datetime="2018-02-07T06:27:31.000Z" itemprop="datePublished">2018-02-07</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/study/">study</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="JS函数式编程"><a href="#JS函数式编程" class="headerlink" title="JS函数式编程"></a>JS函数式编程</h1><p>笔记里面常常依赖一些库和之前的代码，而且可能存在理论上的代码和未实现的函数，阅读时，需要仔细。</p>
-<p>下面部分经常的东西后面经常用到，我先导入。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> curry = <span class="built_in">require</span>(<span class="string">'lodash/curry'</span>)</div><div class="line"><span class="keyword">const</span> _ = <span class="built_in">require</span>(<span class="string">'lodash'</span>)</div><div class="line"><span class="keyword">const</span> fp = <span class="built_in">require</span>(<span class="string">'lodash/fp'</span>)</div><div class="line"><span class="keyword">const</span> moment = <span class="built_in">require</span>(<span class="string">'moment'</span>)</div><div class="line"></div><div class="line"><span class="keyword">let</span> compose = <span class="function"><span class="keyword">function</span>(<span class="params">f, g</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> f(g(x))</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> toUpperCase = <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> str.toUpperCase()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> toLowerCase = <span class="function"><span class="keyword">function</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> str.toLowerCase()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="Hindley-Milner-类型签名"><a href="#Hindley-Milner-类型签名" class="headerlink" title="Hindley-Milner 类型签名"></a>Hindley-Milner 类型签名</h2><h3 id="初识类型"><a href="#初识类型" class="headerlink" title="初识类型"></a>初识类型</h3><p>刚接触函数式编程的人很容易深陷类型签名（type signatures）的泥淖。类型（type）是让所有不同背景的人都能高效沟通的元语言。很大程度上，类型签名是以 “Hindley-Milner” 系统写就的。</p>
-<p>类型签名在写纯函数时所起的作用非常大，大到英语都不能望其项背。这些签名轻轻诉说着函数最不可告人的秘密。短短一行，就能暴露函数的行为和目的。类型签名还衍生出了 “自由定理（free theorems）” 的概念。因为类型是可以推断的，所以明确的类型签名并不是必要的；不过你完全可以写精确度很高的类型签名，也可以让它们保持通用、抽象。类型签名不但可以用于编译时检测（compile timechecks），还是最好的文档。所以类型签名在函数式编程中扮演着非常重要的角色——重要程度远远超出你的想象。</p>
-        <!-- JS函数式编程笔记里面常常依赖一些库和之前的代码，而且可能存在理论上的代码和未实现的函数，阅读时，需要仔细。
-下面部分经常的东西后面经常用到，我先导入。
-123456789101112131415161718const curry = require('lodash/curry')const _ = require('lodash')const fp = require('lodash/fp......  -->
-        <p class="article-more-link">
-          <a href="/2018/02/07/JS函数式编程笔记2/#more">阅读全文</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/FP/">FP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-IEEE802.11无线LANs概述"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/12/26/IEEE802.11无线LANs概述/">IEEE802.11概述</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/12/26/IEEE802.11无线LANs概述/" class="article-date">
-	  <time datetime="2017-12-26T14:03:46.000Z" itemprop="datePublished">2017-12-26</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/study/">study</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="IEEE-802-11无线-LANs-概述"><a href="#IEEE-802-11无线-LANs-概述" class="headerlink" title="IEEE 802.11无线 LANs 概述"></a>IEEE 802.11无线 LANs 概述</h1><h2 id="无线链路和网络特征"><a href="#无线链路和网络特征" class="headerlink" title="无线链路和网络特征"></a>无线链路和网络特征</h2><p>802.11协议簇是国际电工电子工程学会（IEEE）为无线局域网络制定的标准。虽然WI-FI使用了802.11的媒体访问数据链路层（DLL）和物理层（PHY），但是两者并不完全一致。</p>
-<p>这里主要概述了 802.11无线LAN的特征。不过首先应该关注的是无线网络与有线网络的区别。</p>
-<p>当我们寻找有线和无线网络的重要区别时，应该重点关注链路层，我们确实可以发现有线链路和无线链路有许多重要区别：</p>
-<ul>
-<li>递减的信号强度。信号强度受到发送方和接收方距离的增加而递减。</li>
-<li>来自其他源的干扰。在同一个频段发送信号的电波源会互相干扰。</li>
-<li>多径传播（multipath propagation）。当电磁波受到反射，会在发送方和接收方之间走过多条不同长度的路径，此时出现多径传播，这使得接受的信号变得模糊。</li>
-</ul>
-        <!-- IEEE 802.11无线 LANs 概述无线链路和网络特征802.11协议簇是国际电工电子工程学会（IEEE）为无线局域网络制定的标准。虽然WI-FI使用了802.11的媒体访问数据链路层（DLL）和物理层（PHY），但是两者并不完全一致。
-这里主要概述了 802.11无线LAN的特征。不过首先应该关注的是无线网络与有线网络的区别。
-当我们寻找有线和无线网络的重要区别时，应该重点关注链路层......  -->
-        <p class="article-more-link">
-          <a href="/2017/12/26/IEEE802.11无线LANs概述/#more">阅读全文</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/network/">network</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
-  </nav>
-
+  </aside>
 </section>
         
       </div>
-      
-        <div align="center" style="margin-top: 30px;"><hr class="hr" style="margin:0px; height:3px;"></div>
       
       <footer id="footer">
   
@@ -650,9 +372,9 @@
 <script src="/js/scripts.js"></script>
 
 
-  <script src="/js/home.js"></script>
 
 
+  <script src="/js/dialog.js"></script>
 
 
 
@@ -737,6 +459,8 @@
   
   <a id="rocket" href="#top" class=""></a>
   <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
 </body>
 </html>
