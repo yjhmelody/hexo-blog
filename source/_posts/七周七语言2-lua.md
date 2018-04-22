@@ -263,3 +263,127 @@ Lua 的变量默认是全局的，需要使用 local 关键字来给局部变量
 >>     return a2
 >> end
 ```
+
+## table 和协程
+
+和其他语言类似，Lua 用 table 定义数据，用协程定义控制流程。
+
+## table 作为字典
+
+和 JS 的 Object， Ruby 的哈希类似，Lua 的 table 是键值对的集合。通过大括号创建， 这种表达式叫做 table 构造器。（最后一个逗号可以省略）
+
+```lua
+-- create
+> book = {
+>>     title = "My story",
+>>     auther = "yjh",
+>>     pages = 100
+>> }
+>
+> book
+table: 0276e1e0
+-- get
+> book["title"]
+My story
+-- add
+> book.stars = 5
+> book[0] = 1
+> book[0]
+1
+-- delete
+> book.stars = nil
+> book.stars
+nil
+```
+
+你可以使用任何类型的数据作为键：布尔，函数，table。
+
+Lua 并没有自带打印 table 的函数，需要自定义。
+
+```lua
+> function print_table(t)
+>>     for k, v in pairs(t) do
+>>         print(k .. ": " .. v)
+>>     end
+>> end
+>
+> print_table(book)
+auther: yjh
+title: My story
+pages: 100
+0: 1
+```
+
+pairs() 是内建函数，它是一个迭代器，可以与循环工作。
+
+## 穿着数组外衣的字典
+
+对于 Lua 来说，数组只是键值对存储结构的一个特例，键是连续的数字。
+
+
+```lua
+medals = {
+    "gold",
+    "silver",
+    "bronze"
+}
+
+> medals[1]
+gold
+> medals[4] = "lead"
+```
+
+Lua 运行时给数组提供了特殊的快车道，只要你连续用数字作为键向字典添加数据，Lua 就能高效地存储和访问数据。
+
+## metatables
+
+目前为止的table，如果你给定键，Lua给你找到一个值。这个逻辑是 Lua 内建的。
+有时候这种默认行为不是程序需要的。你可能需要返回一个默认值而不是nil；或者想把读写的历史记录到某个 table。这些可以通过 metatables 实现。
+
+如果你熟悉 JS 的原型或者 Python 的双下划线方法名，你会发现 Lua 的方式也很熟悉。
+Lua 的每个 table 都有一个 metatable，其中可以包含读写键值对的函数，可以包含用来遍历 table 内容的代码，也可以重载某些操作符。
+
+```lua
+> greek_numbers = {
+>>     ena = "one",
+>>     dyo = "two",
+>>     tria = "three"
+>> }
+>
+> getmetatable(greek_numbers)
+nil
+```
+
+```lua
+function table_to_string(t)
+    local result = {}
+    for k, v in pairs(t) do
+        result[#result + 1] = k .. ": " .. v
+    end
+    return table.concat(result, "\n")
+end
+```
+
+```lua
+> mt = {
+>>     __tostring = table_to_string
+>> }
+>
+> setmetatable(greek_numbers, mt)
+dyo: two
+tria: three
+ena: one
+> greek_numbers
+dyo: two
+tria: three
+ena: one
+```
+这样我们实现了自定义table输出为字符串的行为。
+
+### 读和写
+
+Lua 的 table 非常宽容，读取不存在的键只会得到一个 nil。如果需要更加严格的 table，读取不存在的键或者覆盖已经存在的键都会导致运行时错误。
+要做到这件事，只需要：
+- 把你想要自定义的读写逻辑写到两个函数里。
+- 把这两个函数存储到一个 table 中， 分别为 __index 和 __newindex。
+- 把上一步创建的 table 设置为你的数据 metatable。
