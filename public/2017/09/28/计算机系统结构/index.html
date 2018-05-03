@@ -30,6 +30,10 @@
 
 
 
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
 
 
 
@@ -428,6 +432,17 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/28/计算机系统结构/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/28/计算机系统结构/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -446,7 +461,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -669,6 +684,16 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
 
 
 
@@ -712,7 +737,7 @@
                 alt="yjhmelody" />
             
               <p class="site-author-name" itemprop="name">yjhmelody</p>
-              <p class="site-description motion-element" itemprop="description">想记录很多东西</p>
+              <p class="site-description motion-element" itemprop="description">许多事物值得记录</p>
           </div>
 
           
@@ -802,6 +827,11 @@
               
                 <span class="links-of-author-item">
                   <a href="mailto:465402634@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.douban.com/people/yjhmelody" target="_blank" title="Douban"><i class="fa fa-fw fa-globe"></i>Douban</a>
                   
                 </span>
               
@@ -992,6 +1022,31 @@
 
   
 
+  
+    <script id="dsq-count-scr" src="https://yjhmelody.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://yjhmelody.github.io/2017/09/28/计算机系统结构/';
+        this.page.identifier = '2017/09/28/计算机系统结构/';
+        this.page.title = '计算机系统结构';
+      };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://yjhmelody.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
 
 
 	
@@ -1003,10 +1058,6 @@
   
 
 
-
-
-
-  
 
 
 
