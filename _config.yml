@@ -4,7 +4,7 @@
 
 # Site
 title: yjhmelody's blog
-subtitle: about my life
+subtitle: About My Life
 description: 想记录很多东西
 author: yjhmelody
 language: zh-CN
@@ -73,8 +73,16 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 # theme: landscape
-theme: hiker
+# theme: hiker
+# theme: hexo-theme-material
+theme: next
 
+
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
