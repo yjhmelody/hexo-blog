@@ -387,3 +387,186 @@ Lua 的 table 非常宽容，读取不存在的键只会得到一个 nil。如�
 - 把你想要自定义的读写逻辑写到两个函数里。
 - 把这两个函数存储到一个 table 中， 分别为 `__index` 和 `__newindex`。
 - 把上一步创建的 table 设置为你的数据 metatable。
+
+下面依次进行这三步。
+
+```lua
+local _private = {}
+
+function strict_read(table, key)
+    if _private[key] then
+        return _private[key]
+    else
+        error("Invalid key: " .. key)
+    end
+end
+
+function strict_write(table, key, value)
+    if _private[key] then
+        error("Duplicate key: " .. key)
+    else
+        _private[key] = value
+    end
+end
+
+local mt = {
+    __index = strict_read,
+    __newindex = strict_write
+}
+
+treasure = {}
+
+setmetatable(treasure, mt)
+```
+
+现在你可以使用这个新自定义的字典了。
+
+```lua
+> treasure.gold = 50
+> treasure.gold
+50
+> treasure.silver
+nil
+> treasure.gold = 100
+> treasure.gold
+100
+```
+
+除此之外，lua 还有其他特殊的键名，这种语法跟python非常类似。
+
+## 自制面向对象系统
+
+Lua 有自己的面向对象语法。不过得益于 lua 强大的抽象，可以容易地定义另一种面向对象风格，然后可以观察它们的区别。
+面向对象的核心观念就是对象之间互相发送消息。下面是一个玩家打 Boss 的代码的例子。
+
+```lua
+dietrich = {
+    name = "Dietrich",
+    health = 100,
+
+    take_hit = function (self)
+        self.health = self.health - 10
+    end
+}
+
+> dietrich.take_hit(dietrich)
+> dietrich.health
+90
+```
+Boss 可能不止一个，如果 Boss 共用一份 take_init()，我需要知道让哪个 Boss 掉血，这就是传入 self 参数的目的。
+
+### 原型
+
+```lua
+Villain = {
+    health = 100,
+    new = function(self, name)
+        local obj = {
+            name = name,
+            health = self.health
+        }
+        
+        setmetatable(obj, self)
+        self.__index = self
+        return obj    
+    end,
+
+    take_hit = function(self)
+        self.health = self.health - 10
+    end
+}
+
+> yjh = Villain.new(Villain, "yjh")
+> yjh.health
+100
+> Villain.take_hit(yjh)
+> yjh.health
+90
+```
+setmetable 把 obj 委托给了 self，这个例子中是 Villain，也是说把 Villain 作为查找的后备（这里原型继承应该跟 JS 类似，是原型链）。
+
+### 继承
+
+如上所说，基于原型的面向对象系统的一个好处是不需要特殊的机制来实现继承，可以像之前那样定制，复制对象就可以了。
+如果你需要创建一个 Final Boss，你只需要创建一个新的原型，然后复制它就好了。
+
+```lua
+-- 定制新的 Boss 类
+SuperVillain = Villain.new(Villain)
+function SuperVillain.take_hit(self)
+    self.health = self.health - 5
+end
+
+-- 实例化
+> boss = SuperVillain.new(SuperVillain, "Final Boss")
+> boss.take_hit(boss)
+> boss.health
+95
+```
+
+### 语法糖
+
+如果你写的是 table:method() 而不是 table.method(self), Lua 会隐式传入 self 参数。
+
+```lua
+-- same as before
+Villain = {
+    health = 100
+}
+
+function Villain:new(name)
+    local obj = {
+        name = name,
+        health = self.health
+    }
+    
+    setmetatable(obj, self)
+    self.__index = self
+    return obj    
+end
+
+function Villain:take_hit()
+    self.health = self.health - 10  
+end
+
+> yjh = Villain:new("yjh")
+> yjh:take_hit()
+> yjh.health
+90
+```
+
+## 协程
+
+之前的 Lua 代码都是串行执行的。那么 Lua 如何处理多线程？ Lua 不处理多线程。
+但是 Lua 内建了简单、容易理解的用于多任务处理的基本类型：`协程`。
+与线程不同，协程不是抢占式的，你需要显式标注哪里暂停任务，让位给其他任务。它在概念上更简单，可以免去许多并行的问题。
+
+下面定义一个死循环。
+
+```lua
+function fibonacii()
+    local m = 1
+    local n = 1
+    while true do
+        coroutine.yield(m)
+        m, n = n , m + n
+    end
+end
+
+> gen = coroutine.create(fibonacii)
+> succeeded, value = coroutine.resume(gen)
+> value
+1
+> succeeded, value = coroutine.resume(gen)
+> value
+1
+> succeeded, value = coroutine.resume(gen)
+> value
+2
+```
+要运行协程需要先用 coroutine.create 函数创建一个协程，然后调用 couroutine.resume。调用 resume 后就执行该函数直到遇见下一个 yield 调用就跳回调用者处，并且返回一个`状态码`和 `yield 的参数`。
+这种方式适合耗时长的计算或者网络操作，可以把它分解为较小的子任务来执行，维持程序的响应性。
+
+## 多任务
+
+协程虽然简单但功能强大，可以实现类似多线程的行为。操作系统的`进程调度器`通常需要几千行代码，不过我们可以使用几十行来实现一个。
