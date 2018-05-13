@@ -264,10 +264,6 @@ Lua 的变量默认是全局的，需要使用 local 关键字来给局部变量
 >> end
 ```
 
-## table 和协程
-
-和其他语言类似，Lua 用 table 定义数据，用协程定义控制流程。
-
 ## table 作为字典
 
 和 JS 的 Object， Ruby 的哈希类似，Lua 的 table 是键值对的集合。通过大括号创建， 这种表达式叫做 table 构造器。（最后一个逗号可以省略）
@@ -570,3 +566,120 @@ end
 ## 多任务
 
 协程虽然简单但功能强大，可以实现类似多线程的行为。操作系统的`进程调度器`通常需要几千行代码，不过我们可以使用几十行来实现一个。
+
+先定义 scheduler.lua 。*注意：* 局部函数必须先定义后使用。
+
+```lua
+local function sort_by_time(array)
+    table.sort(array, function(e1, e2) return e1.time < e2.time end)
+end
+
+local pending = {}
+
+local function schedule(time, action)
+    pending [#pending + 1] = {
+        time = time,
+        action = action
+    }
+
+    sort_by_time(pending)
+end
+```
+
+想让某件事在未来发生的话，把它丢到 pending 数组里，该数组以时间戳排序（程序启动到现在的秒数）。
+
+```lua
+local function wait(seconds)
+    coroutine.yield(seconds)
+    -- seconds will be sent to coroutine.resume's return.
+end
+```
+
+协程一个是轻量级的。在开始运行（run）以后后就做相应的处理，做完马上返回或者 yield。所以 wait 函数不应该真的等待，而是向调度器 yield。
+
+```lua
+local function remove_first(array)
+    result = array[1]
+    array [1] = array[#array]
+    array[#array] = nil
+    return result
+end
+
+local function run()
+    -- when there is not task, the scheduler will quit.
+    while #pending > 0 do
+        while os.clock() < pending[1].time do 
+        end -- busy-wait
+
+        local item = remove_first(pending)
+        local _, seconds = coroutine.resume(item.action)
+        -- got senconds from coroutine.yield.
+        if seconds then
+            later = os.clock() + seconds
+            -- item's next action time -- `now` plus `schedule time`            
+            -- print('later:' .. later)
+            schedule(later, item.action)
+        end
+    end
+end
+```
+run 会在没有任务时等待（任务时间还未到达），在有任务时执行任务。如果执行的任务调度 wait, 任务执行所需要消耗的秒数就会被 yield 给我们。
+我们会用这个秒数决定未来什么时候继续执行当前的任务（因为协程是非抢占的，所以调度以后，可能其他任务花费 wait 给定时间的数倍才让回来，这里需要程序员自己来设计好调度时机）。
+
+当任务执行完毕后，协程不会 yield 任何东西。 这时候 resume 函数会返回 nil，我们也不会给该任务分配任何时间了。
+
+最后我们把这个 API 封装成一个模块。下面代码仍然写到 scheduler.lua里。
+```lua
+return {
+    schedule = schedule,
+    run = run,
+    wait = wait
+}
+```
+
+现在可以执行一个新文件了。
+```lua
+-- main.lua
+scheduler = require 'scheduler'
+
+function punch()
+    for i = 1, 5 do
+        print('punch' .. i)
+        scheduler.wait(0.3)
+    end
+end
+
+function block()
+    for i = 1, 3 do
+        print('block ' .. i)
+        scheduler.wait(1.0)
+    end
+end
+
+scheduler.schedule(0, coroutine.create(punch))
+scheduler.schedule(0, coroutine.create(block))
+scheduler.run()
+```
+
+我们使用 require 函数来加载模块：
+- 检查模块是否已经加载过。
+- 搜索多个程序库的加载路径（可以配置）。
+- 给局部变量提供安全的命名空间。
+
+```
+$ ./lua53.exe main.lua
+punch1
+block 1
+punch2
+punch3
+punch4
+block 2
+punch5
+block 3
+```
+
+## 总结
+
+我们实现了一个面向对象系统以及一个类似线程的并行 API，并且这些代码写得可读、紧凑、模块化。
+让这一切容易实现得益于 Lua 易于组合的数据结构：table 和 协程。table 可以作为数组和字典使用，lua 还给我们提供了切入点来扩展 table 的行为。
+之后我们学习了协程，这是Lua并发（原文说是并行，但是我认为不准确）的方式。尽管协程 API 不多，但是仍然可以构造复杂强大的多任务系统。
