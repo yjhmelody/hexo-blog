@@ -613,7 +613,7 @@ local function run()
 
         local item = remove_first(pending)
         local _, seconds = coroutine.resume(item.action)
-        -- got senconds from coroutine.yield.
+        -- got seconds from coroutine.yield.
         if seconds then
             later = os.clock() + seconds
             -- item's next action time -- `now` plus `schedule time`            
@@ -644,7 +644,7 @@ scheduler = require 'scheduler'
 
 function punch()
     for i = 1, 5 do
-        print('punch' .. i)
+        print('punch ' .. i)
         scheduler.wait(0.3)
     end
 end
@@ -668,13 +668,13 @@ scheduler.run()
 
 ```
 $ ./lua53.exe main.lua
-punch1
+punch 1
 block 1
-punch2
-punch3
-punch4
+punch 2
+punch 3
+punch 4
 block 2
-punch5
+punch 5
 block 3
 ```
 
@@ -682,4 +682,4 @@ block 3
 
 我们实现了一个面向对象系统以及一个类似线程的并行 API，并且这些代码写得可读、紧凑、模块化。
 让这一切容易实现得益于 Lua 易于组合的数据结构：table 和 协程。table 可以作为数组和字典使用，lua 还给我们提供了切入点来扩展 table 的行为。
-之后我们学习了协程，这是Lua并发（原文说是并行，但是我认为不准确）的方式。尽管协程 API 不多，但是仍然可以构造复杂强大的多任务系统。
+之后我们学习了协程，这是 Lua 并行的方式。尽管协程 API 不多，但是仍然可以构造复杂强大的多任务系统。
