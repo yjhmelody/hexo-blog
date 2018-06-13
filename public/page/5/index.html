@@ -253,7 +253,7 @@
           
           <li class="menu-item menu-item-archives">
     <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">21</span></a>
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">22</span></a>
   </li>
         
         
@@ -327,6 +327,221 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yjhmelody.github.io/2017/08/08/《Web API的设计与开发》读书笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yjhmelody">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/css/images/mylogo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yjhmelody's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/08/《Web API的设计与开发》读书笔记/" itemprop="url">
+                  《Web API的设计与开发》读书笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-08-08 12:11:10" itemprop="dateCreated datePublished" datetime="2017-08-08T12:11:10+08:00">2017-08-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2017-09-19 22:59:46" itemprop="dateModified" datetime="2017-09-19T22:59:46+08:00">2017-09-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/study/" itemprop="url" rel="index"><span itemprop="name">study</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/08/08/《Web API的设计与开发》读书笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/08/《Web API的设计与开发》读书笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="第1章-什么是-Web-API"><a href="#第1章-什么是-Web-API" class="headerlink" title="第1章 什么是 Web API"></a>第1章 什么是 Web API</h1><h2 id="Web-API-的重要性"><a href="#Web-API-的重要性" class="headerlink" title="Web API 的重要性"></a>Web API 的重要性</h2><p>一些在线服务能够对那些公开的API进行会话控制、访问控制、服务分析，提供面向用户的仪表盘，以及发布文档等，承接了各种各样的工作。</p>
+<p>通过对外公开 Web API，同外部其他服务的集成变得更加便捷，并从中衍生出了新的价值，使在线服务以及业务不断发展，逐步形成了“API经济学”的景象，并在这几年受到相当大的关注。</p>
+<h2 id="各种各样的-API-模式"><a href="#各种各样的-API-模式" class="headerlink" title="各种各样的 API 模式"></a>各种各样的 API 模式</h2><ul>
+<li>将已发布的 Web 在线服务的数据或功能通过 API 公开</li>
+<li>将附加在其他网页上的微件公开</li>
+<li>构建现代 Web 应用</li>
+<li>开发智能手机应用</li>
+<li>公司内部多个系统的集成</li>
+</ul>
+<h2 id="应该通过-API-公开什么"><a href="#应该通过-API-公开什么" class="headerlink" title="应该通过 API 公开什么"></a>应该通过 API 公开什么</h2><ul>
+<li>最简洁的答案是将你的在线服务所能做的事情全部通过API公开</li>
+<li>不存在彻底屏蔽搜集信息的行为，所以无需担心盗用，公开 API并不意味着毫无限制的访问</li>
+<li>公开 API 将原来的服务组合成新的应用来为用户提供服务的“间接销售”模式</li>
+</ul>
+<h2 id="设计优美-API-的重要性"><a href="#设计优美-API-的重要性" class="headerlink" title="设计优美 API 的重要性"></a>设计优美 API 的重要性</h2><ul>
+<li>易于使用</li>
+<li>便于更改</li>
+<li>健壮性好</li>
+<li>不怕公之于众</li>
+</ul>
+<h2 id="如何美化-Web-API"><a href="#如何美化-Web-API" class="headerlink" title="如何美化 Web API"></a>如何美化 Web API</h2><p>两个重要原则：</p>
+<ul>
+<li>设计规范明确的内容必须遵守相关规范</li>
+<li>没有设计规范的内容必须遵守相关事实标准</li>
+</ul>
+<h2 id="REST-与-Web-API"><a href="#REST-与-Web-API" class="headerlink" title="REST 与 Web API"></a>REST 与 Web API</h2><p>REST 依次一般指下面两种意思：</p>
+<ul>
+<li>符合 Fielding 的 REST 架构风格的Web服务系统</li>
+<li>符合 RPC风格的 XML (或JSON) + HTTP 接口的系统(不使用SOAP)</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li>如果尚未公开 Web AP，则应立即考虑公开</li>
+<li>设计优美的 Web API</li>
+<li>不用过分拘泥于 REST 一词</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -566,7 +781,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1202,6 +1417,8 @@
 
   
   
+    
+      
     
       
     
