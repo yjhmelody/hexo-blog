@@ -35,14 +35,18 @@ date: 2018-05-07 15:00:24
 
 ## 兴趣方向
 
-- 对计算机底层感兴趣。
+- 对计算机底层知识感兴趣。
 - 对`编程语言理论`和`编译原理`感兴趣，有深入学习的想法。
 
 近期想学习的内容：
+- 函数式编程
 - Haskell
 - LLVM
-- Spark
-- PLT 相关英文书
+- PLT 相关
+- 编译原理
+- 日语
+
+近期在准备考研
 
 ## 专业技能
 
@@ -61,7 +65,7 @@ date: 2018-05-07 15:00:24
 - 海量数据存储
 - 云计算
 
-接触过多种编程语言：
+接触过多种编程语言（部分）：
 - C
 - C++
 - Rust
@@ -74,12 +78,13 @@ date: 2018-05-07 15:00:24
 - Lua
 - Matlab
 
-接触过的工具：
+接触过的工具（部分）：
 - Git/Github/gogs/hexo/gitbook/jupyter/anaconda
 
-接触过的类库和框架：
-- JS: Express/echarts/request/lodash/ramda/Jquery
+接触过的类库和框架（部分）：
+- JS: Express/echarts/request/lodash/ramda/Jquery/JsDoc
 - Python: requests/flask/numpy/pandas/matplotlib/sklearn
+- ...
 
-接触过的系统和平台：
+接触过的系统和平台（部分）：
 - Mysql/Redis/Spark/ElasticSearch
