@@ -44,7 +44,12 @@ date: 2018-07-09 15:00:24
 - LLVM
 - PLT 相关
 - 编译原理
+- 分布式原理
 - 日语
+
+近期希望读的书（用来备忘）：
+- 《Programming Languages: Application and Interpretation》（以中文版为主）
+- 《Designing Data-Intensive Applications》（以中文版为主）
 
 近期在准备考研
 
