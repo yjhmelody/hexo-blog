@@ -5,7 +5,7 @@ tags: [Distrubuted System]
 category: study
 ---
 
-最近指忙里抽闲的看《Designing.Data-Intensive.Applications》这本书，主要书看中文为主。这本书非常好，我现在刚看完一半。这本书让你认识到了数据库系统和分布式系统的大概貌，没有深入繁琐的具体细节也没有让人浅尝辄止。
+最近指忙里抽闲的看《Designing.Data-Intensive.Applications》这本书，主要书看中文为主。这本书非常好，我现在刚看完一半。这本书让你认识到了数据库系统和分布式系统的大概貌，没有深入繁琐的具体细节也没有让人浅尝辄止。这本书网络上评价很高，甚至豆瓣评分有2个评分，一个上9.5，一个是10分。现在即使想作为一个普通的后端工程师也需要学习分布式知识了，强烈推荐这本书。
 
 我发现书后面的术语表非常精良，个人认为：虽然可能还涵盖不到一半的核心概念，但是如果能深刻的理解这术语表部分的，那对数据库系统和分布式系统就有了比较好的整体认识了。
 
@@ -85,7 +85,10 @@ Able to recover automatically if something goes wrong (e.g., if a machine crashe
 See backpressure.
 
 ### follower
-A replica that does not directly accept any writes from clients, but only processes data changes that it receives from a leader. Also known as a secondary, slave, read replica, or hot standby. See `Leaders and Followers` on page 152. full-text search Searching text by arbitrary keywords, often with additional features such as matching similarly spelled words or synonyms. A full-text index is a kind of secondary index that supports such queries. See `Full-text search and fuzzy indexes` on page 88.
+A replica that does not directly accept any writes from clients, but only processes data changes that it receives from a leader. Also known as a secondary, slave, read replica, or hot standby. See `Leaders and Followers` on page 152. 
+
+## full-text search 
+Searching text by arbitrary keywords, often with additional features such as matching similarly spelled words or synonyms. A full-text index is a kind of secondary index that supports such queries. See `Full-text search and fuzzy indexes` on page 88.
 
 ### graph
 A data structure consisting of vertices (things that you can refer to, also known as nodes or entities) and edges (connections from one vertex to another, also known as relationships or arcs). See `Graph-Like Data Models` on page 49.
