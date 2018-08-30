@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":true,"scrollpercent":false,"onmobile":true},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="最近指忙里抽闲的看《Designing.Data-Intensive.Applications》这本书，主要书看中文为主。这本书非常好，我现在刚看完一半。这本书让你认识到了数据库系统和分布式系统的大概貌，没有深入繁琐的具体细节也没有让人浅尝辄止。 我发现书后面的术语表非常精良，个人认为：虽然可能还涵盖不到一半的核心概念，但是如果能深刻的理解这术语表部分的，那对数据库系统和分布式系统就有了比较好的整">
+<meta name="keywords" content="Distrubuted System">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《DDIA》概念整理">
+<meta property="og:url" content="https://yjhmelody.github.io/2018/08/30/《DDIA》概念整理/index.html">
+<meta property="og:site_name" content="yjhmelody&#39;s blog">
+<meta property="og:description" content="最近指忙里抽闲的看《Designing.Data-Intensive.Applications》这本书，主要书看中文为主。这本书非常好，我现在刚看完一半。这本书让你认识到了数据库系统和分布式系统的大概貌，没有深入繁琐的具体细节也没有让人浅尝辄止。 我发现书后面的术语表非常精良，个人认为：虽然可能还涵盖不到一半的核心概念，但是如果能深刻的理解这术语表部分的，那对数据库系统和分布式系统就有了比较好的整">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-30T11:48:58.378Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《DDIA》概念整理">
+<meta name="twitter:description" content="最近指忙里抽闲的看《Designing.Data-Intensive.Applications》这本书，主要书看中文为主。这本书非常好，我现在刚看完一半。这本书让你认识到了数据库系统和分布式系统的大概貌，没有深入繁琐的具体细节也没有让人浅尝辄止。 我发现书后面的术语表非常精良，个人认为：虽然可能还涵盖不到一半的核心概念，但是如果能深刻的理解这术语表部分的，那对数据库系统和分布式系统就有了比较好的整">
+
+
+
+
+
+
+  <link rel="canonical" href="https://yjhmelody.github.io/2018/08/30/《DDIA》概念整理/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《DDIA》概念整理 | yjhmelody's blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">yjhmelody's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">About My Life</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">14</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类<span class="badge">4</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档<span class="badge">23</span></a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yjhmelody.github.io/2018/08/30/《DDIA》概念整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yjhmelody">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/css/images/mylogo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yjhmelody's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《DDIA》概念整理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-30 20:00:00 / 修改时间：19:48:58" itemprop="dateCreated datePublished" datetime="2018-08-30T20:00:00+08:00">2018-08-30</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/study/" itemprop="url" rel="index"><span itemprop="name">study</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/30/《DDIA》概念整理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/30/《DDIA》概念整理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近指忙里抽闲的看《Designing.Data-Intensive.Applications》这本书，主要书看中文为主。这本书非常好，我现在刚看完一半。这本书让你认识到了数据库系统和分布式系统的大概貌，没有深入繁琐的具体细节也没有让人浅尝辄止。</p>
+<p>我发现书后面的术语表非常精良，个人认为：虽然可能还涵盖不到一半的核心概念，但是如果能深刻的理解这术语表部分的，那对数据库系统和分布式系统就有了比较好的整体认识了。</p>
+<p>顺便，个人觉得分布式系统可能是综合性比较强的方向了，光看这本书就需要，数据结构，操作系统，计算机网络，数据库原理，还有少部分组成原理。个人认为，还需要学习一些并行编程，网络编程。并且根据具体要做的分布式系统，可能还需要机器学习，搜索引擎等知识。</p>
+<p>以下整理出了英文和中文。</p>
+<a id="more"></a>
+<h2 id="英文"><a href="#英文" class="headerlink" title="英文"></a>英文</h2><h3 id="asynchronous"><a href="#asynchronous" class="headerlink" title="asynchronous"></a>asynchronous</h3><p>Not waiting for something to complete (e.g., sending data over the network to another node), and not making any assumptions about how long it is going to take. See <code>Synchronous Versus Asynchronous Replication</code> on page 153, <code>Synchronous Versus Asynchronous Networks</code> on page 284, and <code>System Model and Reality</code> on page 306.</p>
+<h3 id="atomic"><a href="#atomic" class="headerlink" title="atomic"></a>atomic</h3><ol>
+<li>In the context of concurrent operations:describing an operation that appears to take effect at a single point in time, so<br>another concurrent process can never encounter the operation in a <code>halffinished</code> state. See also isolation.</li>
+<li>In the context of transactions: grouping together a set of writes that must either all be committed or all be rolled back, even if faults occur. See <code>Atomicity</code> on page 223 and <code>Atomic Commit and Two-Phase Commit (2PC)</code> on page 354.</li>
+</ol>
+<h3 id="backpressure"><a href="#backpressure" class="headerlink" title="backpressure"></a>backpressure</h3><p>Forcing the sender of some data to slow down because the recipient cannot keep up with it. Also known as flow control. See<br><code>Messaging Systems</code> on page 441.</p>
+<h3 id="batch-process"><a href="#batch-process" class="headerlink" title="batch process"></a>batch process</h3><p>A computation that takes some fixed (and usually large) set of data as input and produces some other data as output, without modifying the input. See Chapter 10.</p>
+<h3 id="bounded"><a href="#bounded" class="headerlink" title="bounded"></a>bounded</h3><p>Having some known upper limit or size. Used for example in the context of network delay (see <code>Timeouts and Unbounded Delays</code> on page 281) and datasets (see the introduction to Chapter 11).</p>
+<h3 id="Byzantine-fault"><a href="#Byzantine-fault" class="headerlink" title="Byzantine fault"></a>Byzantine fault</h3><p>A node that behaves incorrectly in some arbitrary way, for example by sending contradictory or malicious messages to other nodes. See <code>Byzantine Faults</code> on page 304.</p>
+<h3 id="cache"><a href="#cache" class="headerlink" title="cache"></a>cache</h3><p>A component that remembers recently used data in order to speed up future reads of the same data. It is generally not complete: thus, if some data is missing from the cache, it has to be fetched from some underlying, slower data storage system that has a complete copy of the data.</p>
+<h3 id="CAP-theorem"><a href="#CAP-theorem" class="headerlink" title="CAP theorem"></a>CAP theorem</h3><p>A widely misunderstood theoretical result that is not useful in practice. See <code>The CAP theorem</code> on page 336.</p>
+<h3 id="causality"><a href="#causality" class="headerlink" title="causality"></a>causality</h3><p>The dependency between events that arises when one thing <code>happens before</code> another thing in a system. For example, a later event that is in response to an earlier event, or builds upon an earlier event, or should be understood in the light of an earlier event. See <code>The</code>happens-before<code>relationship and concurrency</code> on page 186 and <code>Ordering and Causality</code> on page 339.</p>
+<h3 id="consensus"><a href="#consensus" class="headerlink" title="consensus"></a>consensus</h3><p>A fundamental problem in distributed computing, concerning getting several nodes to agree on something (for example, which node should be the leader for a database cluster). The problem is much harder than it seems at first glance. See <code>Fault-Tolerant Consensus</code> on page 364.</p>
+<h3 id="data-warehouse"><a href="#data-warehouse" class="headerlink" title="data warehouse"></a>data warehouse</h3><p>A database in which data from several different OLTP systems has been combined and prepared to be used for analytics purposes. See <code>Data Warehousing</code> on page 91.</p>
+<h3 id="declarative"><a href="#declarative" class="headerlink" title="declarative"></a>declarative</h3><p>Describing the properties that something should have, but not the exact steps for how to achieve it. In the context of queries, a query optimizer takes a declarative query and decides how it should best be executed. See <code>Query Languages for Data</code> on page 42.</p>
+<h3 id="denormalize"><a href="#denormalize" class="headerlink" title="denormalize"></a>denormalize</h3><p>To introduce some amount of redundancy or duplication in a normalized dataset, typically in the form of a cache or index, in order to speed up reads. A denormalized value is a kind of precomputed query result, similar to a materialized view. See <code>Single-Object and MultiObject Operations</code> on page 228 and <code>Deriving several views from the same event log</code> on page 461.</p>
+<h3 id="derived-data"><a href="#derived-data" class="headerlink" title="derived data"></a>derived data</h3><p>A dataset that is created from some other data through a repeatable process, which you could run again if necessary. Usually, derived data is needed to speed up a particular kind of read access to the data. Indexes, caches, and materialized views<br>are examples of derived data. See the introduction to Part III.</p>
+<h3 id="deterministic"><a href="#deterministic" class="headerlink" title="deterministic"></a>deterministic</h3><p>Describing a function that always produces the same output if you give it the same input. This means it cannot depend on random numbers, the time of day, network communication, or other unpredictable things.</p>
+<h3 id="distributed"><a href="#distributed" class="headerlink" title="distributed"></a>distributed</h3><p>Running on several nodes connected by a network. Characterized by partial failures: some part of the system may be broken while other parts are still working, and it is often impossible for the software to know what exactly is broken. See <code>Faults and Partial Failures</code> on page 274.</p>
+<h3 id="durable"><a href="#durable" class="headerlink" title="durable"></a>durable</h3><p>Storing data in a way such that you believe it will not be lost, even if various faults occur. See <code>Durability</code> on page 226.</p>
+<h3 id="ETL"><a href="#ETL" class="headerlink" title="ETL"></a>ETL</h3><p>Extract–Transform–Load. The process of extracting data from a source database, transforming it into a form that is more suitable for analytic queries, and loading it into a data warehouse or batch processing system. See <code>Data Warehousing</code> on page 91.</p>
+<h3 id="failover"><a href="#failover" class="headerlink" title="failover"></a>failover</h3><p>In systems that have a single leader, failover is the process of moving the leadership role from one node to another. See <code>Handling Node Outages</code> on page 156.</p>
+<h3 id="fault-tolerant"><a href="#fault-tolerant" class="headerlink" title="fault-tolerant"></a>fault-tolerant</h3><p>Able to recover automatically if something goes wrong (e.g., if a machine crashes or a network link fails). See <code>Reliability</code> on page 6.</p>
+<h3 id="flow-control"><a href="#flow-control" class="headerlink" title="flow control"></a>flow control</h3><p>See backpressure.</p>
+<h3 id="follower"><a href="#follower" class="headerlink" title="follower"></a>follower</h3><p>A replica that does not directly accept any writes from clients, but only processes data changes that it receives from a leader. Also known as a secondary, slave, read replica, or hot standby. See <code>Leaders and Followers</code> on page 152. full-text search Searching text by arbitrary keywords, often with additional features such as matching similarly spelled words or synonyms. A full-text index is a kind of secondary index that supports such queries. See <code>Full-text search and fuzzy indexes</code> on page 88.</p>
+<h3 id="graph"><a href="#graph" class="headerlink" title="graph"></a>graph</h3><p>A data structure consisting of vertices (things that you can refer to, also known as nodes or entities) and edges (connections from one vertex to another, also known as relationships or arcs). See <code>Graph-Like Data Models</code> on page 49.</p>
+<h3 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h3><p>A function that turns an input into a random-looking number. The same input always returns the same number as output. Two different inputs are very likely to have two different numbers as output, although it is possible that two different inputs produce the same output (this is called a collision). See <code>Partitioning by Hash of Key</code> on page 203.</p>
+<h3 id="idempotent"><a href="#idempotent" class="headerlink" title="idempotent"></a>idempotent</h3><p>Describing an operation that can be safely retried; if it is executed more than once, it has the same effect as if it was only executed once. See <code>Idempotence</code> on page 478.</p>
+<h3 id="index"><a href="#index" class="headerlink" title="index"></a>index</h3><p>A data structure that lets you efficiently search for all records that have a particular value in a particular field. See <code>Data
+Structures That Power Your Database</code> on page 70.</p>
+<h3 id="isolation"><a href="#isolation" class="headerlink" title="isolation"></a>isolation</h3><p>In the context of transactions, describing the degree to which concurrently executing transactions can interfere with each other. Serializable isolation provides the strongest guarantees, but weaker isolation levels are also used. See <code>Isolation</code> on page 225.</p>
+<h3 id="join"><a href="#join" class="headerlink" title="join"></a>join</h3><p>To bring together records that have something in common. Most commonly used in the case where one record has a reference to another (a foreign key, a document reference, an edge in a graph) and a query needs to get the record that the reference points to. See <code>Many-to-One and Many-to-Many Relationships</code> on page 33 and <code>Reduce-Side Joins and Grouping</code> on page 403.</p>
+<h3 id="leader"><a href="#leader" class="headerlink" title="leader"></a>leader</h3><p>When data or a service is replicated across several nodes, the leader is the designated replica that is allowed to make changes. A leader may be elected through some protocol, or manually chosen by an administrator. Also known as the primary or master. See <code>Leaders and Followers</code> on page 152.</p>
+<h3 id="linearizable"><a href="#linearizable" class="headerlink" title="linearizable"></a>linearizable</h3><p>Behaving as if there was only a single copy of data in the system, which is updated by atomic operations. See <code>Linearizability</code> on page 324.</p>
+<h3 id="locality"><a href="#locality" class="headerlink" title="locality"></a>locality</h3><p>A performance optimization: putting several pieces of data in the same place if they are frequently needed at the same time. See <code>Data locality for queries</code> on page 41.</p>
+<h3 id="lock"><a href="#lock" class="headerlink" title="lock"></a>lock</h3><p>A mechanism to ensure that only one thread, node, or transaction can access something, and anyone else who wants to access the same thing must wait until the lock is released. See <code>Two-Phase Locking (2PL)</code> on page 257 and <code>The leader and the lock</code> on page 301.</p>
+<h3 id="log"><a href="#log" class="headerlink" title="log"></a>log</h3><p>An append-only file for storing data. A write-ahead log is used to make a storage engine resilient against crashes (see <code>Making B-trees reliable</code> on page 82), a log-structured storage engine uses logs as its primary storage format (see <code>SSTables and LSM-Trees</code> on page 76), a replication log is used to copy writes from a leader to followers (see <code>Leaders and Followers</code> on<br>page 152), and an event log can represent a data stream (see <code>Partitioned Logs</code> on page 446).</p>
+<h3 id="materialize"><a href="#materialize" class="headerlink" title="materialize"></a>materialize</h3><p>To perform a computation eagerly and write out its result, as opposed to calculating it on demand when requested. See <code>Aggregation: Data Cubes and Materialized Views</code> on page 101 and <code>Materialization of Intermediate State</code> on page 419.</p>
+<h3 id="node"><a href="#node" class="headerlink" title="node"></a>node</h3><p>An instance of some software running on a computer, which communicates with other nodes via a network in order to accomplish some task.</p>
+<h3 id="normalized"><a href="#normalized" class="headerlink" title="normalized"></a>normalized</h3><p>Structured in such a way that there is no redundancy or duplication. In a normalized database, when some piece of data changes, you only need to change it in one place, not many copies in many different places. See <code>Many-to-One and Many-to-Many Relationships</code> on page 33.</p>
+<h3 id="OLAP"><a href="#OLAP" class="headerlink" title="OLAP"></a>OLAP</h3><p>Online analytic processing. Access pattern characterized by aggregating (e.g., count, sum, average) over a large number of records. See <code>Transaction Processing or Analytics?</code> on page 90.</p>
+<h3 id="OLTP"><a href="#OLTP" class="headerlink" title="OLTP"></a>OLTP</h3><p>Online transaction processing. Access pattern characterized by fast queries that read or write a small number of records, usually indexed by key. See <code>Transaction Processing or Analytics?</code> on page 90.</p>
+<h3 id="partitioning"><a href="#partitioning" class="headerlink" title="partitioning"></a>partitioning</h3><p>Splitting up a large dataset or computation that is too big for a single machine into smaller parts and spreading them across several machines. Also known as sharding. See Chapter 6.</p>
+<h3 id="percentile"><a href="#percentile" class="headerlink" title="percentile"></a>percentile</h3><p>A way of measuring the distribution of values by counting how many values are above or below some threshold. For example, the 95th percentile response time during some period is the time t such that 95% of requests in that period complete in less than t, and 5% take longer than t. See <code>Describing Performance</code> on page 13.</p>
+<h3 id="primary-key"><a href="#primary-key" class="headerlink" title="primary key"></a>primary key</h3><p>A value (typically a number or a string) that uniquely identifies a record. In many applications, primary keys are generated by the system when a record is created (e.g., sequentially or randomly); they are not usually set by users. See also secondary index.</p>
+<h3 id="quorum"><a href="#quorum" class="headerlink" title="quorum"></a>quorum</h3><p>The minimum number of nodes that need to vote on an operation before it can be considered successful. See <code>Quorums for reading and writing</code> on page 179.</p>
+<h3 id="rebalance"><a href="#rebalance" class="headerlink" title="rebalance"></a>rebalance</h3><p>To move data or services from one node to another in order to spread the load fairly. See <code>Rebalancing Partitions</code> on page 209.</p>
+<h3 id="replication"><a href="#replication" class="headerlink" title="replication"></a>replication</h3><p>Keeping a copy of the same data on several nodes (replicas) so that it remains accessible if a node becomes unreachable. See Chapter 5.</p>
+<h3 id="schema"><a href="#schema" class="headerlink" title="schema"></a>schema</h3><p>A description of the structure of some data, including its fields and datatypes. Whether some data conforms to a schema can be checked at various points in the data’s lifetime (see <code>Schema flexibility in the document model</code> on page 39), and a schema can change over time (see Chapter 4).</p>
+<h3 id="secondary-index"><a href="#secondary-index" class="headerlink" title="secondary index"></a>secondary index</h3><p>An additional data structure that is maintained alongside the primary data storage and which allows you to efficiently search for records that match a certain kind of condition. See <code>Other Indexing Structures</code> on page 85 and <code>Partitioning and Secondary Indexes</code> on page 206.</p>
+<h3 id="serializable"><a href="#serializable" class="headerlink" title="serializable"></a>serializable</h3><p>A guarantee that if several transactions execute concurrently, they behave the same as if they had executed one at a time, in some serial order. See <code>Serializability</code> on page 251.</p>
+<h3 id="shared-nothing"><a href="#shared-nothing" class="headerlink" title="shared-nothing"></a>shared-nothing</h3><p>An architecture in which independent nodes—each with their own CPUs, memory, and disks are connected via a conventional network, in contrast to sharedmemory or shared-disk architectures. See the introduction to Part II.</p>
+<h3 id="skew"><a href="#skew" class="headerlink" title="skew"></a>skew</h3><ol>
+<li>Imbalanced load across partitions, such that some partitions have lots of requests or data, and others have much less. Also known as hot spots. See <code>Skewed Workloads and Relieving Hot Spots</code> on page 205 and <code>Handling skew</code> on page 407.</li>
+<li>A timing anomaly that causes events to appear in an unexpected, nonsequential order. See the discussions of read skew in <code>Snapshot Isolation and Repeatable Read</code> on page 237, write skew in <code>Write Skew and Phantoms</code> on page 246, and clock skew in <code>Timestamps for ordering events</code> on page 291.</li>
+</ol>
+<h3 id="split-brain"><a href="#split-brain" class="headerlink" title="split brain"></a>split brain</h3><p>A scenario in which two nodes simultaneously believe themselves to be the leader, and which may cause system guarantees to be violated. See <code>Handling Node Outages</code> on page 156 and <code>The Truth Is Defined by the Majority</code> on page 300.</p>
+<h3 id="stored-procedure"><a href="#stored-procedure" class="headerlink" title="stored procedure"></a>stored procedure</h3><p>A way of encoding the logic of a transaction such that it can be entirely executed on a database server, without communicating back and forth with a client during the transaction. See <code>Actual Serial Execution</code> on page 252.</p>
+<h3 id="stream-process"><a href="#stream-process" class="headerlink" title="stream process"></a>stream process</h3><p>A continually running computation that consumes a never-ending stream of events as input, and derives some output from it. See Chapter 11.</p>
+<h3 id="synchronous"><a href="#synchronous" class="headerlink" title="synchronous"></a>synchronous</h3><p>The opposite of asynchronous.</p>
+<h3 id="system-of-record"><a href="#system-of-record" class="headerlink" title="system of record"></a>system of record</h3><p>A system that holds the primary, authoritative version of some data, also known as the source of truth. Changes are first written here, and other datasets may be derived from the system of record. See the introduction to Part III.</p>
+<h3 id="timeout"><a href="#timeout" class="headerlink" title="timeout"></a>timeout</h3><p>One of the simplest ways of detecting a fault, namely by observing the lack of a response within some amount of time. However, it is impossible to know whether a timeout is due to a problem with the remote node, or an issue in the network. See <code>Timeouts and Unbounded Delays</code> on page 281.</p>
+<h3 id="total-order"><a href="#total-order" class="headerlink" title="total order"></a>total order</h3><p>A way of comparing things (e.g., timestamps) that allows you to always say which one of two things is greater and which one is lesser. An ordering in which some things are incomparable (you cannot say which is greater or smaller) is called a partial order. See <code>The causal order is not a total order</code> on page 341.</p>
+<h3 id="transaction"><a href="#transaction" class="headerlink" title="transaction"></a>transaction</h3><p>Grouping together several reads and writes into a logical unit, in order to simplify error handling and concurrency issues. See Chapter 7.</p>
+<h3 id="two-phase-commit-2PC"><a href="#two-phase-commit-2PC" class="headerlink" title="two-phase commit (2PC)"></a>two-phase commit (2PC)</h3><p>An algorithm to ensure that several database nodes either all commit or all abort a transaction. See <code>Atomic Commit and Two-Phase Commit (2PC)</code> on page 354.</p>
+<h3 id="two-phase-locking-2PL"><a href="#two-phase-locking-2PL" class="headerlink" title="two-phase locking (2PL)"></a>two-phase locking (2PL)</h3><p>An algorithm for achieving serializable isolation that works by a transaction acquiring a lock on all data it reads or writes, and holding the lock until the end of the transaction. See <code>Two-Phase Locking (2PL)</code> on page 257.</p>
+<h3 id="unbounded"><a href="#unbounded" class="headerlink" title="unbounded"></a>unbounded</h3><p>Not having any known upper limit or size. The opposite of bounded.</p>
+<h2 id="中文"><a href="#中文" class="headerlink" title="中文"></a>中文</h2><h3 id="异步（asynchronous）"><a href="#异步（asynchronous）" class="headerlink" title="异步（asynchronous）"></a>异步（asynchronous）</h3><p>不等待某些事情完成（例如，将数据发送到网络中的另一个节点），并且不会假设要花多长时间。请参阅第153页上的<code>同步与异步复制</code>，第284页上的<code>同步与异步网络</code>，以及第306页上的<code>系统模型与现实</code>。</p>
+<h3 id="原子（atomic）"><a href="#原子（atomic）" class="headerlink" title="原子（atomic）"></a>原子（atomic）</h3><ol>
+<li>在并发操作的上下文中：描述一个在单个时间点看起来生效的操作，所以另一个并发进程永远不会遇到处于<code>半完成</code>状态的操作。另见隔离。</li>
+<li>在事务的上下文中：将一些写入操作分为一组，这组写入要么全部提交成功，要么遇到错误时全部回滚。参见第223页的<code>原子性</code>和第354页的<code>原子提交和两阶段提交（2PC）</code>。</li>
+</ol>
+<h3 id="背压（backpressure）"><a href="#背压（backpressure）" class="headerlink" title="背压（backpressure）"></a>背压（backpressure）</h3><p>接收方接收数据速度较慢时，强制降低发送方的数据发送速度。也称为流量控制。请参阅第441页上的<code>消息系统</code>。</p>
+<h3 id="批处理（batch-process）"><a href="#批处理（batch-process）" class="headerlink" title="批处理（batch process）"></a>批处理（batch process）</h3><p>一种计算，它将一些固定的（通常是大的）数据集作为输入，并将其他一些数据作为输出，而不修改输入。见第十章。</p>
+<h3 id="边界（bounded）"><a href="#边界（bounded）" class="headerlink" title="边界（bounded）"></a>边界（bounded）</h3><p>有一些已知的上限或大小。例如，网络延迟情况（请参阅<code>超时和未定义的延迟</code>在本页281）和数据集（请参阅第11章的介绍）。</p>
+<h3 id="拜占庭故障（Byzantine-fault）"><a href="#拜占庭故障（Byzantine-fault）" class="headerlink" title="拜占庭故障（Byzantine fault）"></a>拜占庭故障（Byzantine fault）</h3><p>表现异常的节点，这种异常可能以任意方式出现，例如向其他节点发送矛盾或恶意消息。请参阅第304页上的<code>拜占庭故障</code>。</p>
+<h3 id="缓存（cache）"><a href="#缓存（cache）" class="headerlink" title="缓存（cache）"></a>缓存（cache）</h3><p>一种组件，通过存储最近使用过的数据，加快未来对相同数据的读取速度。缓存中通常存放部分数据：因此，如果缓存中缺少某些数据，则必须从某些底层较慢的数据存储系统中，获取完整的数据副本。</p>
+<h3 id="CAP定理（CAP-theorem）"><a href="#CAP定理（CAP-theorem）" class="headerlink" title="CAP定理（CAP theorem）"></a>CAP定理（CAP theorem）</h3><p>一个被广泛误解的理论结果，在实践中是没有用的。参见第336页的<code>CAP定理</code>。</p>
+<h3 id="因果关系（causality）"><a href="#因果关系（causality）" class="headerlink" title="因果关系（causality）"></a>因果关系（causality）</h3><p>事件之间的依赖关系，当一件事发生在另一件事情之前。例如，后面的事件是对早期事件的回应，或者依赖于更早的事件，或者应该根据先前的事件来理解。请参阅第186页上的<code>发生之前的关系和并发性</code>和第339页上的<code>排序和因果关系</code>。</p>
+<h3 id="共识（consensus）"><a href="#共识（consensus）" class="headerlink" title="共识（consensus）"></a>共识（consensus）</h3><p>分布式计算的一个基本问题，就是让几个节点同意某些事情（例如，哪个节点应该是数据库集群的领导者）。问题比乍看起来要困难得多。请参阅第364页上的<code>容错共识</code>。</p>
+<h3 id="数据仓库（data-warehouse）"><a href="#数据仓库（data-warehouse）" class="headerlink" title="数据仓库（data warehouse）"></a>数据仓库（data warehouse）</h3><p>一个数据库，其中来自几个不同的OLTP系统的数据已经被合并和准备用于分析目的。请参阅第91页上的<code>数据仓库</code>。</p>
+<h3 id="声明式（declarative）"><a href="#声明式（declarative）" class="headerlink" title="声明式（declarative）"></a>声明式（declarative）</h3><p>描述某些东西应有的属性，但不知道如何实现它的确切步骤。在查询的上下文中，查询优化器采用声明性查询并决定如何最好地执行它。请参阅第42页上的<code>数据的查询语言</code>。</p>
+<h3 id="非规范化（denormalize）"><a href="#非规范化（denormalize）" class="headerlink" title="非规范化（denormalize）"></a>非规范化（denormalize）</h3><p>为了加速读取，在标准数据集中引入一些冗余或重复数据，通常采用缓存或索引的形式。非规范化的值是一种预先计算的查询结果，像物化视图。请参见<code>单对象和多对象操作</code>（第228页）和<code>从同一事件日志中派生多个视图</code>（第461页）。</p>
+<h3 id="派生数据（derived-data）"><a href="#派生数据（derived-data）" class="headerlink" title="派生数据（derived data）"></a>派生数据（derived data）</h3><p>一种数据集，根据其他数据通过可重复运行的流程创建。必要时，你可以运行该流程再次创建派生数据。派生数据通常用于提高特定数据的读取速度。常见的派生数据有索引、缓存和物化视图。参见第三部分的介绍。</p>
+<h3 id="确定性（deterministic）"><a href="#确定性（deterministic）" class="headerlink" title="确定性（deterministic）"></a>确定性（deterministic）</h3><p>描述一个函数，如果给它相同的输入，则总是产生相同的输出。这意味着它不能依赖于随机数字、时间、网络通信或其他不可预测的事情。</p>
+<h3 id="分布式（distributed）"><a href="#分布式（distributed）" class="headerlink" title="分布式（distributed）"></a>分布式（distributed）</h3><p>在由网络连接的多个节点上运行。对于部分节点故障，具有容错性：系统的一部分发生故障时，其他部分仍可以正常工作，通常情况下，软件无需了解故障相关的确切情况。请参阅第274页上的<code>故障和部分故障</code>。</p>
+<h3 id="持久（durable）"><a href="#持久（durable）" class="headerlink" title="持久（durable）"></a>持久（durable）</h3><p>以某种方式存储数据，即使发生各种故障，也不会丢失数据。请参阅第226页上的<code>持久性</code>。</p>
+<h3 id="ETL（Extract-Transform-Load）"><a href="#ETL（Extract-Transform-Load）" class="headerlink" title="ETL（Extract-Transform-Load）"></a>ETL（Extract-Transform-Load）</h3><p>提取-转换-加载（Extract-Transform-Load）。从源数据库中提取数据，将其转换为更适合分析查询的形式，并将其加载到数据仓库或批处理系统中的过程。请参阅第91页上的<code>数据仓库</code>。</p>
+<h3 id="故障转移（failover）"><a href="#故障转移（failover）" class="headerlink" title="故障转移（failover）"></a>故障转移（failover）</h3><p>在具有单一领导者的系统中，故障转移是将领导角色从一个节点转移到另一个节点的过程。请参阅第156页的<code>处理节点故障</code>。</p>
+<h3 id="容错（fault-tolerant）"><a href="#容错（fault-tolerant）" class="headerlink" title="容错（fault-tolerant）"></a>容错（fault-tolerant）</h3><p>如果出现问题（例如，机器崩溃或网络连接失败），可以自动恢复。请参阅第6页上的<code>可靠性</code>。</p>
+<h3 id="流量控制（flow-control）"><a href="#流量控制（flow-control）" class="headerlink" title="流量控制（flow control）"></a>流量控制（flow control）</h3><p>见背压（backpressure）。</p>
+<h3 id="追随者（follower）"><a href="#追随者（follower）" class="headerlink" title="追随者（follower）"></a>追随者（follower）</h3><p>一种数据副本，仅处理领导者发出的数据变更，不直接接受来自客户端的任何写入。也称为辅助、仆从、只读副本或热备份。请参阅第152页上的<code>领导和追随者</code>。</p>
+<h3 id="全文检索（full-text-search）"><a href="#全文检索（full-text-search）" class="headerlink" title="全文检索（full-text search）"></a>全文检索（full-text search）</h3><p>通过任意关键字来搜索文本，通常具有附加特征，例如匹配类似的拼写词或同义词。全文索引是一种支持这种查询的次级索引。请参阅第88页上的<code>全文搜索和模糊索引</code>。</p>
+<h3 id="图（graph）"><a href="#图（graph）" class="headerlink" title="图（graph）"></a>图（graph）</h3><p>一种数据结构，由顶点（可以指向的东西，也称为节点或实体）和边（从一个顶点到另一个顶点的连接，也称为关系或弧）组成。请参阅第49页上的<code>和图相似的数据模型</code>。 </p>
+<h3 id="散列（hash）"><a href="#散列（hash）" class="headerlink" title="散列（hash）"></a>散列（hash）</h3><p>将输入转换为看起来像随机数值的函数。相同的输入会转换为相同的数值，不同的输入一般会转换为不同的数值，也可能转换为相同数值（也被称为冲突）。请参阅第203页的<code>根据键的散列值分隔</code>。</p>
+<h3 id="幂等（idempotent）"><a href="#幂等（idempotent）" class="headerlink" title="幂等（idempotent）"></a>幂等（idempotent）</h3><p>用于描述一种操作可以安全地重试执行，即执行多次的效果和执行一次的效果相同。请参阅第478页的<code>幂等</code>。</p>
+<h3 id="索引（index）"><a href="#索引（index）" class="headerlink" title="索引（index）"></a>索引（index）</h3><p>一种数据结构。通过索引，你可以根据特定字段的值，在所有数据记录中进行高效检索。请参阅第70页的<code>让数据库更强大的数据结构</code>。</p>
+<h3 id="隔离性（isolation）"><a href="#隔离性（isolation）" class="headerlink" title="隔离性（isolation）"></a>隔离性（isolation）</h3><p>在事务上下文中，用于描述并发执行事务的互相干扰程度。串行运行具有最强的隔离性，不过其它程度的隔离也通常被使用。请参阅第225页的<code>隔离</code>。</p>
+<h3 id="连接（join）"><a href="#连接（join）" class="headerlink" title="连接（join）"></a>连接（join）</h3><p>汇集有共同点的记录。在一个记录与另一个记录有关（外键，文档参考，图中的边）的情况下最常用，查询需要获取参考所指向的记录。请参阅第33页上的<code>多对一和多对多关系</code>和第393页上的<code>减少端连接和分组</code>。</p>
+<h3 id="领导者（leader）"><a href="#领导者（leader）" class="headerlink" title="领导者（leader）"></a>领导者（leader）</h3><p>当数据或服务被复制到多个节点时，由领导者分发已授权变更的数据副本。领导者可以通过某些协议选举产生，也可以由管理者手动选择。也被称为主人。请参阅第152页的<code>领导者和追随者</code>。</p>
+<h3 id="线性化（linearizable）"><a href="#线性化（linearizable）" class="headerlink" title="线性化（linearizable）"></a>线性化（linearizable）</h3><p>表现为系统中只有一份通过原子操作更新的数据副本。请参阅第324页的<code>线性化</code>。</p>
+<h3 id="局部性（locality）"><a href="#局部性（locality）" class="headerlink" title="局部性（locality）"></a>局部性（locality）</h3><p>一种性能优化方式，如果经常在相同的时间请求一些离散数据，把这些数据放到一个位置。请参阅第41页的<code>请求数据的局部性</code>。</p>
+<h3 id="锁（lock）"><a href="#锁（lock）" class="headerlink" title="锁（lock）"></a>锁（lock）</h3><p>一种保证只有一个线程、节点或事务可以访问的机制，如果其它线程、节点或事务想访问相同元素，则必须等待锁被释放。请参阅第257页的<code>两段锁（2PL）</code>和301页的<code>领导者和锁</code>。</p>
+<h3 id="日志（log）"><a href="#日志（log）" class="headerlink" title="日志（log）"></a>日志（log）</h3><p>日志是一个只能以追加方式写入的文件，用于存放数据。预写式日志用于在存储引擎崩溃时恢复数据（请参阅第82页的<code>使二叉树更稳定</code>）；结构化日志存储引擎使用日志作为它的主要存储格式（请参阅第76页的<code>有序字符串表和日志结构的合并树</code>）；复制型日志用于把写入从领导者复制到追随者（请参阅第152页的<code>领导者和追随者</code>）；事件性日志可以表现为数据流（请参阅第446页的<code>分段日志</code>）。</p>
+<h3 id="物化（materialize）"><a href="#物化（materialize）" class="headerlink" title="物化（materialize）"></a>物化（materialize）</h3><p>急切地计算并写出结果，而不是在请求时计算。请参阅第101页的<code>聚合：数据立方和物化视图</code>和419页的<code>中间状态的物化</code>。</p>
+<h3 id="节点（node）"><a href="#节点（node）" class="headerlink" title="节点（node）"></a>节点（node）</h3><p>计算机上运行的一些软件的实例，通过网络与其他节点通信以完成某项任务。</p>
+<h3 id="规范化（normalized）"><a href="#规范化（normalized）" class="headerlink" title="规范化（normalized）"></a>规范化（normalized）</h3><p>以没有冗余或重复的方式进行结构化。 在规范化数据库中，当某些数据发生变化时，您只需要在一个地方进行更改，而不是在许多不同的地方复制很多次。 请参阅第33页上的<code>多对一和多对多关系</code>。</p>
+<h3 id="OLAP（Online-Analytic-Processing）"><a href="#OLAP（Online-Analytic-Processing）" class="headerlink" title="OLAP（Online Analytic Processing）"></a>OLAP（Online Analytic Processing）</h3><p>在线分析处理。 通过对大量记录进行聚合（例如，计数，总和，平均）来表征的访问模式。 请参阅第90页上的<code>交易处理或分析？</code>。</p>
+<h3 id="OLTP（Online-Transaction-Processing）"><a href="#OLTP（Online-Transaction-Processing）" class="headerlink" title="OLTP（Online Transaction Processing）"></a>OLTP（Online Transaction Processing）</h3><p>在线事务处理。 访问模式的特点是快速查询，读取或写入少量记录，这些记录通常通过键索引。 请参阅第90页上的<code>交易处理或分析？</code>。</p>
+<h3 id="分区（partitioning）"><a href="#分区（partitioning）" class="headerlink" title="分区（partitioning）"></a>分区（partitioning）</h3><p>将单机上的大型数据集或计算结果拆分为较小部分，并将其分布到多台机器上。 也称为分片。 见第6章。</p>
+<h3 id="百分位点（percentile）"><a href="#百分位点（percentile）" class="headerlink" title="百分位点（percentile）"></a>百分位点（percentile）</h3><p>通过计算有多少值高于或低于某个阈值来衡量值分布的方法。 例如，某个时间段的第95个百分位响应时间是时间t，则该时间段中，95％的请求完成时间小于t，5％的请求完成时间要比t长。 请参阅第13页上的<code>描述性能</code>。</p>
+<h3 id="主键（primary-key）"><a href="#主键（primary-key）" class="headerlink" title="主键（primary key）"></a>主键（primary key）</h3><p>唯一标识记录的值（通常是数字或字符串）。 在许多应用程序中，主键由系统在创建记录时生成（例如，按顺序或随机）; 它们通常不由用户设置。 另请参阅二级索引。</p>
+<h3 id="法定人数（quorum）"><a href="#法定人数（quorum）" class="headerlink" title="法定人数（quorum）"></a>法定人数（quorum）</h3><p>在操作完成之前，需要对操作进行投票的最少节点数量。 请参阅第179页上的<code>读和写的法定人数</code>。</p>
+<h3 id="再平衡（rebalance）"><a href="#再平衡（rebalance）" class="headerlink" title="再平衡（rebalance）"></a>再平衡（rebalance）</h3><p>将数据或服务从一个节点移动到另一个节点以实现负载均衡。 请参阅第209页上的<code>再平衡分区</code>。</p>
+<h3 id="复制（replication）"><a href="#复制（replication）" class="headerlink" title="复制（replication）"></a>复制（replication）</h3><p>在几个节点（副本）上保留相同数据的副本，以便在某些节点无法访问时，数据仍可访问。请参阅第5章。</p>
+<h3 id="模式（schema）"><a href="#模式（schema）" class="headerlink" title="模式（schema）"></a>模式（schema）</h3><p>一些数据结构的描述，包括其字段和数据类型。 可以在数据生命周期的不同点检查某些数据是否符合模式（请参阅第39页上的<code>文档模型中的模式灵活性</code>），模式可以随时间变化（请参阅第4章）。</p>
+<h3 id="次级索引（secondary-index）"><a href="#次级索引（secondary-index）" class="headerlink" title="次级索引（secondary index）"></a>次级索引（secondary index）</h3><p>与主要数据存储器一起维护的附加数据结构，使您可以高效地搜索与某种条件相匹配的记录。 请参阅第85页上的<code>其他索引结构</code>和第206页上的<code>分区和二级索引</code>。</p>
+<h3 id="可序列化（serializable）"><a href="#可序列化（serializable）" class="headerlink" title="可序列化（serializable）"></a>可序列化（serializable）</h3><p>保证多个并发事务同时执行时，它们的行为与按顺序逐个执行事务相同。 请参阅第251页上的<code>可序列化</code>。</p>
+<h3 id="无共享（shared-nothing）"><a href="#无共享（shared-nothing）" class="headerlink" title="无共享（shared-nothing）"></a>无共享（shared-nothing）</h3><p>与共享内存或共享磁盘架构相比，独立节点（每个节点都有自己的CPU，内存和磁盘）通过传统网络连接。 见第二部分的介绍。</p>
+<h3 id="偏斜（skew）"><a href="#偏斜（skew）" class="headerlink" title="偏斜（skew）"></a>偏斜（skew）</h3><ol>
+<li>各分区负载不平衡，例如某些分区有大量请求或数据，而其他分区则少得多。也被称为热点。请参阅第205页上的<code>工作负载偏斜和减轻热点</code>和第407页上的<code>处理偏斜</code>。</li>
+<li>时间线异常导致事件以不期望的顺序出现。 请参阅第237页上的<code>快照隔离和可重复读取</code>中的关于读取偏斜的讨论，第246页上的<code>写入偏斜和模糊</code>中的写入偏斜以及第291页上的<code>订购事件的时间戳</code>中的时钟偏斜。</li>
+</ol>
+<h3 id="脑裂（split-brain）"><a href="#脑裂（split-brain）" class="headerlink" title="脑裂（split brain）"></a>脑裂（split brain）</h3><p>两个节点同时认为自己是领导者的情况，这种情况可能违反系统担保。 请参阅第156页的<code>处理节点中断</code>和第300页的<code>真相由多数定义</code>。</p>
+<h3 id="存储过程（stored-procdure）"><a href="#存储过程（stored-procdure）" class="headerlink" title="存储过程（stored procdure）"></a>存储过程（stored procdure）</h3><p>一种对事务逻辑进行编码的方式，它可以完全在数据库服务器上执行，事务执行期间无需与客户端通信。 请参阅第252页的<code>实际串行执行</code>。</p>
+<h3 id="流处理（stream-process）"><a href="#流处理（stream-process）" class="headerlink" title="流处理（stream process）"></a>流处理（stream process）</h3><p>持续运行的计算。可以持续接收事件流作为输入，并得出一些输出。 见第11章。</p>
+<h3 id="同步（synchronous）"><a href="#同步（synchronous）" class="headerlink" title="同步（synchronous）"></a>同步（synchronous）</h3><p>异步的反义词。</p>
+<h3 id="记录系统（system-of-record）"><a href="#记录系统（system-of-record）" class="headerlink" title="记录系统（system of record）"></a>记录系统（system of record）</h3><p>一个保存主要权威版本数据的系统，也被称为真相的来源。首先在这里写入数据变更，其他数据集可以从记录系统派生。 参见第三部分的介绍。</p>
+<h3 id="超时（timeout）"><a href="#超时（timeout）" class="headerlink" title="超时（timeout）"></a>超时（timeout）</h3><p>检测故障的最简单方法之一，即在一段时间内观察是否缺乏响应。 但是，不可能知道超时是由于远程节点的问题还是网络中的问题造成的。 请参阅第281页上的<code>超时和无限延迟</code>。</p>
+<h3 id="全序（total-order）"><a href="#全序（total-order）" class="headerlink" title="全序（total order）"></a>全序（total order）</h3><p>一种比较事物的方法（例如时间戳），可以让您总是说出两件事中哪一件更大，哪件更小。 总的来说，有些东西是无法比拟的（不能说哪个更大或更小）的顺序称为偏序。 请参见第341页的<code>因果顺序不是全序</code>。</p>
+<h3 id="事务（transaction）"><a href="#事务（transaction）" class="headerlink" title="事务（transaction）"></a>事务（transaction）</h3><p>为了简化错误处理和并发问题，将几个读写操作分组到一个逻辑单元中。 见第7章。</p>
+<h3 id="两阶段提交（2PC-two-phase-commit）"><a href="#两阶段提交（2PC-two-phase-commit）" class="headerlink" title="两阶段提交（2PC, two-phase commit）"></a>两阶段提交（2PC, two-phase commit）</h3><p>一种确保多个数据库节点全部提交或全部中止事务的算法。 请参阅第354页上的<code>原子提交和两阶段提交（2PC）</code>。</p>
+<h3 id="两阶段锁定（2PL-two-phase-locking）"><a href="#两阶段锁定（2PL-two-phase-locking）" class="headerlink" title="两阶段锁定（2PL, two-phase locking）"></a>两阶段锁定（2PL, two-phase locking）</h3><p>一种用于实现可序列化隔离的算法，该算法通过事务获取对其读取或写入的所有数据的锁，直到事务结束。 请参阅第257页上的<code>两阶段锁定（2PL）</code>。</p>
+<h3 id="无边界（unbounded）"><a href="#无边界（unbounded）" class="headerlink" title="无边界（unbounded）"></a>无边界（unbounded）</h3><p>没有任何已知的上限或大小。 反义词是边界（bounded）。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://legacy.gitbook.com/book/vonng/ddia-cn/details" target="_blank" rel="noopener">设计数据密集型应用 - 中文翻译</a><br><a href="https://github.com/ept/ddia-references" target="_blank" rel="noopener">ddia-references</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>yjhmelody</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://yjhmelody.github.io/2018/08/30/《DDIA》概念整理/" title="《DDIA》概念整理">https://yjhmelody.github.io/2018/08/30/《DDIA》概念整理/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Distrubuted-System/" rel="tag"># Distrubuted System</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/27/记小时候一些事情/" rel="next" title="记小时候一些事情">
+                <i class="fa fa-chevron-left"></i> 记小时候一些事情
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/css/images/mylogo.jpg"
+                alt="yjhmelody" />
+            
+              <p class="site-author-name" itemprop="name">yjhmelody</p>
+              <p class="site-description motion-element" itemprop="description">许多事物值得记录</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/yjhmelody" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:465402634@qq.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.douban.com/people/yjhmelody" target="_blank" title="Douban"><i class="fa fa-fw fa-globe"></i>Douban</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#英文"><span class="nav-number">1.</span> <span class="nav-text">英文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#asynchronous"><span class="nav-number">1.1.</span> <span class="nav-text">asynchronous</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#atomic"><span class="nav-number">1.2.</span> <span class="nav-text">atomic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#backpressure"><span class="nav-number">1.3.</span> <span class="nav-text">backpressure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#batch-process"><span class="nav-number">1.4.</span> <span class="nav-text">batch process</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bounded"><span class="nav-number">1.5.</span> <span class="nav-text">bounded</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Byzantine-fault"><span class="nav-number">1.6.</span> <span class="nav-text">Byzantine fault</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cache"><span class="nav-number">1.7.</span> <span class="nav-text">cache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CAP-theorem"><span class="nav-number">1.8.</span> <span class="nav-text">CAP theorem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#causality"><span class="nav-number">1.9.</span> <span class="nav-text">causality</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#consensus"><span class="nav-number">1.10.</span> <span class="nav-text">consensus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#data-warehouse"><span class="nav-number">1.11.</span> <span class="nav-text">data warehouse</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#declarative"><span class="nav-number">1.12.</span> <span class="nav-text">declarative</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#denormalize"><span class="nav-number">1.13.</span> <span class="nav-text">denormalize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#derived-data"><span class="nav-number">1.14.</span> <span class="nav-text">derived data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#deterministic"><span class="nav-number">1.15.</span> <span class="nav-text">deterministic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#distributed"><span class="nav-number">1.16.</span> <span class="nav-text">distributed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#durable"><span class="nav-number">1.17.</span> <span class="nav-text">durable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ETL"><span class="nav-number">1.18.</span> <span class="nav-text">ETL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#failover"><span class="nav-number">1.19.</span> <span class="nav-text">failover</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fault-tolerant"><span class="nav-number">1.20.</span> <span class="nav-text">fault-tolerant</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flow-control"><span class="nav-number">1.21.</span> <span class="nav-text">flow control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#follower"><span class="nav-number">1.22.</span> <span class="nav-text">follower</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#graph"><span class="nav-number">1.23.</span> <span class="nav-text">graph</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hash"><span class="nav-number">1.24.</span> <span class="nav-text">hash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#idempotent"><span class="nav-number">1.25.</span> <span class="nav-text">idempotent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#index"><span class="nav-number">1.26.</span> <span class="nav-text">index</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#isolation"><span class="nav-number">1.27.</span> <span class="nav-text">isolation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#join"><span class="nav-number">1.28.</span> <span class="nav-text">join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leader"><span class="nav-number">1.29.</span> <span class="nav-text">leader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#linearizable"><span class="nav-number">1.30.</span> <span class="nav-text">linearizable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#locality"><span class="nav-number">1.31.</span> <span class="nav-text">locality</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lock"><span class="nav-number">1.32.</span> <span class="nav-text">lock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#log"><span class="nav-number">1.33.</span> <span class="nav-text">log</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#materialize"><span class="nav-number">1.34.</span> <span class="nav-text">materialize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#node"><span class="nav-number">1.35.</span> <span class="nav-text">node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#normalized"><span class="nav-number">1.36.</span> <span class="nav-text">normalized</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OLAP"><span class="nav-number">1.37.</span> <span class="nav-text">OLAP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OLTP"><span class="nav-number">1.38.</span> <span class="nav-text">OLTP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#partitioning"><span class="nav-number">1.39.</span> <span class="nav-text">partitioning</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#percentile"><span class="nav-number">1.40.</span> <span class="nav-text">percentile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#primary-key"><span class="nav-number">1.41.</span> <span class="nav-text">primary key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#quorum"><span class="nav-number">1.42.</span> <span class="nav-text">quorum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rebalance"><span class="nav-number">1.43.</span> <span class="nav-text">rebalance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#replication"><span class="nav-number">1.44.</span> <span class="nav-text">replication</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#schema"><span class="nav-number">1.45.</span> <span class="nav-text">schema</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#secondary-index"><span class="nav-number">1.46.</span> <span class="nav-text">secondary index</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#serializable"><span class="nav-number">1.47.</span> <span class="nav-text">serializable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shared-nothing"><span class="nav-number">1.48.</span> <span class="nav-text">shared-nothing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#skew"><span class="nav-number">1.49.</span> <span class="nav-text">skew</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#split-brain"><span class="nav-number">1.50.</span> <span class="nav-text">split brain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stored-procedure"><span class="nav-number">1.51.</span> <span class="nav-text">stored procedure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stream-process"><span class="nav-number">1.52.</span> <span class="nav-text">stream process</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronous"><span class="nav-number">1.53.</span> <span class="nav-text">synchronous</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#system-of-record"><span class="nav-number">1.54.</span> <span class="nav-text">system of record</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#timeout"><span class="nav-number">1.55.</span> <span class="nav-text">timeout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#total-order"><span class="nav-number">1.56.</span> <span class="nav-text">total order</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transaction"><span class="nav-number">1.57.</span> <span class="nav-text">transaction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#two-phase-commit-2PC"><span class="nav-number">1.58.</span> <span class="nav-text">two-phase commit (2PC)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#two-phase-locking-2PL"><span class="nav-number">1.59.</span> <span class="nav-text">two-phase locking (2PL)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unbounded"><span class="nav-number">1.60.</span> <span class="nav-text">unbounded</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中文"><span class="nav-number">2.</span> <span class="nav-text">中文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异步（asynchronous）"><span class="nav-number">2.1.</span> <span class="nav-text">异步（asynchronous）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原子（atomic）"><span class="nav-number">2.2.</span> <span class="nav-text">原子（atomic）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背压（backpressure）"><span class="nav-number">2.3.</span> <span class="nav-text">背压（backpressure）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#批处理（batch-process）"><span class="nav-number">2.4.</span> <span class="nav-text">批处理（batch process）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#边界（bounded）"><span class="nav-number">2.5.</span> <span class="nav-text">边界（bounded）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拜占庭故障（Byzantine-fault）"><span class="nav-number">2.6.</span> <span class="nav-text">拜占庭故障（Byzantine fault）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存（cache）"><span class="nav-number">2.7.</span> <span class="nav-text">缓存（cache）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CAP定理（CAP-theorem）"><span class="nav-number">2.8.</span> <span class="nav-text">CAP定理（CAP theorem）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#因果关系（causality）"><span class="nav-number">2.9.</span> <span class="nav-text">因果关系（causality）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共识（consensus）"><span class="nav-number">2.10.</span> <span class="nav-text">共识（consensus）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据仓库（data-warehouse）"><span class="nav-number">2.11.</span> <span class="nav-text">数据仓库（data warehouse）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#声明式（declarative）"><span class="nav-number">2.12.</span> <span class="nav-text">声明式（declarative）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非规范化（denormalize）"><span class="nav-number">2.13.</span> <span class="nav-text">非规范化（denormalize）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#派生数据（derived-data）"><span class="nav-number">2.14.</span> <span class="nav-text">派生数据（derived data）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#确定性（deterministic）"><span class="nav-number">2.15.</span> <span class="nav-text">确定性（deterministic）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式（distributed）"><span class="nav-number">2.16.</span> <span class="nav-text">分布式（distributed）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持久（durable）"><span class="nav-number">2.17.</span> <span class="nav-text">持久（durable）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ETL（Extract-Transform-Load）"><span class="nav-number">2.18.</span> <span class="nav-text">ETL（Extract-Transform-Load）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#故障转移（failover）"><span class="nav-number">2.19.</span> <span class="nav-text">故障转移（failover）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#容错（fault-tolerant）"><span class="nav-number">2.20.</span> <span class="nav-text">容错（fault-tolerant）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流量控制（flow-control）"><span class="nav-number">2.21.</span> <span class="nav-text">流量控制（flow control）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#追随者（follower）"><span class="nav-number">2.22.</span> <span class="nav-text">追随者（follower）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全文检索（full-text-search）"><span class="nav-number">2.23.</span> <span class="nav-text">全文检索（full-text search）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图（graph）"><span class="nav-number">2.24.</span> <span class="nav-text">图（graph）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散列（hash）"><span class="nav-number">2.25.</span> <span class="nav-text">散列（hash）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#幂等（idempotent）"><span class="nav-number">2.26.</span> <span class="nav-text">幂等（idempotent）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#索引（index）"><span class="nav-number">2.27.</span> <span class="nav-text">索引（index）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隔离性（isolation）"><span class="nav-number">2.28.</span> <span class="nav-text">隔离性（isolation）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接（join）"><span class="nav-number">2.29.</span> <span class="nav-text">连接（join）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#领导者（leader）"><span class="nav-number">2.30.</span> <span class="nav-text">领导者（leader）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性化（linearizable）"><span class="nav-number">2.31.</span> <span class="nav-text">线性化（linearizable）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部性（locality）"><span class="nav-number">2.32.</span> <span class="nav-text">局部性（locality）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁（lock）"><span class="nav-number">2.33.</span> <span class="nav-text">锁（lock）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志（log）"><span class="nav-number">2.34.</span> <span class="nav-text">日志（log）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#物化（materialize）"><span class="nav-number">2.35.</span> <span class="nav-text">物化（materialize）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#节点（node）"><span class="nav-number">2.36.</span> <span class="nav-text">节点（node）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#规范化（normalized）"><span class="nav-number">2.37.</span> <span class="nav-text">规范化（normalized）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OLAP（Online-Analytic-Processing）"><span class="nav-number">2.38.</span> <span class="nav-text">OLAP（Online Analytic Processing）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OLTP（Online-Transaction-Processing）"><span class="nav-number">2.39.</span> <span class="nav-text">OLTP（Online Transaction Processing）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分区（partitioning）"><span class="nav-number">2.40.</span> <span class="nav-text">分区（partitioning）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#百分位点（percentile）"><span class="nav-number">2.41.</span> <span class="nav-text">百分位点（percentile）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主键（primary-key）"><span class="nav-number">2.42.</span> <span class="nav-text">主键（primary key）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#法定人数（quorum）"><span class="nav-number">2.43.</span> <span class="nav-text">法定人数（quorum）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#再平衡（rebalance）"><span class="nav-number">2.44.</span> <span class="nav-text">再平衡（rebalance）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复制（replication）"><span class="nav-number">2.45.</span> <span class="nav-text">复制（replication）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模式（schema）"><span class="nav-number">2.46.</span> <span class="nav-text">模式（schema）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#次级索引（secondary-index）"><span class="nav-number">2.47.</span> <span class="nav-text">次级索引（secondary index）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可序列化（serializable）"><span class="nav-number">2.48.</span> <span class="nav-text">可序列化（serializable）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无共享（shared-nothing）"><span class="nav-number">2.49.</span> <span class="nav-text">无共享（shared-nothing）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#偏斜（skew）"><span class="nav-number">2.50.</span> <span class="nav-text">偏斜（skew）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脑裂（split-brain）"><span class="nav-number">2.51.</span> <span class="nav-text">脑裂（split brain）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储过程（stored-procdure）"><span class="nav-number">2.52.</span> <span class="nav-text">存储过程（stored procdure）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流处理（stream-process）"><span class="nav-number">2.53.</span> <span class="nav-text">流处理（stream process）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步（synchronous）"><span class="nav-number">2.54.</span> <span class="nav-text">同步（synchronous）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#记录系统（system-of-record）"><span class="nav-number">2.55.</span> <span class="nav-text">记录系统（system of record）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#超时（timeout）"><span class="nav-number">2.56.</span> <span class="nav-text">超时（timeout）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全序（total-order）"><span class="nav-number">2.57.</span> <span class="nav-text">全序（total order）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务（transaction）"><span class="nav-number">2.58.</span> <span class="nav-text">事务（transaction）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两阶段提交（2PC-two-phase-commit）"><span class="nav-number">2.59.</span> <span class="nav-text">两阶段提交（2PC, two-phase commit）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两阶段锁定（2PL-two-phase-locking）"><span class="nav-number">2.60.</span> <span class="nav-text">两阶段锁定（2PL, two-phase locking）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无边界（unbounded）"><span class="nav-number">2.61.</span> <span class="nav-text">无边界（unbounded）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yjhmelody</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Muse</a> v6.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://yjhmelody.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://yjhmelody.github.io/2018/08/30/《DDIA》概念整理/';
+        this.page.identifier = '2018/08/30/《DDIA》概念整理/';
+        this.page.title = '《DDIA》概念整理';
+      };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://yjhmelody.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('2');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+    
+  
+  <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@latest/bookmark.min.js"></script>
+  <script type="text/javascript">
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+
+</body>
+</html>
