@@ -87,7 +87,7 @@ See backpressure.
 ### follower
 A replica that does not directly accept any writes from clients, but only processes data changes that it receives from a leader. Also known as a secondary, slave, read replica, or hot standby. See `Leaders and Followers` on page 152. 
 
-## full-text search 
+### full-text search 
 Searching text by arbitrary keywords, often with additional features such as matching similarly spelled words or synonyms. A full-text index is a kind of secondary index that supports such queries. See `Full-text search and fuzzy indexes` on page 88.
 
 ### graph
