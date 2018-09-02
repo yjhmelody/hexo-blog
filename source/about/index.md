@@ -8,7 +8,7 @@ date: 2018-07-09 15:00:24
 ## 联系方式
 
 - 手机号：15968857843 （一般不接陌生电话）
-- Email：465402634@qq.com/yjh465402634@gmail.com
+- Email：465402634@qq.com / yjh465402634@gmail.com
 - QQ：465402634
 
 ## 个人信息
@@ -40,9 +40,8 @@ date: 2018-07-09 15:00:24
 
 近期期望学习的内容：
 - 函数式编程
-- Haskell
+- PLT
 - LLVM
-- PLT 相关
 - 编译原理
 - 分布式原理
 - 日语
@@ -87,9 +86,13 @@ date: 2018-07-09 15:00:24
 - Java
 - Go
 - JavaScript(Nodejs)
+- TypeScript
 - Python
 - Lua
+- Racket
 - Matlab
+
+简单了解过许多 DSL 语言
 
 接触过的工具（部分）：
 - Git/Github/gogs/hexo/gitbook/jupyter/anaconda
