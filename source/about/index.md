@@ -20,6 +20,7 @@ date: 2018-07-09 15:00:24
 - 本科毕业：2019年6月（预期）
 - 博客：https://yjhmelody.github.io/
 - Github：https://github.com/yjhmelody
+- Gitlab: https://gitlab.com/yjhmelody
 
 ---
 
