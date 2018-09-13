@@ -10,6 +10,7 @@ date: 2018-07-09 15:00:24
 - 手机号：15968857843 （一般不接陌生电话）
 - Email：465402634@qq.com / yjh465402634@gmail.com
 - QQ：465402634
+- Wechat：yjhmelody
 
 ## 个人信息
 
@@ -18,9 +19,9 @@ date: 2018-07-09 15:00:24
 - 教育：本科
 - 专业：计算机科学与技术
 - 本科毕业：2019年6月（预期）
-- 博客：https://yjhmelody.github.io/
-- Github：https://github.com/yjhmelody
-- Gitlab: https://gitlab.com/yjhmelody
+- [Blog](https://yjhmelody.github.io/): https://yjhmelody.github.io/
+- [Github](https://github.com/yjhmelody): https://github.com/yjhmelody
+- [Gitlab](https://gitlab.com/yjhmelody): https://gitlab.com/yjhmelody
 
 ---
 
