@@ -29,10 +29,10 @@ date: 2018-07-09 15:00:24
 ## 经历
 
 - 2018美国大学生数学建模竞赛 一等奖 [证书](http://www.comap-math.com/mcm/2018Certs/91397.pdf)
-- 第九届全国服务外包创新大赛 三等奖 
+- 第九届全国服务外包创新大赛 [三等奖](http://www.fwwb.org.cn/news/show/225) 
 
 - 数据挖掘课程大作业-电影推荐，协调和对接各个组员的模块，主要实现了爬虫和数据库查询部分。
-- 用 JS 编写了类 Lisp 语言的[解释器](lambda-language)。
+- 用 JS 编写了类 Lisp 语言的[解释器](https://github.com/yjhmelody/lambda-language)。
 
 - 参与 Nodejs 的[中文文档](https://github.com/nodejscn/node-api-cn)翻译
 
@@ -93,7 +93,7 @@ date: 2018-07-09 15:00:24
 - Racket
 - Matlab
 
-简单了解过许多 DSL 语言
+了解过一些 DSL 语言，了解 Webassembly、JVM、Lua Bytecode
 
 接触过的工具（部分）：
 - Git/Github/gogs/hexo/gitbook/jupyter/anaconda
