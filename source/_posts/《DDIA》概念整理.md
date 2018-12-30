@@ -1,8 +1,8 @@
 ---
 title: 《DDIA》概念整理
 date: 2018-08-30 20:00:00
-tags: [Distrubuted System]
-category: study
+tags: [Distrubuted-System, Book]
+category: [CS]
 ---
 
 最近指忙里抽闲的看《Designing Data-Intensive Applications》（《设计数据密集型应用》）这本书，主要书看中文为主。这本书非常好，我现在刚看完一半。这本书让你认识到了数据库系统和分布式系统的大概貌，没有深入繁琐的具体细节也没有让人浅尝辄止。这本书网络上评价很高，甚至豆瓣评分有2个评分，一个是9.5分，一个是10分。现在即使想作为一个普通的后端工程师也需要学习分布式知识了，强烈推荐这本书。

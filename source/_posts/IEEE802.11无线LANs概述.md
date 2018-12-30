@@ -1,8 +1,8 @@
 ---
 title: IEEE802.11概述
 date: 2017-12-26 22:03:46
-tags: network
-category: study
+tags: [Network, IEEE]
+category: [CS]
 ---
 
 # IEEE 802.11无线 LANs 概述

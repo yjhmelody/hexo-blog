@@ -1,8 +1,8 @@
 ---
 title: JS函数式编程笔记2
 date: 2018-2-7 14:27:31
-tags: [JS, FP]
-category: study
+tags: [JS, FP, Book]
+category: [CS]
 ---
 
 # JS函数式编程

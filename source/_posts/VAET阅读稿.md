@@ -1,8 +1,8 @@
 ---
 title: VAET阅读稿
 date: 2017-10-11 18:53:34
-tags: [数据可视化, 论文阅读]
-category: study
+tags: [Data-Visualization, Paper]
+category: [CS]
 ---
 
 # VAET: A Visual Analytics Approach for E-transactions Time-Series  电子交易时间序列的一种可视化分析方法

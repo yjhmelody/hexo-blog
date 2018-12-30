@@ -1,8 +1,8 @@
 ---
 title: Install MySQL5.7
 date: 2017-10-26 13:30:18
-tags: Database
-category: study
+tags: [Mysql, Database, Configure]
+category: [CS]
 ---
 
 大二数据库原理的作业，发现还存在电脑里，于是稍微整理下放到博客里。

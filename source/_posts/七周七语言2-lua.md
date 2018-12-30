@@ -1,8 +1,8 @@
 ---
 title: 七周七语言2-Lua
 date: 2018-04-20 21:37:57
-tags: [Lua]
-category: study
+tags: [Lua, Book]
+category: [CS]
 ---
 
 # Lua
