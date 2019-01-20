@@ -15,6 +15,8 @@ Java™ must be installed. Recommended Java versions are described at HadoopJava
 
 ssh must be installed and sshd must be running to use the Hadoop scripts that manage remote Hadoop daemons.
 
+<!-- more -->
+
 ## Installing Software
 
 以下是必需的软件。
