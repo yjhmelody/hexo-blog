@@ -113,23 +113,33 @@
 
 
 
-  <meta name="description" content="许多事物值得记录">
-<meta property="og:type" content="website">
-<meta property="og:title" content="yjhmelody&#39;s blog">
-<meta property="og:url" content="https://yjhmelody.github.io/tags/ML/index.html">
+  <meta name="description" content="Hadoop Install我采用的是 linux 下的 hadoop 安装，本安装文档说明前提是已经全局安装了open-jdk1.8(也可以使用 hotspot jdk)。本文档主要参考官方文档。部分英文由自己补充和改写，主要内容翻译为中文。 Required software for Linux include: Java™ must be installed. Recommended Jav">
+<meta name="keywords" content="Hadoop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop Install">
+<meta property="og:url" content="https://yjhmelody.github.io/2018/04/20/Hadoop-Install/index.html">
 <meta property="og:site_name" content="yjhmelody&#39;s blog">
-<meta property="og:description" content="许多事物值得记录">
+<meta property="og:description" content="Hadoop Install我采用的是 linux 下的 hadoop 安装，本安装文档说明前提是已经全局安装了open-jdk1.8(也可以使用 hotspot jdk)。本文档主要参考官方文档。部分英文由自己补充和改写，主要内容翻译为中文。 Required software for Linux include: Java™ must be installed. Recommended Jav">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://yjhmelody.github.io/2018/04/20/Hadoop-Install/format.png">
+<meta property="og:image" content="https://yjhmelody.github.io/2018/04/20/Hadoop-Install/start-dfs.png">
+<meta property="og:image" content="https://yjhmelody.github.io/2018/04/20/Hadoop-Install/overview.png">
+<meta property="og:image" content="https://yjhmelody.github.io/2018/04/20/Hadoop-Install/dfs-mkdir.png">
+<meta property="og:image" content="https://yjhmelody.github.io/2018/04/20/Hadoop-Install/dfs-put.png">
+<meta property="og:image" content="https://yjhmelody.github.io/2018/04/20/Hadoop-Install/example.png">
+<meta property="og:image" content="https://yjhmelody.github.io/2018/04/20/Hadoop-Install/stop-dfs.png">
+<meta property="og:updated_time" content="2019-01-20T08:17:28.249Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yjhmelody&#39;s blog">
-<meta name="twitter:description" content="许多事物值得记录">
+<meta name="twitter:title" content="Hadoop Install">
+<meta name="twitter:description" content="Hadoop Install我采用的是 linux 下的 hadoop 安装，本安装文档说明前提是已经全局安装了open-jdk1.8(也可以使用 hotspot jdk)。本文档主要参考官方文档。部分英文由自己补充和改写，主要内容翻译为中文。 Required software for Linux include: Java™ must be installed. Recommended Jav">
+<meta name="twitter:image" content="https://yjhmelody.github.io/2018/04/20/Hadoop-Install/format.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://yjhmelody.github.io/tags/ML/"/>
+  <link rel="canonical" href="https://yjhmelody.github.io/2018/04/20/Hadoop-Install/"/>
 
 
 
@@ -139,7 +149,7 @@
   };
 </script>
 
-  <title>标签: ML | yjhmelody's blog</title>
+  <title>Hadoop Install | yjhmelody's blog</title>
   
 
 
@@ -186,7 +196,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,7 +244,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签<span class="badge">35</span></a>
   </li>
@@ -278,28 +288,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -348,142 +336,352 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>ML<small>标签</small>
-        </h1>
-      </div>
-
-      
-        
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://yjhmelody.github.io/2018/04/20/Hadoop-Install/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yjhmelody">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/css/images/mylogo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yjhmelody's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/09/24/人工智能发展报告/" itemprop="url">
-              
-                <span itemprop="name">人工智能发展报告</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Hadoop Install
+              
+            
+          </h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-24T19:29:28+08:00"
-              content="2017-09-24" >
-          09-24
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-04-20 16:13:59" itemprop="dateCreated datePublished" datetime="2018-04-20T16:13:59+08:00">2018-04-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-20 16:17:28" itemprop="dateModified" datetime="2019-01-20T16:17:28+08:00">2019-01-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CS/" itemprop="url" rel="index"><span itemprop="name">CS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/20/Hadoop-Install/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/20/Hadoop-Install/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/13/暑假机器学习总结/" itemprop="url">
-              
-                <span itemprop="name">暑假机器学习总结</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-13T20:49:32+08:00"
-              content="2017-09-13" >
-          09-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/10/机器学习里的一些小概念/" itemprop="url">
-              
-                <span itemprop="name">机器学习里的一些小概念</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-10T13:53:56+08:00"
-              content="2017-08-10" >
-          08-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/08/k-means/" itemprop="url">
-              
-                <span itemprop="name">k-means</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-08T16:18:09+08:00"
-              content="2017-08-08" >
-          08-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <h1 id="Hadoop-Install"><a href="#Hadoop-Install" class="headerlink" title="Hadoop Install"></a>Hadoop Install</h1><p>我采用的是 linux 下的 hadoop 安装，本安装文档说明前提是已经全局安装了<code>open-jdk1.8</code>(也可以使用 hotspot jdk)。本文档主要参考官方文档。部分英文由自己补充和改写，主要内容翻译为中文。</p>
+<p>Required software for Linux include:</p>
+<p>Java™ must be installed. Recommended Java versions are described at HadoopJavaVersions.</p>
+<p>ssh must be installed and sshd must be running to use the Hadoop scripts that manage remote Hadoop daemons.</p>
+<h2 id="Installing-Software"><a href="#Installing-Software" class="headerlink" title="Installing Software"></a>Installing Software</h2><p>以下是必需的软件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install ssh</span><br><span class="line">$ sudo apt-get install rsync</span><br></pre></td></tr></table></figure>
+<h2 id="Download"><a href="#Download" class="headerlink" title="Download"></a>Download</h2><p>To get a Hadoop distribution, download a recent stable release from one of the Apache Download <a href="http://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.7.6/hadoop-2.7.6.tar.gz" target="_blank" rel="noopener">Mirrors</a>.</p>
+<p>For global using, move the hadoop software to <code>~/software</code>.<br>Before start hadoop, we should check the <code>etc/profile</code> and <code>~/.bashrc</code> coded with the following code.<br>These are my personal config about Java and basic hadoop config.<br>For hadoop, <code>HADOOP_HOME</code> must to be set firstly.</p>
+<p>我使用的是 hadoop2.7.5 版本。到官网下载后，解压，并把主目录移动到了<code>~/software</code>下，并且改名为了hadoop。<br>然后需要配置一些最基本的环境变量，<code>etc/profile</code>，<code>~/.bashrc</code>配置一些全局变量，我这里包括java的基本配置。如果与读者不一致，后续操作需要做相应的修改<br>(官方后续许多跟hadoop相关的操作是在 HADOOP_HOME 下的，我把命令全部放入到PATH中，后续操作更方便)。</p>
+<p>etc/profile:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">export JAVA_HOME=/usr/lib/jdk1.8</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib  </span><br><span class="line">export PATH=$PATH:$&#123;JAVA_HOME&#125;/bin</span><br></pre></td></tr></table></figure>
+<p>~/.bashrc:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export HADOOP_HOME=~/software/hadoop</span><br><span class="line">export PATH=$PATH:$HADOOP_HOME/bin</span><br><span class="line">export PATH=$PATH:$HADOOP_HOME/sbin</span><br></pre></td></tr></table></figure>
+<p>想让环境配置立即刷新需要使用下面的命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+<h2 id="Standalone-Operation"><a href="#Standalone-Operation" class="headerlink" title="Standalone Operation"></a>Standalone Operation</h2><p>By default, Hadoop is configured to run in a non-distributed mode, as a single Java process. This is useful for debugging.</p>
+<p>The following example copies the unpacked conf directory to use as input and then finds and displays every match of the given regular expression. Output is written to the given output directory.</p>
+<p>hadoop 默认为单击模式，这对 debugging 比较友好。这里复制一些文件到input，然后跑一个Wordcount程序读取input，输出到output。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir input</span><br><span class="line">$ cp $HADOOP_HOME/etc/hadoop/*.xml input</span><br><span class="line">$ hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.5.jar grep input output &apos;dfs[a-z.]+&apos;</span><br><span class="line">$ cat output/*</span><br></pre></td></tr></table></figure>
+<h2 id="Pseudo-Distributed-Operation"><a href="#Pseudo-Distributed-Operation" class="headerlink" title="Pseudo-Distributed Operation"></a>Pseudo-Distributed Operation</h2><p>Hadoop can also be run on a single-node in a pseudo-distributed mode where each Hadoop daemon runs in a separate Java process.</p>
+<p>通过利用多个java进程，hadoop 也可以在单个节点上运行伪分布式模式。</p>
+<p>Use the following:</p>
+<p>伪分布式需要先配置。</p>
+<p>$HADOOP_HOME/etc/hadoop/core-site.xml:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://localhost:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>$HADOOP_HOME/etc/hadoop/hdfs-site.xml:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Setup-passphraseless-ssh"><a href="#Setup-passphraseless-ssh" class="headerlink" title="Setup passphraseless ssh"></a>Setup passphraseless ssh</h2><p>Now check that you can ssh to the localhost without a passphrase:</p>
+<p>先检测下是否能用密钥访问 localhost。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh localhost</span><br></pre></td></tr></table></figure>
+<p>If you cannot ssh to localhost without a passphrase, execute the following commands:</p>
+<p>如果你无法通过密钥来访问 localhost，执行下面的命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -P &apos;&apos; -f ~/.ssh/id_rsa</span><br><span class="line">$ cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br><span class="line">$ chmod 0600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+<h2 id="Execution"><a href="#Execution" class="headerlink" title="Execution"></a>Execution</h2><p>The following instructions are to run a MapReduce job locally.</p>
+<p>以下的说明针对的是本地任务。</p>
+<p>Format the filesystem:</p>
+<p>第一次使用该文件系统需要初始化。</p>
+<p><img src="format.png" alt="format"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hdfs namenode -format</span><br></pre></td></tr></table></figure>
+<p>Start NameNode daemon and DataNode daemon:</p>
+<p>用该命令启动节点。</p>
+<p><img src="start-dfs.png" alt="start-dfs"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ start-dfs.sh</span><br></pre></td></tr></table></figure>
+<p>The hadoop daemon log output is written to the $HADOOP_LOG_DIR directory (defaults to $HADOOP_HOME/logs).</p>
+<p>我们这里没有设置<code>$HADOOP_LOG_DIR</code>，使用默认的就好。</p>
+<p>Browse the web interface for the NameNode; by default it is available at:</p>
+<p>成功启动后，可以访问 Web 界面 <a href="http://localhost:50070" target="_blank" rel="noopener">http://localhost:50070</a> 查看 NameNode 和 Datanode 信息，还可以在线查看 HDFS 中的文件。<br>通过 50070 这个默认端口用浏览器浏览名字节点。</p>
+<p><img src="overview.png" alt="overview"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NameNode - http://localhost:50070/</span><br></pre></td></tr></table></figure>
+<p>Make the HDFS directories required to execute MapReduce jobs:</p>
+<p>创建 DFS 文件来提供执行 maoreduce 任务。</p>
+<p><img src="dfs-mkdir.png" alt="mkdir"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hdfs dfs -mkdir /user</span><br><span class="line">$ hdfs dfs -mkdir /user/&lt;username&gt;</span><br></pre></td></tr></table></figure>
+<p>Copy the input files into the distributed filesystem:</p>
+<p>把本地需要测试的文件复制到 dfs 里的文件系统中。</p>
+<p><img src="dfs-put.png" alt="dfs-put"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hdfs dfs -put $HADOOP_HOME/etc/hadoop input</span><br></pre></td></tr></table></figure>
+<p>Run some of the examples provided:</p>
+<p>运行一个官方实例。可以看到已经运行了WordCount。</p>
+<p><img src="example.png" alt="example"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.5.jar grep input output &apos;dfs[a-z.]+&apos;</span><br></pre></td></tr></table></figure>
+<p>Examine the output files: Copy the output files from the distributed filesystem to the local filesystem and examine them:</p>
+<p>从 hadoop 中的 dfs 的复制 output 文件到本地一份。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hdfs dfs -get output output</span><br><span class="line">$ cat output/*</span><br></pre></td></tr></table></figure>
+<p>When you’re done, stop the daemons with:</p>
+<p>当你工作结束后，使用下面命令关闭。</p>
+<p><img src="stop-dfs.png" alt="stop-dfs"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ stop-dfs.sh</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="http://hadoop.apache.org/docs/r2.7.6/hadoop-project-dist/hadoop-common/SingleCluster.html#Standalone_Operation" target="_blank" rel="noopener">Hadoop: Setting up a Single Node Cluster.</a></li>
+<li><a href="https://blog.csdn.net/u013963380/article/details/72599793" target="_blank" rel="noopener">ssh：connect to host localhost port 22: Connection refused</a></li>
+<li><a href="http://www.powerxing.com/install-hadoop/" target="_blank" rel="noopener">Hadoop安装教程_单机/伪分布式配置</a></li>
+</ul>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>yjhmelody</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://yjhmelody.github.io/2018/04/20/Hadoop-Install/" title="Hadoop Install">https://yjhmelody.github.io/2018/04/20/Hadoop-Install/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hadoop/" rel="tag"># Hadoop</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/20/2018学习和复习/" rel="next" title="2018学习和复习">
+                <i class="fa fa-chevron-left"></i> 2018学习和复习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/20/七周七语言2-lua/" rel="prev" title="七周七语言2-Lua">
+                七周七语言2-Lua <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -506,8 +704,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -678,6 +885,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hadoop-Install"><span class="nav-number">1.</span> <span class="nav-text">Hadoop Install</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Installing-Software"><span class="nav-number">1.1.</span> <span class="nav-text">Installing Software</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Download"><span class="nav-number">1.2.</span> <span class="nav-text">Download</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Standalone-Operation"><span class="nav-number">1.3.</span> <span class="nav-text">Standalone Operation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pseudo-Distributed-Operation"><span class="nav-number">1.4.</span> <span class="nav-text">Pseudo-Distributed Operation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Setup-passphraseless-ssh"><span class="nav-number">1.5.</span> <span class="nav-text">Setup passphraseless ssh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Execution"><span class="nav-number">1.6.</span> <span class="nav-text">Execution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.7.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top">
@@ -817,6 +1040,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
 
   
 
@@ -831,6 +1058,23 @@
     <script id="dsq-count-scr" src="https://yjhmelody.disqus.com/count.js" async></script>
   
 
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://yjhmelody.github.io/2018/04/20/Hadoop-Install/';
+        this.page.identifier = '2018/04/20/Hadoop-Install/';
+        this.page.title = 'Hadoop Install';
+      };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://yjhmelody.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
   
 
 
@@ -1229,7 +1473,7 @@
   <script src="https://cdn.jsdelivr.net/gh/theme-next/theme-next-bookmark@latest/bookmark.min.js"></script>
   <script type="text/javascript">
   
-    bookmark.loadBookmark();
+    bookmark.scrollToMark('auto', "#更多");
   
   </script>
 
