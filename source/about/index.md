@@ -7,13 +7,13 @@ date: 2019-02-21 19:00:24
 
 考研初试刚结束，准备毕设中，正在找实习中
 
-## 联系方式
+## Contract
 
 - 手机号：15968857843
 - Email：465402634@qq.com / yjh465402634@gmail.com
 - QQ：465402634
 
-## 个人信息
+## Personal Information
 
 - 姓名：叶家豪
 - 学校：杭州电子科技大学
@@ -26,32 +26,35 @@ date: 2019-02-21 19:00:24
 
 ---
 
-## 经历
+## Experience
 
-- 2018美国大学生数学建模竞赛 一等奖 [证书](http://www.comap-math.com/mcm/2018Certs/91397.pdf)
-- 第九届全国服务外包创新大赛 [三等奖](http://www.fwwb.org.cn/news/show/225) 
-- 海量数据存储课程大作业：编写[爬虫]((https://github.com/yjhmelody/page-links-crawl))爬取了全网链接和Wiki链接，并使用 Scala 和 Spark 编写 [PageRank 算法](https://github.com/yjhmelody/Spark-PageRank)分别进行网页排名
+- 2018年美国大学生数学建模竞赛 一等奖 [证书](http://www.comap-math.com/mcm/2018Certs/91397.pdf)
+- 2018年第九届全国服务外包创新大赛 [三等奖](http://www.fwwb.org.cn/news/show/225) 
+- 海量数据存储课程大作业：编写[爬虫]((https://github.com/yjhmelody/page-links-crawl))爬取了全网链接和Wiki站内链接，并使用 Scala 和 Spark 编写 [PageRank 算法](https://github.com/yjhmelody/Spark-PageRank)分别进行网页排名
 - [数据挖掘课程大作业](https://github.com/yjhmelody/movie-crawl)，简单的电影推荐系统：协调和对接各个组员的模块，主要实现了爬虫和数据库查询部分。
-- 用 JS 编写了类 Lisp 语言的[解释器](https://github.com/yjhmelody/lambda-language)。
-- 参与 Nodejs 的[中文文档](https://github.com/nodejscn/node-api-cn)翻译
+- 参与计算机学院 MIL 实验室的[暑期机器学习项目](https://github.com/milLearningGroup/cama_summer_school_2017)
+- 用 JS 编写简单的类 Lisp 语言的[解释器](https://github.com/yjhmelody/lambda-language)。
+- 参与 Nodejs [中文文档](https://github.com/nodejscn/node-api-cn)的翻译
 
-## 兴趣方向
 
-- 对计算机底层知识感兴趣，比如计算机体系结构，编程语言虚拟机。
-- 对`编程语言理论`和`编译原理`感兴趣，有深入学习的想法。
+## Interests
+
+- 对计算机底层系统知识有一定的兴趣，比如计算机体系结构，编程语言虚拟机。
+- 对`编程语言理论`和`编译原理`有一定的兴趣，并且有深入学习的想法。
 
 近期期望学习的内容：
+- 计算机科学相关的数学基础
 - PLT
-- LLVM/编译原理
+- LLVM/编译后端
 - 数据库原理/分布式原理
-- 日语
+- 初级日语
 
-近期知识储备的书单（用来备忘）：
+近期知识储备的书单（备忘）：
 - 《Programming Languages: Application and Interpretation》（以中文版为主）
 - 《Designing Data-Intensive Applications》（以中文版为主）
 - 《图灵的秘密》
   
-## 专业技能
+## Professional Skills
 
 部分专业课：
 - 离散数学
@@ -71,7 +74,7 @@ date: 2019-02-21 19:00:24
 - 云计算技术
 
 习惯的开发环境：
-- Windows 10
+- Windows 10 / WSL
 - Linux Ubuntu
 - VScode
 - intellij idea
@@ -93,6 +96,7 @@ date: 2019-02-21 19:00:24
 - Racket
 - Matlab
 
+泛编程语言使用者，关注语言特性。
 限于精力，有些熟练度和深度不够，仅仅是入门水准。简单了解过一些 DSL 语言，简单了解 Webassembly、Java Bytecode、Lua Bytecode、Python Bytecode。
 
 接触过的工具（部分）：
