@@ -1,15 +1,15 @@
 ---
 title: Archives
-date: 2018-07-09 15:00:24
+date: 2019-02-21 19:00:24
 ---
 
 # About Me
 
-刚考完研，正在找工作中……
+考研初试刚结束，准备毕设中，正在找实习中
 
 ## 联系方式
 
-- 手机号：15968857843 （一般不接陌生电话）
+- 手机号：15968857843
 - Email：465402634@qq.com / yjh465402634@gmail.com
 - QQ：465402634
 
@@ -30,10 +30,9 @@ date: 2018-07-09 15:00:24
 
 - 2018美国大学生数学建模竞赛 一等奖 [证书](http://www.comap-math.com/mcm/2018Certs/91397.pdf)
 - 第九届全国服务外包创新大赛 [三等奖](http://www.fwwb.org.cn/news/show/225) 
-
-- 数据挖掘课程大作业-电影推荐，协调和对接各个组员的模块，主要实现了爬虫和数据库查询部分。
+- 海量数据存储课程大作业：编写[爬虫]((https://github.com/yjhmelody/page-links-crawl))爬取了全网链接和Wiki链接，并使用 Scala 和 Spark 编写 [PageRank 算法](https://github.com/yjhmelody/Spark-PageRank)分别进行网页排名
+- [数据挖掘课程大作业](https://github.com/yjhmelody/movie-crawl)，简单的电影推荐系统：协调和对接各个组员的模块，主要实现了爬虫和数据库查询部分。
 - 用 JS 编写了类 Lisp 语言的[解释器](https://github.com/yjhmelody/lambda-language)。
-
 - 参与 Nodejs 的[中文文档](https://github.com/nodejscn/node-api-cn)翻译
 
 ## 兴趣方向
@@ -47,12 +46,11 @@ date: 2018-07-09 15:00:24
 - 数据库原理/分布式原理
 - 日语
 
-近期希望读的书（用来备忘）：
+近期知识储备的书单（用来备忘）：
 - 《Programming Languages: Application and Interpretation》（以中文版为主）
 - 《Designing Data-Intensive Applications》（以中文版为主）
-
-近期在准备考研
-
+- 《图灵的秘密》
+  
 ## 专业技能
 
 部分专业课：
@@ -77,15 +75,17 @@ date: 2018-07-09 15:00:24
 - Linux Ubuntu
 - VScode
 - intellij idea
+- intellij Clion
 
 接触过多种编程语言（部分）：
 - C
 - C++
 - Rust
+- OCaml
 - Haskell
 - Scala
 - Java
-- Go
+- Golang
 - JavaScript(Nodejs)
 - TypeScript
 - Python
@@ -93,14 +93,14 @@ date: 2018-07-09 15:00:24
 - Racket
 - Matlab
 
-了解过一些 DSL 语言，了解 Webassembly、JVM、Lua Bytecode
+限于精力，有些熟练度和深度不够，仅仅是入门水准。简单了解过一些 DSL 语言，简单了解 Webassembly、Java Bytecode、Lua Bytecode、Python Bytecode。
 
 接触过的工具（部分）：
-- Git/Github/gogs/hexo/gitbook/jupyter/anaconda
+- Git/Github/Hexo/Gitbook/Jupyter/Anaconda
 
 接触过的类库和框架（部分）：
-- JS: Express/echarts/request/lodash/ramda/Jquery/JsDoc
-- Python: requests/flask/numpy/pandas/matplotlib/sklearn
+- JS: Express/Echarts/Request/Lodash/Ramda/JQuery/JsDoc
+- Python: Requests/Flask/numpy/pandas/matplotlib/scikit-learn/Keras
 - ...
 
 接触过的系统和平台（部分）：
